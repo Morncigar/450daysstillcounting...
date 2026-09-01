@@ -1,336 +1,725 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#f6d9df" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <meta name="theme-color" content="#ead6d4" />
 
   <title>for you.</title>
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
+
 <body>
 
-  <!-- =========================
-       OPENING SCREEN
-  ========================== -->
-  <section class="opening-screen" id="openingScreen">
-    <div class="opening-content">
-      <p class="opening-kicker">hey, kamu.</p>
+  <!-- ========================================
+       OPENING
+  ========================================= -->
 
-      <h1>
+  <section
+    class="opening-screen"
+    id="openingScreen"
+  >
+
+    <div class="opening-panel">
+
+      <p class="opening-small">
+        hey, kamu.
+      </p>
+
+      <h1 class="opening-title">
         ini bukan game,<br />
         tapi coba mainin aja.
       </h1>
 
-      <button class="enter-button" id="enterButton">
+      <button
+        class="game-button opening-button"
+        id="enterButton"
+        type="button"
+      >
         okay??
       </button>
+
     </div>
+
   </section>
 
 
-  <!-- =========================
-       MAIN APP
-  ========================== -->
-  <main class="app" id="app">
 
-    <!-- =========================
-         MAIN WORLD
-    ========================== -->
-    <section class="world-section" id="worldSection">
+  <!-- ========================================
+       MAIN GAME
+  ========================================= -->
 
-      <div class="world-shell">
+  <main
+    class="game"
+    id="game"
+  >
 
-        <!-- background -->
+
+    <!-- ========================================
+         WORLD
+    ========================================= -->
+
+    <section
+      class="world-section"
+      id="worldSection"
+    >
+
+      <div
+        class="world"
+        id="world"
+      >
+
+
+        <!-- BACKGROUND -->
+
         <img
           src="assets/backgrounds/mainworld-mobile.webp"
-          alt=""
           class="world-background"
+          alt=""
           draggable="false"
         />
 
-        <!-- heading -->
-        <div class="world-copy">
-          <p class="world-caption">
+
+
+        <!-- ========================================
+             TOP QUEST HUD
+        ========================================= -->
+
+        <header class="quest-hud">
+
+          <div class="quest-copy">
+
+            <span class="quest-label">
+              MISSION
+            </span>
+
+            <p class="quest-title">
+              find all the little things.
+            </p>
+
+          </div>
+
+
+          <div class="quest-progress">
+
+            <div class="quest-progress-main">
+
+              <span id="mainProgress">
+                0
+              </span>
+
+              <span class="quest-progress-divider">
+                /
+              </span>
+
+              <span id="mainTotal">
+                8
+              </span>
+
+            </div>
+
+            <span class="quest-progress-caption">
+              found
+            </span>
+
+          </div>
+
+        </header>
+
+
+
+        <!-- ========================================
+             WORLD INTRO
+        ========================================= -->
+
+        <div class="world-message">
+
+          <p>
             tap anything.<br />
             most of them have a story.
           </p>
+
         </div>
 
 
-        <!-- =========================
-             CLICKABLE OBJECTS
-        ========================== -->
 
-        <!-- VINO -->
+        <!-- ========================================
+             OBJECT 11
+             WINDOW
+        ========================================= -->
+
         <button
-          class="world-object object-vino"
-          data-memory="vino"
-          aria-label="Open Vino memory"
-        >
-          <img
-            src="assets/objects/2.png"
-            alt="Maroon Vino"
-            draggable="false"
-          />
-        </button>
-
-
-        <!-- TUMBLER -->
-        <button
-          class="world-object object-tumbler"
-          data-memory="tumbler"
-          aria-label="Open tumbler memory"
-        >
-          <img
-            src="assets/objects/3.png"
-            alt="Pastel tumbler"
-            draggable="false"
-          />
-        </button>
-
-
-        <!-- KEYCHAIN -->
-        <button
-          class="world-object object-keychain"
-          data-memory="keychain"
-          aria-label="Open keychain memory"
-        >
-          <img
-            src="assets/objects/4.png"
-            alt="Couple keychain"
-            draggable="false"
-          />
-        </button>
-
-
-        <!-- GACOAN -->
-        <button
-          class="world-object object-gacoan"
-          data-memory="gacoan"
-          aria-label="Open Mie Gacoan memory"
-        >
-          <img
-            src="assets/objects/5.png"
-            alt="Mie Gacoan"
-            draggable="false"
-          />
-        </button>
-
-
-        <!-- GACHA -->
-        <button
-          class="world-object object-gacha"
-          data-memory="gacha"
-          aria-label="Open memory gacha"
-        >
-          <img
-            src="assets/objects/6.png"
-            alt="Gacha machine"
-            draggable="false"
-          />
-        </button>
-
-
-        <!-- PHOTOBOX -->
-        <button
-          class="world-object object-photobox"
-          data-memory="photobox"
-          aria-label="Open photobox memory"
-        >
-          <img
-            src="assets/objects/7.png"
-            alt="Photobox"
-            draggable="false"
-          />
-        </button>
-
-
-        <!-- CAT -->
-        <button
-          class="world-object object-cat"
-          data-memory="cat"
-          aria-label="Open cat memory"
-        >
-          <img
-            src="assets/objects/8.png"
-            alt="Cat"
-            draggable="false"
-          />
-        </button>
-
-
-        <!-- MAILBOX -->
-        <button
-          class="world-object object-mailbox"
-          data-memory="mailbox"
-          aria-label="Open letter"
-        >
-          <img
-            src="assets/objects/9.png"
-            alt="Mailbox"
-            draggable="false"
-          />
-        </button>
-
-
-        <!-- SNACK SHELF -->
-        <button
-          class="world-object object-snacks"
-          data-memory="snacks"
-          aria-label="Open snack shelf"
-        >
-          <img
-            src="assets/objects/10.png"
-            alt="Snack shelf"
-            draggable="false"
-          />
-        </button>
-
-
-        <!-- WINDOW -->
-        <button
+          type="button"
           class="world-object object-window"
-          data-memory="window"
-          aria-label="Open outdoor memories"
+          data-item="window"
+          data-required="true"
+          aria-label="Open outdoor memory"
         >
+
           <img
             src="assets/objects/11.png"
             alt="Window"
             draggable="false"
           />
+
+          <span class="object-complete">
+            ✓
+          </span>
+
         </button>
 
 
-        <!-- =========================
-             HUD
-        ========================== -->
-        <div class="world-hud">
 
-          <div class="memory-progress">
-            <span id="memoryCount">0</span>
-            <span>/</span>
-            <span id="memoryTotal">9</span>
-            <small>found</small>
+        <!-- ========================================
+             OBJECT 7
+             PHOTOBOX
+        ========================================= -->
+
+        <button
+          type="button"
+          class="world-object object-photobox"
+          data-item="photobox"
+          data-required="true"
+          aria-label="Open photobox memory"
+        >
+
+          <img
+            src="assets/objects/7.png"
+            alt="Photobox booth"
+            draggable="false"
+          />
+
+          <span class="object-complete">
+            ✓
+          </span>
+
+        </button>
+
+
+
+        <!-- ========================================
+             OBJECT 10
+             SNACK SHELF
+        ========================================= -->
+
+        <button
+          type="button"
+          class="world-object object-snacks"
+          data-item="snacks"
+          data-required="true"
+          aria-label="Open snack memory"
+        >
+
+          <img
+            src="assets/objects/10.png"
+            alt="Snack shelf"
+            draggable="false"
+          />
+
+          <span class="object-complete">
+            ✓
+          </span>
+
+        </button>
+
+
+
+        <!-- ========================================
+             OBJECT 3
+             TUMBLER
+        ========================================= -->
+
+        <button
+          type="button"
+          class="world-object object-tumbler"
+          data-item="tumbler"
+          data-required="true"
+          aria-label="Open tumbler memory"
+        >
+
+          <img
+            src="assets/objects/3.png"
+            alt="Pastel tumbler"
+            draggable="false"
+          />
+
+          <span class="object-complete">
+            ✓
+          </span>
+
+        </button>
+
+
+
+        <!-- ========================================
+             OBJECT 6
+             GACHA
+             BONUS QUEST
+        ========================================= -->
+
+        <button
+          type="button"
+          class="world-object object-gacha"
+          data-item="gacha"
+          data-required="false"
+          aria-label="Open memory gacha"
+        >
+
+          <img
+            src="assets/objects/6.png"
+            alt="Gacha machine"
+            draggable="false"
+          />
+
+          <span class="bonus-marker">
+            !
+          </span>
+
+        </button>
+
+
+
+        <!-- ========================================
+             OBJECT 8
+             CAT
+        ========================================= -->
+
+        <button
+          type="button"
+          class="world-object object-cat"
+          data-item="cat"
+          data-required="true"
+          aria-label="Open cat interaction"
+        >
+
+          <img
+            src="assets/objects/8.png"
+            alt="Cat"
+            draggable="false"
+          />
+
+          <span class="object-complete">
+            ✓
+          </span>
+
+        </button>
+
+
+
+        <!-- ========================================
+             OBJECT 4
+             KEYCHAIN
+        ========================================= -->
+
+        <button
+          type="button"
+          class="world-object object-keychain"
+          data-item="keychain"
+          data-required="true"
+          aria-label="Open keychain memory"
+        >
+
+          <img
+            src="assets/objects/4.png"
+            alt="Couple keychain"
+            draggable="false"
+          />
+
+          <span class="object-complete">
+            ✓
+          </span>
+
+        </button>
+
+
+
+        <!-- ========================================
+             OBJECT 5
+             GACOAN
+        ========================================= -->
+
+        <button
+          type="button"
+          class="world-object object-gacoan"
+          data-item="gacoan"
+          data-required="true"
+          aria-label="Open Gacoan memory"
+        >
+
+          <img
+            src="assets/objects/5.png"
+            alt="Mie Gacoan"
+            draggable="false"
+          />
+
+          <span class="object-complete">
+            ✓
+          </span>
+
+        </button>
+
+
+
+        <!-- ========================================
+             OBJECT 2
+             VINO
+        ========================================= -->
+
+        <button
+          type="button"
+          class="world-object object-vino"
+          data-item="vino"
+          data-required="true"
+          aria-label="Open Vino memory"
+        >
+
+          <img
+            src="assets/objects/2.png"
+            alt="Si Meru"
+            draggable="false"
+          />
+
+          <span class="object-complete">
+            ✓
+          </span>
+
+        </button>
+
+
+
+        <!-- ========================================
+             OBJECT 9
+             MAILBOX
+             FINAL REWARD
+        ========================================= -->
+
+        <button
+          type="button"
+          class="world-object object-mailbox is-locked"
+          id="mailboxObject"
+          data-item="mailbox"
+          data-required="false"
+          aria-label="Open mailbox"
+        >
+
+          <img
+            src="assets/objects/9.png"
+            alt="Mailbox"
+            draggable="false"
+          />
+
+          <span
+            class="mailbox-lock"
+            id="mailboxLock"
+          >
+            🔒
+          </span>
+
+        </button>
+
+
+
+        <!-- ========================================
+             BOTTOM HUD
+        ========================================= -->
+
+        <div class="bottom-hud">
+
+
+          <!-- MAIN MISSION -->
+
+          <div class="hud-pill main-mission-pill">
+
+            <span>
+              MAIN
+            </span>
+
+            <strong id="hudMainProgress">
+              0 / 8
+            </strong>
+
           </div>
 
+
+
+          <!-- BONUS -->
+
+          <div
+            class="hud-pill bonus-pill"
+            id="bonusHud"
+          >
+
+            <span>
+              BONUS
+            </span>
+
+            <strong id="bonusProgress">
+              0 / 1
+            </strong>
+
+          </div>
+
+
+
+          <!-- MUSIC -->
+
           <button
-            class="hud-button music-button"
+            type="button"
+            class="hud-circle"
             id="musicButton"
             aria-label="Toggle music"
           >
-            ♫
+            ♪
           </button>
 
         </div>
 
+
       </div>
+
     </section>
 
 
-    <!-- =========================
-         LIVE RELATIONSHIP TIMER
-    ========================== -->
-    <section class="counter-section" id="counterSection">
-      <div class="counter-inner">
 
-        <p class="counter-date">
-          since 08.06.2025
-        </p>
+    <!-- ========================================
+         LOCKED CHAPTER
+         Hidden until mailbox completed
+    ========================================= -->
 
-        <div class="counter-days-block">
-          <span class="counter-days" id="days">0</span>
-          <span class="counter-days-label">days with you</span>
+    <section
+      class="post-game locked-content"
+      id="postGame"
+      aria-hidden="true"
+    >
+
+
+      <!-- ========================================
+           RELATIONSHIP COUNTER
+      ========================================= -->
+
+      <section
+        class="counter-section"
+        id="counterSection"
+      >
+
+        <div class="counter-inner">
+
+          <p class="counter-date">
+            since 08.06.2025
+          </p>
+
+
+          <div class="counter-main">
+
+            <span
+              class="counter-days"
+              id="days"
+            >
+              0
+            </span>
+
+            <span class="counter-days-text">
+              days with you
+            </span>
+
+          </div>
+
+
+          <div class="counter-clock">
+
+            <div class="counter-unit">
+
+              <span id="hours">
+                00
+              </span>
+
+              <small>
+                hours
+              </small>
+
+            </div>
+
+
+            <span class="counter-colon">
+              :
+            </span>
+
+
+            <div class="counter-unit">
+
+              <span id="minutes">
+                00
+              </span>
+
+              <small>
+                min
+              </small>
+
+            </div>
+
+
+            <span class="counter-colon">
+              :
+            </span>
+
+
+            <div class="counter-unit">
+
+              <span id="seconds">
+                00
+              </span>
+
+              <small>
+                sec
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <p class="counter-ending">
+            still counting.
+          </p>
+
         </div>
 
-        <div class="counter-time">
-          <div class="counter-time-unit">
-            <span id="hours">00</span>
-            <small>hours</small>
-          </div>
+      </section>
 
-          <span class="counter-divider">:</span>
 
-          <div class="counter-time-unit">
-            <span id="minutes">00</span>
-            <small>min</small>
-          </div>
 
-          <span class="counter-divider">:</span>
+      <!-- ========================================
+           FINAL
+      ========================================= -->
 
-          <div class="counter-time-unit">
-            <span id="seconds">00</span>
-            <small>sec</small>
-          </div>
+      <section class="final-section">
+
+        <div class="final-inner">
+
+          <p class="final-date">
+            08.06.2025 — now
+          </p>
+
+
+          <h2>
+            still you.<br />
+            still me.
+          </h2>
+
+
+          <p class="final-copy">
+            that's all.<br />
+            for now.
+          </p>
+
+
+          <span class="final-small">
+            still counting.
+          </span>
+
         </div>
 
-        <p class="still-counting">
-          still counting.
-        </p>
-
-      </div>
-    </section>
+      </section>
 
 
-    <!-- =========================
-         FINAL SECTION
-    ========================== -->
-    <section class="final-section" id="finalSection">
-      <div class="final-inner">
-
-        <p class="final-small">
-          08.06.2025 — now
-        </p>
-
-        <h2>
-          still you.<br />
-          still me.
-        </h2>
-
-        <p class="final-ending">
-          that's all.<br />
-          for now.
-        </p>
-
-        <span class="final-counting">
-          still counting.
-        </span>
-
-      </div>
     </section>
 
   </main>
 
 
-  <!-- =========================
-       MEMORY MODAL
-  ========================== -->
+
+  <!-- ========================================
+       GAME DIALOG
+       Compact — no long scrolling modal
+  ========================================= -->
+
   <div
-    class="memory-modal"
-    id="memoryModal"
+    class="game-dialog"
+    id="gameDialog"
     aria-hidden="true"
   >
 
     <div
-      class="memory-backdrop"
-      id="memoryBackdrop"
+      class="dialog-backdrop"
+      id="dialogBackdrop"
     ></div>
 
-    <article class="memory-card">
 
-      <button
-        class="memory-close"
-        id="memoryClose"
-        aria-label="Close memory"
-      >
-        ×
-      </button>
+    <article class="dialog-box">
 
-      <div class="memory-content" id="memoryContent">
 
-        <!-- dynamically replaced by JS -->
+      <header class="dialog-header">
+
+        <div>
+
+          <span
+            class="dialog-type"
+            id="dialogType"
+          >
+            ITEM FOUND
+          </span>
+
+          <h2
+            class="dialog-title"
+            id="dialogTitle"
+          >
+            item
+          </h2>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="dialog-close"
+          id="dialogClose"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+      </header>
+
+
+
+      <div class="dialog-body">
+
+
+        <div
+          class="dialog-media"
+          id="dialogMedia"
+        ></div>
+
+
+        <p
+          class="dialog-text"
+          id="dialogText"
+        >
+        </p>
+
+
+        <div
+          class="dialog-actions"
+          id="dialogActions"
+        >
+
+          <button
+            type="button"
+            class="pixel-button"
+            id="dialogOkay"
+          >
+            OK
+          </button>
+
+        </div>
 
       </div>
 
@@ -339,206 +728,269 @@
   </div>
 
 
-  <!-- =========================
-       HIDDEN MEMORY TEMPLATES
-  ========================== -->
-  <template id="memory-vino">
-    <div class="memory-template">
 
-      <p class="memory-label">memory 01</p>
+  <!-- ========================================
+       GACHA SCREEN
+  ========================================= -->
 
-      <h2>
-        si meru<br />
-        <span>alias merah rudet wkwk</span>
-      </h2>
+  <div
+    class="gacha-screen"
+    id="gachaScreen"
+    aria-hidden="true"
+  >
 
-      <img
-        src="assets/objects/2.png"
-        alt="Si Meru"
-        class="memory-object-image"
-      />
-
-      <p class="memory-text">
-        somehow bahkan motor ini
-        jadi salah satu hal yang langsung
-        bikin aku keinget kamu.
-      </p>
-
-    </div>
-  </template>
+    <div
+      class="dialog-backdrop"
+      id="gachaBackdrop"
+    ></div>
 
 
-  <template id="memory-tumbler">
-    <div class="memory-template">
-
-      <p class="memory-label">memory 02</p>
-
-      <h2>
-        that tumbler.
-      </h2>
-
-      <img
-        src="assets/objects/3.png"
-        alt="Pastel tumbler"
-        class="memory-object-image"
-      />
-
-      <p class="memory-text">
-        i don't know why,
-        but this color combination is so you.
-      </p>
-
-    </div>
-  </template>
+    <article class="gacha-box">
 
 
-  <template id="memory-keychain">
-    <div class="memory-template">
+      <header class="gacha-header">
 
-      <p class="memory-label">memory 03</p>
+        <div>
 
-      <h2>
-        you got the white one.<br />
-        i got the brown one.
-      </h2>
+          <span class="dialog-type">
+            BONUS QUEST
+          </span>
 
-      <img
-        src="assets/objects/4.png"
-        alt="Couple keychain"
-        class="memory-object-image"
-      />
+          <h2>
+            memory gacha
+          </h2>
 
-      <p class="memory-text">
-        separate,
-        but they only really make sense together.
-      </p>
-
-    </div>
-  </template>
+        </div>
 
 
-  <template id="memory-gacoan">
-    <div class="memory-template">
+        <button
+          type="button"
+          class="dialog-close"
+          id="gachaClose"
+          aria-label="Close gacha"
+        >
+          ×
+        </button>
 
-      <p class="memory-label">memory 04</p>
-
-      <h2>
-        of course this is here.
-      </h2>
-
-      <img
-        src="assets/objects/5.png"
-        alt="Mie Gacoan"
-        class="memory-object-image"
-      />
-
-      <p class="memory-text">
-        mie gacoan.<br />
-        no further explanation needed.
-      </p>
-
-    </div>
-  </template>
+      </header>
 
 
-  <template id="memory-snacks">
-    <div class="memory-template">
 
-      <p class="memory-label">memory 05</p>
-
-      <h2>
-        emergency supplies
-      </h2>
-
-      <img
-        src="assets/objects/10.png"
-        alt="Snack shelf"
-        class="memory-object-image"
-      />
-
-      <p class="memory-text">
-        ciki, pilus, keripik, taro,
-        dan apapun yang keliatannya asin.
-      </p>
-
-    </div>
-  </template>
+      <div class="gacha-machine-area">
 
 
-  <template id="memory-cat">
-    <div class="memory-template cat-memory">
+        <img
+          src="assets/objects/6.png"
+          alt="Gacha machine"
+          class="gacha-machine-image"
+          id="gachaMachineImage"
+          draggable="false"
+        />
 
-      <p class="memory-label">memory 06</p>
 
-      <h2>
-        cat.
-      </h2>
+        <p
+          class="gacha-status"
+          id="gachaStatus"
+        >
+          pull one.
+        </p>
 
-      <img
-        src="assets/objects/8.png"
-        alt="Cat"
-        class="memory-object-image"
-      />
 
-      <p class="memory-text" id="catText">
-        you would've stopped walking anyway.
-      </p>
+        <button
+          type="button"
+          class="pixel-button gacha-pull"
+          id="gachaPullButton"
+        >
+          PULL
+        </button>
 
-      <button
-        class="memory-action"
-        id="petCatButton"
+      </div>
+
+
+
+      <!-- RESULT -->
+
+      <div
+        class="gacha-result"
+        id="gachaResult"
+        aria-live="polite"
       >
-        pspspspsps
-      </button>
 
-    </div>
-  </template>
+        <span
+          class="gacha-rarity"
+          id="gachaRarity"
+        ></span>
 
 
-  <template id="memory-photobox">
-    <div class="memory-template">
+        <div
+          class="gacha-result-media"
+          id="gachaResultMedia"
+        ></div>
 
-      <p class="memory-label">memory 07</p>
+
+        <p
+          class="gacha-result-caption"
+          id="gachaResultCaption"
+        ></p>
+
+
+        <div class="gacha-result-actions">
+
+          <button
+            type="button"
+            class="pixel-button"
+            id="gachaPullAgain"
+          >
+            PULL AGAIN
+          </button>
+
+
+          <button
+            type="button"
+            class="pixel-button pixel-button-secondary"
+            id="gachaDone"
+          >
+            DONE
+          </button>
+
+        </div>
+
+      </div>
+
+
+    </article>
+
+  </div>
+
+
+
+  <!-- ========================================
+       PHOTOBOX EXPERIENCE
+  ========================================= -->
+
+  <div
+    class="photobox-screen"
+    id="photoboxScreen"
+    aria-hidden="true"
+  >
+
+    <div
+      class="dialog-backdrop"
+      id="photoboxBackdrop"
+    ></div>
+
+
+    <article class="photobox-box">
+
+
+      <header class="photobox-header">
+
+        <span class="dialog-type">
+          MEMORY FOUND
+        </span>
+
+
+        <button
+          type="button"
+          class="dialog-close"
+          id="photoboxClose"
+          aria-label="Close photobox"
+        >
+          ×
+        </button>
+
+      </header>
+
 
       <h2>
         proof that we were here.
       </h2>
 
+
       <video
-        class="memory-video"
+        class="photobox-video"
+        id="photoboxVideo"
         autoplay
         muted
         loop
         playsinline
       >
+
         <source
           src="assets/gifs/photobox/us-photobox-01.webm"
           type="video/webm"
         />
+
       </video>
 
-      <p class="memory-text">
+
+      <p>
         one more?
       </p>
 
-    </div>
-  </template>
+
+      <button
+        type="button"
+        class="pixel-button"
+        id="photoboxDone"
+      >
+        KEEP IT
+      </button>
+
+    </article>
+
+  </div>
 
 
-  <template id="memory-window">
-    <div class="memory-template">
 
-      <p class="memory-label">memory 08</p>
+  <!-- ========================================
+       OUTDOOR MEMORY SCREEN
+  ========================================= -->
 
-      <h2>
-        outside?
-      </h2>
+  <div
+    class="outdoor-screen"
+    id="outdoorScreen"
+    aria-hidden="true"
+  >
 
-      <p class="memory-text">
-        we should go somewhere again.
-      </p>
+    <div
+      class="dialog-backdrop"
+      id="outdoorBackdrop"
+    ></div>
 
-      <div class="memory-gallery">
+
+    <article class="outdoor-box">
+
+
+      <header class="outdoor-header">
+
+        <div>
+
+          <span class="dialog-type">
+            MEMORY FOUND
+          </span>
+
+          <h2>
+            outside?
+          </h2>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="dialog-close"
+          id="outdoorClose"
+          aria-label="Close outdoor memories"
+        >
+          ×
+        </button>
+
+      </header>
+
+
+
+      <div class="outdoor-gallery">
 
         <img
           src="assets/photos/her/her-beach-01.webp"
@@ -547,6 +999,11 @@
 
         <img
           src="assets/photos/her/her-rooftop-01.webp"
+          alt=""
+        />
+
+        <img
+          src="assets/photos/her/her-silhouette-window-01.webp"
           alt=""
         />
 
@@ -562,94 +1019,203 @@
 
       </div>
 
-    </div>
-  </template>
+
+      <p class="outdoor-copy">
+        we should go somewhere again.
+      </p>
 
 
-  <template id="memory-mailbox">
-    <div class="memory-template letter-memory">
+      <button
+        type="button"
+        class="pixel-button"
+        id="outdoorDone"
+      >
+        OK
+      </button>
 
-      <p class="memory-label">memory 09</p>
+    </article>
 
-      <h2>
-        for you.
-      </h2>
+  </div>
 
-      <p class="memory-letter-intro">
+
+
+  <!-- ========================================
+       MAILBOX / FINAL LETTER
+  ========================================= -->
+
+  <div
+    class="mailbox-screen"
+    id="mailboxScreen"
+    aria-hidden="true"
+  >
+
+    <div
+      class="dialog-backdrop"
+      id="mailboxBackdrop"
+    ></div>
+
+
+    <article class="mailbox-box">
+
+
+      <header>
+
+        <span class="dialog-type">
+          FINAL ITEM
+        </span>
+
+        <h2>
+          for you.
+        </h2>
+
+      </header>
+
+
+      <img
+        src="assets/objects/9.png"
+        alt="Mailbox"
+        class="mailbox-image"
+        draggable="false"
+      />
+
+
+      <p class="mailbox-intro">
         okay.<br />
         this one isn't a game.
       </p>
 
-      <div class="letter-body">
+
+      <button
+        type="button"
+        class="pixel-button"
+        id="openLetterButton"
+      >
+        OPEN
+      </button>
+
+
+
+      <!-- LETTER -->
+
+      <div
+        class="letter-panel"
+        id="letterPanel"
+      >
 
         <p>
-          nanti surat aslinya kita taro di sini.
+          surat asli nanti kita taro di sini.
         </p>
 
         <p>
-          bagian ini sengaja belum gue isi final
-          karena ini harus bener-bener dari lo.
+          ini bagian yang nanti kita tulis
+          paling terakhir.
         </p>
 
-        <p>
-          bukan template.
-          bukan quote pinterest.
-          bukan kalimat AI.
-        </p>
+        <button
+          type="button"
+          class="pixel-button"
+          id="finishGameButton"
+        >
+          CONTINUE
+        </button>
 
       </div>
 
-    </div>
-  </template>
+
+    </article>
+
+  </div>
 
 
-  <template id="memory-gacha">
-    <div class="memory-template gacha-memory">
 
-      <p class="memory-label">memory gacha</p>
+  <!-- ========================================
+       TOAST / ANNOUNCEMENT
+  ========================================= -->
+
+  <div
+    class="game-toast"
+    id="gameToast"
+    role="status"
+    aria-live="polite"
+  >
+
+    <span
+      class="toast-label"
+      id="toastLabel"
+    >
+      MEMORY FOUND
+    </span>
+
+    <strong
+      id="toastText"
+    >
+      +1
+    </strong>
+
+  </div>
+
+
+
+  <!-- ========================================
+       MISSION COMPLETE OVERLAY
+  ========================================= -->
+
+  <div
+    class="mission-complete"
+    id="missionComplete"
+    aria-hidden="true"
+  >
+
+    <div class="mission-complete-box">
+
+      <span>
+        MISSION COMPLETE
+      </span>
 
       <h2>
-        pull one.
+        okay...<br />
+        you found everything.
       </h2>
 
-      <img
-        src="assets/objects/6.png"
-        alt="Gacha machine"
-        class="memory-object-image"
-      />
+      <p>
+        something just unlocked.
+      </p>
 
       <button
-        class="memory-action"
-        id="gachaPullButton"
+        type="button"
+        class="pixel-button"
+        id="missionCompleteButton"
       >
-        pull
+        CONTINUE
       </button>
 
-      <div
-        class="gacha-result"
-        id="gachaResult"
-      ></div>
-
     </div>
-  </template>
+
+  </div>
 
 
-  <!-- =========================
+
+  <!-- ========================================
        AUDIO
-  ========================== -->
+  ========================================= -->
+
   <audio
     id="backgroundMusic"
     loop
     preload="metadata"
   >
-    <!-- isi nanti -->
     <!--
-    <source src="assets/audio/background.mp3" type="audio/mpeg" />
+    <source
+      src="assets/audio/background.mp3"
+      type="audio/mpeg"
+    />
     -->
   </audio>
+
 
 
   <script src="script.js"></script>
 
 </body>
+
 </html>
