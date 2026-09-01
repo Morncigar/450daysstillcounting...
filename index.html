@@ -9,19 +9,41 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <meta name="theme-color" content="#f2dce3">
+  <meta
+    name="theme-color"
+    content="#f2dce3"
+  >
 
   <title>for you.</title>
 
+
+  <!-- =========================================================
+       FONTS
+  ========================================================== -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css">
+
+  <!-- =========================================================
+       STYLE
+  ========================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
 
 
@@ -32,7 +54,10 @@
        APP ROOT
   ========================================================== -->
 
-  <div class="app" id="app">
+  <div
+    class="app"
+    id="app"
+  >
 
 
     <!-- =========================================================
@@ -45,15 +70,35 @@
       aria-label="Opening"
     >
 
-      <div class="prologue-background">
 
-        <span class="floating-shape shape-one"></span>
-        <span class="floating-shape shape-two"></span>
-        <span class="floating-shape shape-three"></span>
-        <span class="floating-shape shape-four"></span>
+      <!-- BACKGROUND DECORATION -->
+
+      <div
+        class="prologue-background"
+        aria-hidden="true"
+      >
+
+        <span
+          class="floating-shape shape-one"
+        ></span>
+
+        <span
+          class="floating-shape shape-two"
+        ></span>
+
+        <span
+          class="floating-shape shape-three"
+        ></span>
+
+        <span
+          class="floating-shape shape-four"
+        ></span>
 
       </div>
 
+
+
+      <!-- CONTENT -->
 
       <div class="prologue-content">
 
@@ -65,7 +110,10 @@
           data-prologue-beat="1"
         >
 
-          <span class="tiny-heart">
+          <span
+            class="tiny-heart"
+            aria-hidden="true"
+          >
             ♡
           </span>
 
@@ -74,6 +122,7 @@
           </p>
 
         </div>
+
 
 
         <!-- BEAT 2 -->
@@ -88,6 +137,7 @@
           </p>
 
         </div>
+
 
 
         <!-- BEAT 3 -->
@@ -105,7 +155,8 @@
         </div>
 
 
-        <!-- START -->
+
+        <!-- START BUTTON -->
 
         <div
           class="prologue-start"
@@ -121,6 +172,7 @@
           </button>
 
         </div>
+
 
       </div>
 
@@ -140,7 +192,7 @@
 
 
       <!-- =========================================================
-           WORLD
+           MAIN WORLD
       ========================================================== -->
 
       <section
@@ -148,13 +200,16 @@
         id="worldSection"
       >
 
+
         <div
           class="world"
           id="world"
         >
 
 
-          <!-- BACKGROUND -->
+          <!-- =====================================================
+               WORLD BACKGROUND
+          ====================================================== -->
 
           <img
             src="assets/backgrounds/mainworld-mobile.webp"
@@ -166,7 +221,7 @@
 
 
           <!-- =====================================================
-               WORLD DECORATION LAYER
+               WORLD AMBIENT EFFECTS
           ====================================================== -->
 
           <div
@@ -174,19 +229,27 @@
             aria-hidden="true"
           >
 
-            <span class="world-sparkle world-sparkle-1">
+            <span
+              class="world-sparkle world-sparkle-1"
+            >
               ✦
             </span>
 
-            <span class="world-sparkle world-sparkle-2">
+            <span
+              class="world-sparkle world-sparkle-2"
+            >
               ✧
             </span>
 
-            <span class="world-sparkle world-sparkle-3">
+            <span
+              class="world-sparkle world-sparkle-3"
+            >
               ♡
             </span>
 
-            <span class="world-sparkle world-sparkle-4">
+            <span
+              class="world-sparkle world-sparkle-4"
+            >
               ✦
             </span>
 
@@ -203,11 +266,17 @@
             id="questHud"
           >
 
-            <div class="quest-info">
 
-              <span class="pixel-label">
+            <div
+              class="quest-info"
+            >
+
+              <span
+                class="pixel-label"
+              >
                 MAIN MISSION
               </span>
+
 
               <p
                 class="quest-title"
@@ -237,12 +306,15 @@
             </div>
 
 
+
             <div
               class="quest-number"
               aria-live="polite"
             >
 
-              <strong id="mainProgress">
+              <strong
+                id="mainProgress"
+              >
                 0
               </strong>
 
@@ -250,18 +322,21 @@
                 /
               </span>
 
-              <span id="mainTotal">
+              <span
+                id="mainTotal"
+              >
                 8
               </span>
 
             </div>
+
 
           </header>
 
 
 
           <!-- =====================================================
-               WORLD INTRO TIP
+               WORLD INTRO TEXT
           ====================================================== -->
 
           <div
@@ -279,8 +354,17 @@
 
 
           <!-- =====================================================
-               OBJECT — WINDOW / OUTDOOR
+               WORLD OBJECTS
+          ====================================================== -->
+
+
+          <!-- =====================================================
+               WINDOW
                assets/objects/11.png
+
+               TARGET:
+               upper-right
+               directly above cat
           ====================================================== -->
 
           <button
@@ -289,6 +373,8 @@
             data-item="window"
             aria-label="Window"
           >
+
+            <span class="object-hitbox"></span>
 
             <img
               src="assets/objects/11.png"
@@ -308,8 +394,12 @@
 
 
           <!-- =====================================================
-               OBJECT — PHOTOBOX
+               PHOTOBOX
                assets/objects/7.png
+
+               TARGET:
+               large architectural prop
+               upper-center / back wall
           ====================================================== -->
 
           <button
@@ -318,6 +408,8 @@
             data-item="photobox"
             aria-label="Photobox"
           >
+
+            <span class="object-hitbox"></span>
 
             <img
               src="assets/objects/7.png"
@@ -345,8 +437,12 @@
 
 
           <!-- =====================================================
-               OBJECT — SNACK SHELF
+               SNACK SHELF
                assets/objects/10.png
+
+               TARGET:
+               large shelf
+               upper-left
           ====================================================== -->
 
           <button
@@ -355,6 +451,8 @@
             data-item="snacks"
             aria-label="Snack shelf"
           >
+
+            <span class="object-hitbox"></span>
 
             <img
               src="assets/objects/10.png"
@@ -374,8 +472,12 @@
 
 
           <!-- =====================================================
-               OBJECT — TUMBLER
+               TUMBLER
                assets/objects/3.png
+
+               TARGET:
+               smaller prop
+               visually grounded on left furniture
           ====================================================== -->
 
           <button
@@ -384,6 +486,8 @@
             data-item="tumbler"
             aria-label="Tumbler"
           >
+
+            <span class="object-hitbox"></span>
 
             <img
               src="assets/objects/3.png"
@@ -403,16 +507,22 @@
 
 
           <!-- =====================================================
-               OBJECT — KEYCHAIN
+               KEYCHAIN
                assets/objects/4.png
+
+               TARGET:
+               smaller prop
+               left furniture / hanging area
           ====================================================== -->
 
           <button
             type="button"
             class="world-object object-keychain"
             data-item="keychain"
-            aria-label="Couple keychain"
+            aria-label="Our keychains"
           >
+
+            <span class="object-hitbox"></span>
 
             <img
               src="assets/objects/4.png"
@@ -432,8 +542,12 @@
 
 
           <!-- =====================================================
-               OBJECT — CAT
+               CAT
                assets/objects/8.png
+
+               TARGET:
+               right furniture
+               under window
           ====================================================== -->
 
           <button
@@ -442,6 +556,8 @@
             data-item="cat"
             aria-label="Cat"
           >
+
+            <span class="object-hitbox"></span>
 
             <img
               src="assets/objects/8.png"
@@ -461,67 +577,14 @@
 
 
           <!-- =====================================================
-               OBJECT — GACOAN
-               assets/objects/5.png
-          ====================================================== -->
-
-          <button
-            type="button"
-            class="world-object object-gacoan"
-            data-item="gacoan"
-            aria-label="Mie Gacoan"
-          >
-
-            <img
-              src="assets/objects/5.png"
-              alt=""
-              draggable="false"
-            >
-
-            <span
-              class="found-check"
-              aria-hidden="true"
-            >
-              ✓
-            </span>
-
-          </button>
-
-
-
-          <!-- =====================================================
-               OBJECT — VINO
-               assets/objects/2.png
-          ====================================================== -->
-
-          <button
-            type="button"
-            class="world-object object-vino"
-            data-item="vino"
-            aria-label="Si Meru"
-          >
-
-            <img
-              src="assets/objects/2.png"
-              alt=""
-              draggable="false"
-            >
-
-            <span
-              class="found-check"
-              aria-hidden="true"
-            >
-              ✓
-            </span>
-
-          </button>
-
-
-
-          <!-- =====================================================
-               OBJECT — GACHA
+               GACHA MACHINE
                assets/objects/6.png
-               SIDE QUEST
+
+               BONUS OBJECT
+
+               TARGET:
+               large floor-standing machine
+               right midground
           ====================================================== -->
 
           <button
@@ -531,6 +594,8 @@
             data-item="gacha"
             aria-label="Memory gacha"
           >
+
+            <span class="object-hitbox"></span>
 
             <img
               src="assets/objects/6.png"
@@ -551,9 +616,82 @@
 
 
           <!-- =====================================================
-               OBJECT — MAILBOX
+               MIE GACOAN
+               assets/objects/5.png
+
+               TARGET:
+               foreground surface / table
+               never floating
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-gacoan"
+            data-item="gacoan"
+            aria-label="Mie Gacoan"
+          >
+
+            <span class="object-hitbox"></span>
+
+            <img
+              src="assets/objects/5.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               YAMAHA VINO
+               assets/objects/2.png
+
+               TARGET:
+               large foreground hero prop
+               grounded lower-left / center
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-vino"
+            data-item="vino"
+            aria-label="Si Meru"
+          >
+
+            <span class="object-hitbox"></span>
+
+            <img
+              src="assets/objects/2.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               MAILBOX
                assets/objects/9.png
-               FINAL OBJECT
+
+               TARGET:
+               lower-right
+               integrated with fence / entrance
           ====================================================== -->
 
           <button
@@ -563,6 +701,8 @@
             data-item="mailbox"
             aria-label="Mailbox"
           >
+
+            <span class="object-hitbox"></span>
 
             <img
               src="assets/objects/9.png"
@@ -584,25 +724,15 @@
 
           <!-- =====================================================
                BOTTOM HUD
+
+               MAIN progress intentionally removed.
+               Top HUD already communicates it.
           ====================================================== -->
 
           <div
             class="bottom-hud"
             id="bottomHud"
           >
-
-
-            <div class="hud-chip">
-
-              <span>
-                MAIN
-              </span>
-
-              <strong id="hudMainProgress">
-                0 / 8
-              </strong>
-
-            </div>
 
 
             <div
@@ -614,11 +744,14 @@
                 BONUS
               </span>
 
-              <strong id="bonusProgress">
+              <strong
+                id="bonusProgress"
+              >
                 0 / 1
               </strong>
 
             </div>
+
 
 
             <button
@@ -630,6 +763,7 @@
               ♪
             </button>
 
+
           </div>
 
 
@@ -640,8 +774,9 @@
 
 
       <!-- =========================================================
-           POST-GAME CHAPTER
-           hidden until letter is finished
+           POST GAME
+
+           Only visible after letter.
       ========================================================== -->
 
       <section
@@ -660,18 +795,30 @@
           id="counterSection"
         >
 
-          <div class="counter-content">
 
-            <p class="counter-since">
+          <div
+            class="counter-content"
+          >
+
+
+            <p
+              class="counter-since"
+            >
               since
             </p>
 
-            <p class="counter-date">
+
+            <p
+              class="counter-date"
+            >
               08.06.2025
             </p>
 
 
-            <div class="counter-main">
+
+            <div
+              class="counter-main"
+            >
 
               <strong
                 id="days"
@@ -687,11 +834,19 @@
             </div>
 
 
-            <div class="counter-live">
 
-              <div class="counter-unit">
+            <div
+              class="counter-live"
+            >
 
-                <strong id="hours">
+
+              <div
+                class="counter-unit"
+              >
+
+                <strong
+                  id="hours"
+                >
                   00
                 </strong>
 
@@ -702,14 +857,20 @@
               </div>
 
 
-              <span class="counter-divider">
+              <span
+                class="counter-divider"
+              >
                 :
               </span>
 
 
-              <div class="counter-unit">
+              <div
+                class="counter-unit"
+              >
 
-                <strong id="minutes">
+                <strong
+                  id="minutes"
+                >
                   00
                 </strong>
 
@@ -720,14 +881,20 @@
               </div>
 
 
-              <span class="counter-divider">
+              <span
+                class="counter-divider"
+              >
                 :
               </span>
 
 
-              <div class="counter-unit">
+              <div
+                class="counter-unit"
+              >
 
-                <strong id="seconds">
+                <strong
+                  id="seconds"
+                >
                   00
                 </strong>
 
@@ -737,12 +904,17 @@
 
               </div>
 
+
             </div>
 
 
-            <p class="counter-footer">
+
+            <p
+              class="counter-footer"
+            >
               still counting.
             </p>
+
 
           </div>
 
@@ -751,7 +923,7 @@
 
 
         <!-- =====================================================
-             FINAL
+             FINAL ENDING
         ====================================================== -->
 
         <section
@@ -759,11 +931,18 @@
           id="endingSection"
         >
 
-          <div class="ending-content">
 
-            <p class="ending-date">
+          <div
+            class="ending-content"
+          >
+
+
+            <p
+              class="ending-date"
+            >
               08.06.2025 — now
             </p>
+
 
 
             <h2>
@@ -772,18 +951,29 @@
             </h2>
 
 
-            <div class="ending-space"></div>
+
+            <div
+              class="ending-space"
+              aria-hidden="true"
+            ></div>
 
 
-            <p class="ending-copy">
+
+            <p
+              class="ending-copy"
+            >
               that's all.<br>
               for now.
             </p>
 
 
-            <span class="ending-last">
+
+            <span
+              class="ending-last"
+            >
               still counting.
             </span>
+
 
           </div>
 
@@ -792,12 +982,14 @@
 
       </section>
 
+
     </main>
 
 
 
     <!-- =========================================================
-         GENERIC ITEM DISCOVERY
+         GENERIC ITEM POPUP
+         VINO / TUMBLER
     ========================================================== -->
 
     <section
@@ -805,6 +997,7 @@
       id="itemOverlay"
       aria-hidden="true"
     >
+
 
       <button
         type="button"
@@ -814,9 +1007,16 @@
       ></button>
 
 
-      <article class="item-card">
 
-        <header class="item-card-header">
+      <article
+        class="item-card"
+      >
+
+
+        <header
+          class="item-card-header"
+        >
+
 
           <span
             class="pixel-label"
@@ -824,6 +1024,7 @@
           >
             ITEM FOUND
           </span>
+
 
 
           <button
@@ -835,7 +1036,9 @@
             ×
           </button>
 
+
         </header>
+
 
 
         <div
@@ -844,31 +1047,33 @@
         ></div>
 
 
+
         <h2
-          id="itemTitle"
           class="item-title"
-        >
-        </h2>
+          id="itemTitle"
+        ></h2>
+
 
 
         <p
-          id="itemSubtitle"
           class="item-subtitle"
-        >
-        </p>
+          id="itemSubtitle"
+        ></p>
+
 
 
         <p
-          id="itemText"
           class="item-text"
-        >
-        </p>
+          id="itemText"
+        ></p>
+
 
 
         <div
           class="item-extra"
           id="itemExtra"
         ></div>
+
 
 
         <button
@@ -879,14 +1084,20 @@
           keep
         </button>
 
+
       </article>
+
 
     </section>
 
 
 
     <!-- =========================================================
-         KEYCHAIN PAIR EXPERIENCE
+         KEYCHAIN EXPERIENCE
+
+         IMPORTANT:
+         ONE ASSET ONLY.
+         NO DUPLICATION.
     ========================================================== -->
 
     <section
@@ -894,6 +1105,7 @@
       id="keychainOverlay"
       aria-hidden="true"
     >
+
 
       <button
         type="button"
@@ -903,53 +1115,52 @@
       ></button>
 
 
-      <article class="keychain-card">
+
+      <article
+        class="keychain-card"
+      >
+
 
         <header>
 
-          <span class="pixel-label">
+
+          <span
+            class="pixel-label"
+          >
             PAIR FOUND
           </span>
+
+
 
           <button
             type="button"
             class="tiny-close"
             id="keychainClose"
+            aria-label="Close"
           >
             ×
           </button>
 
+
         </header>
 
 
-        <div class="keychain-stage">
 
-          <div
-            class="keychain-half keychain-half-left"
-            id="keychainLeft"
+        <!-- ONE COMPLETE PAIR -->
+
+        <div
+          class="keychain-stage"
+        >
+
+          <img
+            src="assets/objects/4.png"
+            alt="Our matching keychains"
+            class="keychain-pair-image"
+            draggable="false"
           >
-
-            <img
-              src="assets/objects/4.png"
-              alt=""
-            >
-
-          </div>
-
-
-          <div
-            class="keychain-half keychain-half-right"
-            id="keychainRight"
-          >
-
-            <img
-              src="assets/objects/4.png"
-              alt=""
-            >
-
-          </div>
 
         </div>
+
 
 
         <div
@@ -957,20 +1168,27 @@
           id="keychainCopy"
         >
 
+
           <p>
             you got the white one.
           </p>
+
 
           <p>
             i got the brown one.
           </p>
 
-          <p class="keychain-final-line">
+
+          <p
+            class="keychain-final-line"
+          >
             yeah.<br>
             they belong together.
           </p>
 
+
         </div>
+
 
 
         <button
@@ -981,14 +1199,16 @@
           keep
         </button>
 
+
       </article>
+
 
     </section>
 
 
 
     <!-- =========================================================
-         GACOAN TWO-BEAT
+         GACOAN EXPERIENCE
     ========================================================== -->
 
     <section
@@ -996,6 +1216,7 @@
       id="gacoanOverlay"
       aria-hidden="true"
     >
+
 
       <button
         type="button"
@@ -1005,23 +1226,33 @@
       ></button>
 
 
-      <article class="gacoan-card">
 
-        <span class="pixel-label">
+      <article
+        class="gacoan-card"
+      >
+
+
+        <span
+          class="pixel-label"
+        >
           ITEM FOUND
         </span>
 
 
+
         <img
           src="assets/objects/5.png"
-          alt=""
+          alt="Mie Gacoan"
           class="gacoan-image"
+          draggable="false"
         >
+
 
 
         <h2>
           of course this is here.
         </h2>
+
 
 
         <div
@@ -1040,6 +1271,7 @@
         </div>
 
 
+
         <button
           type="button"
           class="soft-button"
@@ -1047,6 +1279,7 @@
         >
           why?
         </button>
+
 
 
         <button
@@ -1057,7 +1290,9 @@
           fair enough
         </button>
 
+
       </article>
+
 
     </section>
 
@@ -1073,6 +1308,7 @@
       aria-hidden="true"
     >
 
+
       <button
         type="button"
         class="overlay-backdrop"
@@ -1081,16 +1317,25 @@
       ></button>
 
 
-      <article class="snack-card">
+
+      <article
+        class="snack-card"
+      >
 
 
-        <header class="snack-header">
+        <header
+          class="snack-header"
+        >
+
 
           <div>
 
-            <span class="pixel-label">
+            <span
+              class="pixel-label"
+            >
               SNACK SHELF
             </span>
+
 
             <h2>
               pick one.
@@ -1099,17 +1344,22 @@
           </div>
 
 
+
           <button
             type="button"
             class="tiny-close"
             id="snackClose"
+            aria-label="Close"
           >
             ×
           </button>
 
+
         </header>
 
 
+
+        <!-- OPTIONS -->
 
         <div
           class="snack-options"
@@ -1117,15 +1367,18 @@
         >
 
 
+          <!-- CHIKI BALLS -->
+
           <button
             type="button"
             class="snack-option"
             data-snack="chiki"
           >
 
-            <span class="snack-emoji">
-              🟠
-            </span>
+            <span
+              class="snack-option-dot snack-chiki"
+              aria-hidden="true"
+            ></span>
 
             <strong>
               Chiki Balls
@@ -1135,15 +1388,18 @@
 
 
 
+          <!-- JETZ -->
+
           <button
             type="button"
             class="snack-option"
             data-snack="jetz"
           >
 
-            <span class="snack-emoji">
-              🟡
-            </span>
+            <span
+              class="snack-option-dot snack-jetz"
+              aria-hidden="true"
+            ></span>
 
             <strong>
               JetZ
@@ -1153,15 +1409,18 @@
 
 
 
+          <!-- TARO -->
+
           <button
             type="button"
             class="snack-option"
             data-snack="taro"
           >
 
-            <span class="snack-emoji">
-              🟢
-            </span>
+            <span
+              class="snack-option-dot snack-taro"
+              aria-hidden="true"
+            ></span>
 
             <strong>
               Taro
@@ -1171,15 +1430,18 @@
 
 
 
+          <!-- MOMOGI -->
+
           <button
             type="button"
             class="snack-option"
             data-snack="momogi"
           >
 
-            <span class="snack-emoji">
-              🟣
-            </span>
+            <span
+              class="snack-option-dot snack-momogi"
+              aria-hidden="true"
+            ></span>
 
             <strong>
               Momogi
@@ -1192,20 +1454,33 @@
 
 
 
+        <!-- PICK RESULT -->
+
         <div
           class="snack-result"
           id="snackResult"
         >
 
-          <span class="pixel-label">
+
+          <span
+            class="pixel-label"
+          >
             PICKED
           </span>
 
-          <h3 id="snackResultName">
-          </h3>
 
-          <p id="snackResultText">
-          </p>
+
+          <h3
+            id="snackResultName"
+          ></h3>
+
+
+
+          <p
+            id="snackResultText"
+          ></p>
+
+
 
           <button
             type="button"
@@ -1215,9 +1490,12 @@
             take it
           </button>
 
+
         </div>
 
+
       </article>
+
 
     </section>
 
@@ -1233,6 +1511,7 @@
       aria-hidden="true"
     >
 
+
       <button
         type="button"
         class="overlay-backdrop"
@@ -1241,31 +1520,41 @@
       ></button>
 
 
-      <article class="cat-card">
 
-        <span class="pixel-label">
+      <article
+        class="cat-card"
+      >
+
+
+        <span
+          class="pixel-label"
+        >
           ITEM FOUND
         </span>
+
 
 
         <button
           type="button"
           class="cat-stage"
           id="catTap"
-          aria-label="Pet the cat"
+          aria-label="Tap the cat"
         >
 
           <img
             src="assets/objects/8.png"
             alt="Cat"
+            draggable="false"
           >
 
         </button>
 
 
+
         <h2>
           a cat.
         </h2>
+
 
 
         <p
@@ -1276,9 +1565,13 @@
         </p>
 
 
-        <p class="cat-hint">
+
+        <p
+          class="cat-hint"
+        >
           tap the cat.
         </p>
+
 
 
         <button
@@ -1289,7 +1582,9 @@
           okay
         </button>
 
+
       </article>
+
 
     </section>
 
@@ -1305,6 +1600,7 @@
       aria-hidden="true"
     >
 
+
       <button
         type="button"
         class="overlay-backdrop"
@@ -1313,15 +1609,23 @@
       ></button>
 
 
-      <article class="photobox-card">
+
+      <article
+        class="photobox-card"
+      >
+
 
         <header>
 
+
           <div>
 
-            <span class="pixel-label">
+            <span
+              class="pixel-label"
+            >
               PHOTOBOX ARCHIVE
             </span>
+
 
             <h2>
               this had to be here.
@@ -1330,17 +1634,22 @@
           </div>
 
 
+
           <button
             type="button"
             class="tiny-close"
             id="photoboxClose"
+            aria-label="Close"
           >
             ×
           </button>
 
+
         </header>
 
 
+
+        <!-- SLIDES -->
 
         <div
           class="photobox-slider"
@@ -1348,21 +1657,24 @@
         >
 
 
-          <!-- SLIDE 1 -->
+          <!-- 1 -->
 
           <figure
             class="photobox-slide is-active"
             data-photobox-slide="0"
           >
 
-            <div class="photobox-media-frame">
+            <div
+              class="photobox-media-frame"
+            >
 
               <img
                 src="assets/gifs/photobox/us-photobox-01.gif"
-                alt=""
+                alt="Photobox memory"
               >
 
             </div>
+
 
             <figcaption>
               one more?
@@ -1372,21 +1684,24 @@
 
 
 
-          <!-- SLIDE 2 -->
+          <!-- 2 -->
 
           <figure
             class="photobox-slide"
             data-photobox-slide="1"
           >
 
-            <div class="photobox-media-frame">
+            <div
+              class="photobox-media-frame"
+            >
 
               <img
                 src="assets/photos/photobox/us-photobox-bw-01.webp"
-                alt=""
+                alt="Black and white photobox memory"
               >
 
             </div>
+
 
             <figcaption>
               this one's staying.
@@ -1396,21 +1711,24 @@
 
 
 
-          <!-- SLIDE 3 -->
+          <!-- 3 -->
 
           <figure
             class="photobox-slide"
             data-photobox-slide="2"
           >
 
-            <div class="photobox-media-frame">
+            <div
+              class="photobox-media-frame"
+            >
 
               <img
                 src="assets/photos/memories/us-printed-photobox-01.webp"
-                alt=""
+                alt="Printed photobox memory"
               >
 
             </div>
+
 
             <figcaption>
               somehow this survived too.
@@ -1420,21 +1738,24 @@
 
 
 
-          <!-- SLIDE 4 -->
+          <!-- 4 -->
 
           <figure
             class="photobox-slide"
             data-photobox-slide="3"
           >
 
-            <div class="photobox-media-frame">
+            <div
+              class="photobox-media-frame"
+            >
 
               <img
                 src="assets/photos/photobox/us-photobooth-grid-01.webp"
-                alt=""
+                alt="Photobox grid"
               >
 
             </div>
+
 
             <figcaption>
               yeah, we do this a lot.
@@ -1447,16 +1768,22 @@
 
 
 
-        <div class="archive-controls">
+        <!-- CONTROLS -->
+
+        <div
+          class="archive-controls"
+        >
+
 
           <button
             type="button"
             class="archive-arrow"
             id="photoboxPrev"
-            aria-label="Previous"
+            aria-label="Previous photo"
           >
             ←
           </button>
+
 
 
           <div
@@ -1467,16 +1794,19 @@
           </div>
 
 
+
           <button
             type="button"
             class="archive-arrow"
             id="photoboxNext"
-            aria-label="Next"
+            aria-label="Next photo"
           >
             →
           </button>
 
+
         </div>
+
 
 
         <button
@@ -1487,14 +1817,16 @@
           keep it
         </button>
 
+
       </article>
+
 
     </section>
 
 
 
     <!-- =========================================================
-         OUTDOOR ARCHIVE
+         OUTDOOR / WINDOW ARCHIVE
     ========================================================== -->
 
     <section
@@ -1502,6 +1834,7 @@
       id="outdoorOverlay"
       aria-hidden="true"
     >
+
 
       <button
         type="button"
@@ -1511,16 +1844,23 @@
       ></button>
 
 
-      <article class="outdoor-card">
+
+      <article
+        class="outdoor-card"
+      >
 
 
         <header>
 
+
           <div>
 
-            <span class="pixel-label">
+            <span
+              class="pixel-label"
+            >
               OUTSIDE
             </span>
+
 
             <h2>
               memories outside.
@@ -1529,13 +1869,16 @@
           </div>
 
 
+
           <button
             type="button"
             class="tiny-close"
             id="outdoorClose"
+            aria-label="Close"
           >
             ×
           </button>
+
 
         </header>
 
@@ -1547,6 +1890,8 @@
         >
 
 
+          <!-- BEACH -->
+
           <figure
             class="outdoor-slide is-active"
             data-outdoor-slide="0"
@@ -1554,11 +1899,14 @@
 
             <img
               src="assets/photos/her/her-beach-01.webp"
-              alt=""
+              alt="Beach memory"
             >
 
           </figure>
 
+
+
+          <!-- ROOFTOP -->
 
           <figure
             class="outdoor-slide"
@@ -1567,11 +1915,14 @@
 
             <img
               src="assets/photos/her/her-rooftop-01.webp"
-              alt=""
+              alt="Rooftop memory"
             >
 
           </figure>
 
+
+
+          <!-- WINDOW SILHOUETTE -->
 
           <figure
             class="outdoor-slide"
@@ -1580,11 +1931,14 @@
 
             <img
               src="assets/photos/her/her-silhouette-window-01.webp"
-              alt=""
+              alt="Window silhouette memory"
             >
 
           </figure>
 
+
+
+          <!-- JEEP -->
 
           <figure
             class="outdoor-slide"
@@ -1593,11 +1947,14 @@
 
             <img
               src="assets/photos/us/us-jeep-trip-01.webp"
-              alt=""
+              alt="Jeep trip memory"
             >
 
           </figure>
 
+
+
+          <!-- OUTDOOR SELFIE -->
 
           <figure
             class="outdoor-slide"
@@ -1606,7 +1963,7 @@
 
             <img
               src="assets/photos/us/us-outdoor-selfie-01.webp"
-              alt=""
+              alt="Outdoor selfie"
             >
 
           </figure>
@@ -1616,15 +1973,20 @@
 
 
 
-        <div class="archive-controls">
+        <div
+          class="archive-controls"
+        >
+
 
           <button
             type="button"
             class="archive-arrow"
             id="outdoorPrev"
+            aria-label="Previous memory"
           >
             ←
           </button>
+
 
 
           <div
@@ -1635,21 +1997,27 @@
           </div>
 
 
+
           <button
             type="button"
             class="archive-arrow"
             id="outdoorNext"
+            aria-label="Next memory"
           >
             →
           </button>
+
 
         </div>
 
 
 
-        <p class="outdoor-final-copy">
+        <p
+          class="outdoor-final-copy"
+        >
           we should go somewhere again.
         </p>
+
 
 
         <button
@@ -1660,7 +2028,9 @@
           go back
         </button>
 
+
       </article>
+
 
     </section>
 
@@ -1676,6 +2046,7 @@
       aria-hidden="true"
     >
 
+
       <button
         type="button"
         class="overlay-backdrop"
@@ -1684,16 +2055,23 @@
       ></button>
 
 
-      <article class="gacha-card">
+
+      <article
+        class="gacha-card"
+      >
 
 
         <header>
 
+
           <div>
 
-            <span class="pixel-label">
+            <span
+              class="pixel-label"
+            >
               BONUS MISSION
             </span>
+
 
             <h2>
               memory gacha
@@ -1702,69 +2080,99 @@
           </div>
 
 
+
           <button
             type="button"
             class="tiny-close"
             id="gachaClose"
+            aria-label="Close"
           >
             ×
           </button>
+
 
         </header>
 
 
 
-        <!-- MACHINE -->
+        <!-- =====================================================
+             MACHINE STATE
+        ====================================================== -->
 
         <div
           class="gacha-machine-state"
           id="gachaMachineState"
         >
 
-          <div class="gacha-machine-stage">
 
-            <span class="gacha-decoration decoration-a">
+          <div
+            class="gacha-machine-stage"
+          >
+
+
+            <span
+              class="gacha-decoration decoration-a"
+              aria-hidden="true"
+            >
               ✦
             </span>
 
-            <span class="gacha-decoration decoration-b">
+
+            <span
+              class="gacha-decoration decoration-b"
+              aria-hidden="true"
+            >
               ♡
             </span>
 
-            <span class="gacha-decoration decoration-c">
+
+            <span
+              class="gacha-decoration decoration-c"
+              aria-hidden="true"
+            >
               ✧
             </span>
 
 
+
             <img
               src="assets/objects/6.png"
-              alt=""
+              alt="Memory gacha machine"
               id="gachaMachine"
               class="gacha-machine"
+              draggable="false"
             >
+
 
           </div>
 
 
+
           <p
-            id="gachaStatus"
             class="gacha-status"
+            id="gachaStatus"
           >
             pull one.
           </p>
 
 
-          <div class="gacha-token">
+
+          <div
+            class="gacha-token"
+          >
 
             <span>
               pulls
             </span>
 
-            <strong id="gachaPullCount">
+            <strong
+              id="gachaPullCount"
+            >
               0
             </strong>
 
           </div>
+
 
 
           <button
@@ -1775,11 +2183,14 @@
             pull
           </button>
 
+
         </div>
 
 
 
-        <!-- RESULT -->
+        <!-- =====================================================
+             RESULT STATE
+        ====================================================== -->
 
         <div
           class="gacha-result-state"
@@ -1787,28 +2198,32 @@
           aria-live="polite"
         >
 
+
           <span
             class="gacha-rarity"
             id="gachaRarity"
-          >
-          </span>
+          ></span>
+
 
 
           <div
             class="gacha-memory"
             id="gachaMemory"
-          >
-          </div>
+          ></div>
+
 
 
           <p
             class="gacha-caption"
             id="gachaCaption"
+          ></p>
+
+
+
+          <div
+            class="gacha-result-actions"
           >
-          </p>
 
-
-          <div class="gacha-result-actions">
 
             <button
               type="button"
@@ -1819,6 +2234,7 @@
             </button>
 
 
+
             <button
               type="button"
               class="soft-button secondary-action"
@@ -1827,18 +2243,22 @@
               keep it
             </button>
 
+
           </div>
+
 
         </div>
 
+
       </article>
+
 
     </section>
 
 
 
     <!-- =========================================================
-         MAILBOX LOCK DIALOG
+         MAILBOX LOCKED POPUP
     ========================================================== -->
 
     <section
@@ -1846,6 +2266,7 @@
       id="mailboxLockOverlay"
       aria-hidden="true"
     >
+
 
       <button
         type="button"
@@ -1855,12 +2276,18 @@
       ></button>
 
 
-      <article class="mailbox-lock-card">
+
+      <article
+        class="mailbox-lock-card"
+      >
+
 
         <img
           src="assets/objects/9.png"
-          alt=""
+          alt="Mailbox"
+          draggable="false"
         >
+
 
 
         <p
@@ -1868,6 +2295,7 @@
         >
           not yet.
         </p>
+
 
 
         <button
@@ -1878,7 +2306,9 @@
           okay
         </button>
 
+
       </article>
+
 
     </section>
 
@@ -1894,16 +2324,27 @@
       aria-hidden="true"
     >
 
-      <div class="complete-card">
 
-        <span class="complete-heart">
+      <div
+        class="complete-card"
+      >
+
+
+        <span
+          class="complete-heart"
+          aria-hidden="true"
+        >
           ♡
         </span>
 
 
-        <span class="pixel-label">
+
+        <span
+          class="pixel-label"
+        >
           MISSION COMPLETE
         </span>
+
 
 
         <h2>
@@ -1912,9 +2353,11 @@
         </h2>
 
 
+
         <p>
           one last thing.
         </p>
+
 
 
         <button
@@ -1925,14 +2368,16 @@
           continue
         </button>
 
+
       </div>
+
 
     </section>
 
 
 
     <!-- =========================================================
-         MAILBOX / LETTER
+         FINAL MAILBOX / LETTER
     ========================================================== -->
 
     <section
@@ -1941,26 +2386,37 @@
       aria-hidden="true"
     >
 
-      <div class="letter-scene">
+
+      <div
+        class="letter-scene"
+      >
 
 
-        <!-- CLOSED -->
+        <!-- =====================================================
+             CLOSED LETTER
+        ====================================================== -->
 
         <div
           class="letter-closed"
           id="letterClosed"
         >
 
-          <span class="pixel-label">
+
+          <span
+            class="pixel-label"
+          >
             FINAL ITEM
           </span>
 
 
+
           <img
             src="assets/objects/9.png"
-            alt=""
+            alt="Mailbox"
             class="letter-mailbox"
+            draggable="false"
           >
+
 
 
           <h2>
@@ -1968,10 +2424,12 @@
           </h2>
 
 
+
           <p>
             okay.<br>
             this one isn't a game anymore.
           </p>
+
 
 
           <button
@@ -1982,44 +2440,68 @@
             open
           </button>
 
+
         </div>
 
 
 
-        <!-- OPEN PAPER -->
+        <!-- =====================================================
+             LETTER PAPER
+        ====================================================== -->
 
         <article
           class="letter-paper"
           id="letterPaper"
         >
 
-          <div class="letter-paper-decoration">
+
+          <div
+            class="letter-paper-decoration"
+            aria-hidden="true"
+          >
             ♡
           </div>
 
 
-          <div class="letter-copy">
 
-            <p class="letter-paragraph">
+          <div
+            class="letter-copy"
+          >
+
+
+            <p
+              class="letter-paragraph"
+            >
               [paragraph one goes here.]
             </p>
 
 
-            <p class="letter-paragraph">
+
+            <p
+              class="letter-paragraph"
+            >
               [paragraph two goes here.]
             </p>
 
 
-            <p class="letter-paragraph">
+
+            <p
+              class="letter-paragraph"
+            >
               [paragraph three goes here.]
             </p>
 
 
-            <p class="letter-paragraph">
+
+            <p
+              class="letter-paragraph"
+            >
               [paragraph four goes here.]
             </p>
 
+
           </div>
+
 
 
           <button
@@ -2030,16 +2512,19 @@
             continue
           </button>
 
+
         </article>
 
+
       </div>
+
 
     </section>
 
 
 
     <!-- =========================================================
-         ACHIEVEMENT
+         SECRET ACHIEVEMENT
     ========================================================== -->
 
     <div
@@ -2048,9 +2533,13 @@
       aria-live="polite"
     >
 
-      <div class="achievement-icon">
+
+      <div
+        class="achievement-icon"
+      >
         ♡
       </div>
+
 
 
       <div>
@@ -2059,10 +2548,12 @@
           SECRET FOUND
         </span>
 
-        <strong id="achievementText">
-        </strong>
+        <strong
+          id="achievementText"
+        ></strong>
 
       </div>
+
 
     </div>
 
@@ -2078,17 +2569,18 @@
       aria-live="polite"
     >
 
+
       <span
         class="toast-label"
         id="toastLabel"
-      >
-      </span>
+      ></span>
+
 
 
       <strong
         id="toastText"
-      >
-      </strong>
+      ></strong>
+
 
     </div>
 
@@ -2105,6 +2597,8 @@
     >
 
       <!--
+      ADD LATER:
+
       <source
         src="assets/audio/main-theme.mp3"
         type="audio/mpeg"
@@ -2117,7 +2611,16 @@
   </div>
 
 
-  <script src="script.js"></script>
+
+  <!-- =========================================================
+       SCRIPT
+  ========================================================== -->
+
+  <script
+    src="script.js"
+  ></script>
+
 
 </body>
+
 </html>
