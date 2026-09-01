@@ -3216,3 +3216,41 @@ button:focus-visible {
   top: 6.3%;
   z-index: 19;
 }
+
+/* =========================================================
+   LETTER POSITION FIX
+========================================================= */
+
+/* closed state + paper occupy the SAME slot */
+.letter-scene {
+  display: grid;
+  place-items: center;
+
+  width: min(92vw, 400px);
+  max-height: calc(100dvh - 36px);
+}
+
+
+/* don't let the invisible closed card push the paper down */
+.letter-closed,
+.letter-paper {
+  grid-column: 1;
+  grid-row: 1;
+
+  width: 100%;
+}
+
+
+/* letter itself stays inside phone screen */
+.letter-paper {
+  max-height: calc(100dvh - 36px);
+  overflow-y: auto;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* little breathing room when scrolling */
+.letter-copy {
+  padding-bottom: 4px;
+}
