@@ -3196,3 +3196,13 @@ button:focus-visible {
   right: 1.5%;
   top: 63.5%;
 }
+
+
+/* PHOTOBOX — FULL COVER */
+
+.object-photobox {
+  width: 52%;
+  left: 21.5%;
+  top: 8.8%;
+  z-index: 19;
+}
