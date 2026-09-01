@@ -3143,3 +3143,56 @@ button:focus-visible {
   right: 5%;
   top: 66%;
 }
+
+
+/* =========================================================
+   FINAL MICRO TUNING — 4 ITEMS ONLY
+========================================================= */
+
+
+/* 1. SNACK SHELF
+   Masih terlalu kecil dibanding furniture kiri.
+   Besarin cukup agresif karena PNG-nya punya ruang transparan.
+*/
+
+.object-snacks {
+  width: 56%;
+  left: -8%;
+  top: 14.8%;
+}
+
+
+/* 2. PHOTOBOX
+   Besarin + geser sedikit kiri/atas supaya
+   booth PNG nutup struktur belakangnya lebih penuh.
+*/
+
+.object-photobox {
+  width: 44%;
+  left: 26.5%;
+  top: 11.3%;
+}
+
+
+/* 3. VINO
+   Ukuran KEEP.
+   Cuma geser kanan supaya ban depan nggak nabrak pagar kiri.
+*/
+
+.object-vino {
+  width: 54%;
+  left: 16%;
+  top: 45%;
+}
+
+
+/* 4. MIE GACOAN
+   Ukuran hampir keep.
+   Geser kanan + sedikit naik supaya nggak nimpa lampu.
+*/
+
+.object-gacoan {
+  width: 29%;
+  right: 1.5%;
+  top: 63.5%;
+}
