@@ -3206,3 +3206,13 @@ button:focus-visible {
   top: 8.8%;
   z-index: 19;
 }
+
+
+/* PHOTOBOX — POSITION FINAL */
+
+.object-photobox {
+  width: 52%;
+  left: 25.5%;
+  top: 6.3%;
+  z-index: 19;
+}
