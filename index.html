@@ -1,85 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   />
-
-  <meta name="theme-color" content="#ead6d4" />
+  <meta name="theme-color" content="#f0d7df" />
 
   <title>for you.</title>
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
-
 <body>
 
-  <!-- ========================================
+  <!-- =========================
        OPENING
-  ========================================= -->
+  ========================== -->
+  <section class="opening-screen" id="openingScreen">
+    <div class="opening-card">
 
-  <section
-    class="opening-screen"
-    id="openingScreen"
-  >
+      <div class="opening-sticker">♡</div>
 
-    <div class="opening-panel">
+      <p class="opening-kicker">hey, kamu.</p>
 
-      <p class="opening-small">
-        hey, kamu.
-      </p>
-
-      <h1 class="opening-title">
+      <h1>
         ini bukan game,<br />
         tapi coba mainin aja.
       </h1>
 
+      <p class="opening-hint">
+        ada beberapa hal kecil yang aku simpen di sini.
+      </p>
+
       <button
-        class="game-button opening-button"
-        id="enterButton"
         type="button"
+        class="cute-button"
+        id="enterButton"
       >
         okay??
       </button>
 
     </div>
-
   </section>
 
 
+  <!-- =========================
+       GAME APP
+  ========================== -->
+  <main class="game-app" id="gameApp">
 
-  <!-- ========================================
-       MAIN GAME
-  ========================================= -->
+    <section class="world-section">
 
-  <main
-    class="game"
-    id="game"
-  >
+      <div class="world" id="world">
 
-
-    <!-- ========================================
-         WORLD
-    ========================================= -->
-
-    <section
-      class="world-section"
-      id="worldSection"
-    >
-
-      <div
-        class="world"
-        id="world"
-      >
-
-
-        <!-- BACKGROUND -->
-
+        <!-- background -->
         <img
           src="assets/backgrounds/mainworld-mobile.webp"
           class="world-background"
@@ -88,328 +64,217 @@
         />
 
 
-
-        <!-- ========================================
-             TOP QUEST HUD
-        ========================================= -->
-
+        <!-- =========================
+             QUEST HUD
+        ========================== -->
         <header class="quest-hud">
 
-          <div class="quest-copy">
+          <div class="quest-card">
 
-            <span class="quest-label">
-              MISSION
+            <span class="quest-eyebrow">
+              main mission
             </span>
 
             <p class="quest-title">
               find all the little things.
             </p>
 
-          </div>
-
-
-          <div class="quest-progress">
-
-            <div class="quest-progress-main">
-
-              <span id="mainProgress">
-                0
-              </span>
-
-              <span class="quest-progress-divider">
-                /
-              </span>
-
-              <span id="mainTotal">
-                8
-              </span>
-
+            <div class="quest-dots" id="questDots">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
 
-            <span class="quest-progress-caption">
-              found
-            </span>
+          </div>
 
+          <div class="quest-counter">
+            <strong id="mainProgress">0</strong>
+            <span>/</span>
+            <span id="mainTotal">8</span>
           </div>
 
         </header>
 
 
-
-        <!-- ========================================
-             WORLD INTRO
-        ========================================= -->
-
-        <div class="world-message">
-
-          <p>
-            tap anything.<br />
-            most of them have a story.
-          </p>
-
+        <!-- =========================
+             INTRO TIP
+        ========================== -->
+        <div
+          class="world-tip"
+          id="worldTip"
+        >
+          tap anything.<br />
+          most of them have a story.
         </div>
 
 
+        <!-- =========================
+             OBJECTS
+        ========================== -->
 
-        <!-- ========================================
-             OBJECT 11
-             WINDOW
-        ========================================= -->
-
+        <!-- WINDOW -->
         <button
           type="button"
           class="world-object object-window"
           data-item="window"
-          data-required="true"
-          aria-label="Open outdoor memory"
+          aria-label="Open outdoor memories"
         >
-
           <img
             src="assets/objects/11.png"
             alt="Window"
             draggable="false"
           />
-
-          <span class="object-complete">
-            ✓
-          </span>
-
+          <span class="found-badge">✓</span>
         </button>
 
 
-
-        <!-- ========================================
-             OBJECT 7
-             PHOTOBOX
-        ========================================= -->
-
+        <!-- PHOTOBOX -->
         <button
           type="button"
           class="world-object object-photobox"
           data-item="photobox"
-          data-required="true"
           aria-label="Open photobox memory"
         >
-
           <img
             src="assets/objects/7.png"
             alt="Photobox booth"
             draggable="false"
           />
-
-          <span class="object-complete">
-            ✓
-          </span>
-
+          <span class="found-badge">✓</span>
         </button>
 
 
-
-        <!-- ========================================
-             OBJECT 10
-             SNACK SHELF
-        ========================================= -->
-
+        <!-- SNACK SHELF -->
         <button
           type="button"
           class="world-object object-snacks"
           data-item="snacks"
-          data-required="true"
           aria-label="Open snack memory"
         >
-
           <img
             src="assets/objects/10.png"
             alt="Snack shelf"
             draggable="false"
           />
-
-          <span class="object-complete">
-            ✓
-          </span>
-
+          <span class="found-badge">✓</span>
         </button>
 
 
-
-        <!-- ========================================
-             OBJECT 3
-             TUMBLER
-        ========================================= -->
-
+        <!-- TUMBLER -->
         <button
           type="button"
           class="world-object object-tumbler"
           data-item="tumbler"
-          data-required="true"
           aria-label="Open tumbler memory"
         >
-
           <img
             src="assets/objects/3.png"
             alt="Pastel tumbler"
             draggable="false"
           />
-
-          <span class="object-complete">
-            ✓
-          </span>
-
+          <span class="found-badge">✓</span>
         </button>
 
 
+        <!-- KEYCHAIN -->
+        <button
+          type="button"
+          class="world-object object-keychain"
+          data-item="keychain"
+          aria-label="Open keychain memory"
+        >
+          <img
+            src="assets/objects/4.png"
+            alt="Couple keychain"
+            draggable="false"
+          />
+          <span class="found-badge">✓</span>
+        </button>
 
-        <!-- ========================================
-             OBJECT 6
-             GACHA
-             BONUS QUEST
-        ========================================= -->
 
+        <!-- CAT -->
+        <button
+          type="button"
+          class="world-object object-cat"
+          data-item="cat"
+          aria-label="Open cat interaction"
+        >
+          <img
+            src="assets/objects/8.png"
+            alt="Cat"
+            draggable="false"
+          />
+          <span class="found-badge">✓</span>
+        </button>
+
+
+        <!-- GACOAN -->
+        <button
+          type="button"
+          class="world-object object-gacoan"
+          data-item="gacoan"
+          aria-label="Open Gacoan memory"
+        >
+          <img
+            src="assets/objects/5.png"
+            alt="Mie Gacoan"
+            draggable="false"
+          />
+          <span class="found-badge">✓</span>
+        </button>
+
+
+        <!-- VINO -->
+        <button
+          type="button"
+          class="world-object object-vino"
+          data-item="vino"
+          aria-label="Open Vino memory"
+        >
+          <img
+            src="assets/objects/2.png"
+            alt="Si Meru"
+            draggable="false"
+          />
+          <span class="found-badge">✓</span>
+        </button>
+
+
+        <!-- GACHA BONUS -->
         <button
           type="button"
           class="world-object object-gacha"
           data-item="gacha"
-          data-required="false"
           aria-label="Open memory gacha"
         >
-
           <img
             src="assets/objects/6.png"
             alt="Gacha machine"
             draggable="false"
           />
 
-          <span class="bonus-marker">
+          <span
+            class="bonus-bubble"
+            id="gachaBonusBubble"
+          >
             !
           </span>
-
         </button>
 
 
-
-        <!-- ========================================
-             OBJECT 8
-             CAT
-        ========================================= -->
-
-        <button
-          type="button"
-          class="world-object object-cat"
-          data-item="cat"
-          data-required="true"
-          aria-label="Open cat interaction"
-        >
-
-          <img
-            src="assets/objects/8.png"
-            alt="Cat"
-            draggable="false"
-          />
-
-          <span class="object-complete">
-            ✓
-          </span>
-
-        </button>
-
-
-
-        <!-- ========================================
-             OBJECT 4
-             KEYCHAIN
-        ========================================= -->
-
-        <button
-          type="button"
-          class="world-object object-keychain"
-          data-item="keychain"
-          data-required="true"
-          aria-label="Open keychain memory"
-        >
-
-          <img
-            src="assets/objects/4.png"
-            alt="Couple keychain"
-            draggable="false"
-          />
-
-          <span class="object-complete">
-            ✓
-          </span>
-
-        </button>
-
-
-
-        <!-- ========================================
-             OBJECT 5
-             GACOAN
-        ========================================= -->
-
-        <button
-          type="button"
-          class="world-object object-gacoan"
-          data-item="gacoan"
-          data-required="true"
-          aria-label="Open Gacoan memory"
-        >
-
-          <img
-            src="assets/objects/5.png"
-            alt="Mie Gacoan"
-            draggable="false"
-          />
-
-          <span class="object-complete">
-            ✓
-          </span>
-
-        </button>
-
-
-
-        <!-- ========================================
-             OBJECT 2
-             VINO
-        ========================================= -->
-
-        <button
-          type="button"
-          class="world-object object-vino"
-          data-item="vino"
-          data-required="true"
-          aria-label="Open Vino memory"
-        >
-
-          <img
-            src="assets/objects/2.png"
-            alt="Si Meru"
-            draggable="false"
-          />
-
-          <span class="object-complete">
-            ✓
-          </span>
-
-        </button>
-
-
-
-        <!-- ========================================
-             OBJECT 9
-             MAILBOX
-             FINAL REWARD
-        ========================================= -->
-
+        <!-- MAILBOX -->
         <button
           type="button"
           class="world-object object-mailbox is-locked"
           id="mailboxObject"
           data-item="mailbox"
-          data-required="false"
           aria-label="Open mailbox"
         >
-
           <img
             src="assets/objects/9.png"
             alt="Mailbox"
@@ -422,58 +287,31 @@
           >
             🔒
           </span>
-
         </button>
 
 
-
-        <!-- ========================================
+        <!-- =========================
              BOTTOM HUD
-        ========================================= -->
-
+        ========================== -->
         <div class="bottom-hud">
 
-
-          <!-- MAIN MISSION -->
-
-          <div class="hud-pill main-mission-pill">
-
-            <span>
-              MAIN
-            </span>
-
+          <div class="hud-chip">
+            <span>main</span>
             <strong id="hudMainProgress">
               0 / 8
             </strong>
-
           </div>
 
-
-
-          <!-- BONUS -->
-
-          <div
-            class="hud-pill bonus-pill"
-            id="bonusHud"
-          >
-
-            <span>
-              BONUS
-            </span>
-
+          <div class="hud-chip bonus-chip">
+            <span>bonus</span>
             <strong id="bonusProgress">
               0 / 1
             </strong>
-
           </div>
-
-
-
-          <!-- MUSIC -->
 
           <button
             type="button"
-            class="hud-circle"
+            class="music-button"
             id="musicButton"
             aria-label="Toggle music"
           >
@@ -482,33 +320,22 @@
 
         </div>
 
-
       </div>
 
     </section>
 
 
-
-    <!-- ========================================
-         LOCKED CHAPTER
-         Hidden until mailbox completed
-    ========================================= -->
-
+    <!-- =========================
+         POST GAME LOCKED AREA
+    ========================== -->
     <section
       class="post-game locked-content"
       id="postGame"
       aria-hidden="true"
     >
 
-
-      <!-- ========================================
-           RELATIONSHIP COUNTER
-      ========================================= -->
-
-      <section
-        class="counter-section"
-        id="counterSection"
-      >
+      <!-- counter -->
+      <section class="counter-section">
 
         <div class="counter-inner">
 
@@ -516,8 +343,7 @@
             since 08.06.2025
           </p>
 
-
-          <div class="counter-main">
+          <div class="counter-days-wrap">
 
             <span
               class="counter-days"
@@ -526,67 +352,36 @@
               0
             </span>
 
-            <span class="counter-days-text">
+            <span class="counter-caption">
               days with you
             </span>
 
           </div>
 
-
           <div class="counter-clock">
 
-            <div class="counter-unit">
-
-              <span id="hours">
-                00
-              </span>
-
-              <small>
-                hours
-              </small>
-
+            <div>
+              <span id="hours">00</span>
+              <small>hours</small>
             </div>
 
+            <span>:</span>
 
-            <span class="counter-colon">
-              :
-            </span>
-
-
-            <div class="counter-unit">
-
-              <span id="minutes">
-                00
-              </span>
-
-              <small>
-                min
-              </small>
-
+            <div>
+              <span id="minutes">00</span>
+              <small>min</small>
             </div>
 
+            <span>:</span>
 
-            <span class="counter-colon">
-              :
-            </span>
-
-
-            <div class="counter-unit">
-
-              <span id="seconds">
-                00
-              </span>
-
-              <small>
-                sec
-              </small>
-
+            <div>
+              <span id="seconds">00</span>
+              <small>sec</small>
             </div>
 
           </div>
 
-
-          <p class="counter-ending">
+          <p class="still-counting">
             still counting.
           </p>
 
@@ -595,11 +390,7 @@
       </section>
 
 
-
-      <!-- ========================================
-           FINAL
-      ========================================= -->
-
+      <!-- ending -->
       <section class="final-section">
 
         <div class="final-inner">
@@ -608,18 +399,15 @@
             08.06.2025 — now
           </p>
 
-
           <h2>
             still you.<br />
             still me.
           </h2>
 
-
           <p class="final-copy">
             that's all.<br />
             for now.
           </p>
-
 
           <span class="final-small">
             still counting.
@@ -629,110 +417,78 @@
 
       </section>
 
-
     </section>
 
   </main>
 
 
-
-  <!-- ========================================
-       GAME DIALOG
-       Compact — no long scrolling modal
-  ========================================= -->
-
+  <!-- =========================
+       ITEM POPUP
+  ========================== -->
   <div
-    class="game-dialog"
-    id="gameDialog"
+    class="item-popup"
+    id="itemPopup"
     aria-hidden="true"
   >
 
     <div
-      class="dialog-backdrop"
-      id="dialogBackdrop"
+      class="popup-backdrop"
+      id="itemBackdrop"
     ></div>
 
+    <article class="item-card">
 
-    <article class="dialog-box">
+      <div class="item-card-top">
 
-
-      <header class="dialog-header">
-
-        <div>
-
-          <span
-            class="dialog-type"
-            id="dialogType"
-          >
-            ITEM FOUND
-          </span>
-
-          <h2
-            class="dialog-title"
-            id="dialogTitle"
-          >
-            item
-          </h2>
-
-        </div>
-
+        <span
+          class="item-status"
+          id="itemStatus"
+        >
+          ITEM FOUND
+        </span>
 
         <button
           type="button"
-          class="dialog-close"
-          id="dialogClose"
+          class="popup-close"
+          id="itemClose"
           aria-label="Close"
         >
           ×
         </button>
 
-      </header>
-
-
-
-      <div class="dialog-body">
-
-
-        <div
-          class="dialog-media"
-          id="dialogMedia"
-        ></div>
-
-
-        <p
-          class="dialog-text"
-          id="dialogText"
-        >
-        </p>
-
-
-        <div
-          class="dialog-actions"
-          id="dialogActions"
-        >
-
-          <button
-            type="button"
-            class="pixel-button"
-            id="dialogOkay"
-          >
-            OK
-          </button>
-
-        </div>
-
       </div>
+
+      <div
+        class="item-icon-stage"
+        id="itemIconStage"
+      ></div>
+
+      <h2
+        class="item-title"
+        id="itemTitle"
+      ></h2>
+
+      <p
+        class="item-copy"
+        id="itemCopy"
+      ></p>
+
+      <button
+        type="button"
+        class="cute-button small-button"
+        id="itemOkay"
+      >
+        got it
+      </button>
 
     </article>
 
   </div>
 
 
-
-  <!-- ========================================
-       GACHA SCREEN
-  ========================================= -->
-
+  <!-- =========================
+       GACHA EXPERIENCE
+  ========================== -->
   <div
     class="gacha-screen"
     id="gachaScreen"
@@ -740,53 +496,57 @@
   >
 
     <div
-      class="dialog-backdrop"
+      class="popup-backdrop"
       id="gachaBackdrop"
     ></div>
 
+    <article class="gacha-card">
 
-    <article class="gacha-box">
-
-
-      <header class="gacha-header">
+      <div class="gacha-topbar">
 
         <div>
-
-          <span class="dialog-type">
-            BONUS QUEST
+          <span class="gacha-label">
+            bonus mission
           </span>
 
           <h2>
             memory gacha
           </h2>
-
         </div>
-
 
         <button
           type="button"
-          class="dialog-close"
+          class="popup-close"
           id="gachaClose"
           aria-label="Close gacha"
         >
           ×
         </button>
 
-      </header>
+      </div>
 
 
+      <!-- machine state -->
+      <div
+        class="gacha-machine-state"
+        id="gachaMachineState"
+      >
 
-      <div class="gacha-machine-area">
+        <div class="gacha-machine-stage">
 
+          <span class="gacha-sparkle sparkle-1">✦</span>
+          <span class="gacha-sparkle sparkle-2">♡</span>
+          <span class="gacha-sparkle sparkle-3">✧</span>
 
-        <img
-          src="assets/objects/6.png"
-          alt="Gacha machine"
-          class="gacha-machine-image"
-          id="gachaMachineImage"
-          draggable="false"
-        />
+          <img
+            src="assets/objects/6.png"
+            alt="Gacha machine"
+            class="gacha-machine"
+            id="gachaMachineImage"
+            draggable="false"
+          />
 
+        </div>
 
         <p
           class="gacha-status"
@@ -795,79 +555,68 @@
           pull one.
         </p>
 
-
         <button
           type="button"
-          class="pixel-button gacha-pull"
+          class="cute-button"
           id="gachaPullButton"
         >
-          PULL
+          pull
         </button>
 
       </div>
 
 
-
-      <!-- RESULT -->
-
+      <!-- capsule/result state -->
       <div
-        class="gacha-result"
-        id="gachaResult"
-        aria-live="polite"
+        class="gacha-result-state"
+        id="gachaResultState"
       >
 
-        <span
+        <div
           class="gacha-rarity"
           id="gachaRarity"
-        ></span>
-
+        ></div>
 
         <div
-          class="gacha-result-media"
+          class="gacha-memory-frame"
           id="gachaResultMedia"
         ></div>
 
-
         <p
-          class="gacha-result-caption"
+          class="gacha-caption"
           id="gachaResultCaption"
         ></p>
 
-
-        <div class="gacha-result-actions">
+        <div class="gacha-result-buttons">
 
           <button
             type="button"
-            class="pixel-button"
+            class="cute-button"
             id="gachaPullAgain"
           >
-            PULL AGAIN
+            again
           </button>
-
 
           <button
             type="button"
-            class="pixel-button pixel-button-secondary"
+            class="cute-button secondary-button"
             id="gachaDone"
           >
-            DONE
+            keep it
           </button>
 
         </div>
 
       </div>
 
-
     </article>
 
   </div>
 
 
-
-  <!-- ========================================
-       PHOTOBOX EXPERIENCE
-  ========================================= -->
-
+  <!-- =========================
+       PHOTOBOX
+  ========================== -->
   <div
     class="photobox-screen"
     id="photoboxScreen"
@@ -875,66 +624,52 @@
   >
 
     <div
-      class="dialog-backdrop"
+      class="popup-backdrop"
       id="photoboxBackdrop"
     ></div>
 
+    <article class="photobox-card">
 
-    <article class="photobox-box">
+      <div class="photobox-topbar">
 
-
-      <header class="photobox-header">
-
-        <span class="dialog-type">
+        <span class="item-status">
           MEMORY FOUND
         </span>
 
-
         <button
           type="button"
-          class="dialog-close"
+          class="popup-close"
           id="photoboxClose"
-          aria-label="Close photobox"
         >
           ×
         </button>
 
-      </header>
-
+      </div>
 
       <h2>
         proof that we were here.
       </h2>
 
+      <div class="photobox-frame">
 
-      <video
-        class="photobox-video"
-        id="photoboxVideo"
-        autoplay
-        muted
-        loop
-        playsinline
-      >
-
-        <source
-          src="assets/gifs/photobox/us-photobox-01.webm"
-          type="video/webm"
+        <img
+          src="assets/gifs/photobox/us-photobox-01.gif"
+          alt="Photobox memory"
+          class="photobox-gif"
         />
 
-      </video>
-
+      </div>
 
       <p>
         one more?
       </p>
 
-
       <button
         type="button"
-        class="pixel-button"
+        class="cute-button"
         id="photoboxDone"
       >
-        KEEP IT
+        keep it
       </button>
 
     </article>
@@ -942,11 +677,9 @@
   </div>
 
 
-
-  <!-- ========================================
-       OUTDOOR MEMORY SCREEN
-  ========================================= -->
-
+  <!-- =========================
+       OUTDOOR MEMORY
+  ========================== -->
   <div
     class="outdoor-screen"
     id="outdoorScreen"
@@ -954,43 +687,35 @@
   >
 
     <div
-      class="dialog-backdrop"
+      class="popup-backdrop"
       id="outdoorBackdrop"
     ></div>
 
+    <article class="outdoor-card">
 
-    <article class="outdoor-box">
-
-
-      <header class="outdoor-header">
+      <div class="outdoor-topbar">
 
         <div>
-
-          <span class="dialog-type">
+          <span class="item-status">
             MEMORY FOUND
           </span>
 
           <h2>
             outside?
           </h2>
-
         </div>
-
 
         <button
           type="button"
-          class="dialog-close"
+          class="popup-close"
           id="outdoorClose"
-          aria-label="Close outdoor memories"
         >
           ×
         </button>
 
-      </header>
+      </div>
 
-
-
-      <div class="outdoor-gallery">
+      <div class="outdoor-polaroids">
 
         <img
           src="assets/photos/her/her-beach-01.webp"
@@ -1019,18 +744,16 @@
 
       </div>
 
-
       <p class="outdoor-copy">
         we should go somewhere again.
       </p>
 
-
       <button
         type="button"
-        class="pixel-button"
+        class="cute-button"
         id="outdoorDone"
       >
-        OK
+        okay
       </button>
 
     </article>
@@ -1038,11 +761,9 @@
   </div>
 
 
-
-  <!-- ========================================
-       MAILBOX / FINAL LETTER
-  ========================================= -->
-
+  <!-- =========================
+       MAILBOX
+  ========================== -->
   <div
     class="mailbox-screen"
     id="mailboxScreen"
@@ -1050,26 +771,15 @@
   >
 
     <div
-      class="dialog-backdrop"
+      class="popup-backdrop"
       id="mailboxBackdrop"
     ></div>
 
+    <article class="mailbox-card">
 
-    <article class="mailbox-box">
-
-
-      <header>
-
-        <span class="dialog-type">
-          FINAL ITEM
-        </span>
-
-        <h2>
-          for you.
-        </h2>
-
-      </header>
-
+      <span class="mailbox-final-label">
+        FINAL ITEM
+      </span>
 
       <img
         src="assets/objects/9.png"
@@ -1078,60 +788,60 @@
         draggable="false"
       />
 
+      <h2>
+        for you.
+      </h2>
 
       <p class="mailbox-intro">
         okay.<br />
         this one isn't a game.
       </p>
 
-
       <button
         type="button"
-        class="pixel-button"
+        class="cute-button"
         id="openLetterButton"
       >
-        OPEN
+        open
       </button>
 
-
-
-      <!-- LETTER -->
 
       <div
         class="letter-panel"
         id="letterPanel"
       >
 
-        <p>
-          surat asli nanti kita taro di sini.
-        </p>
+        <div class="letter-paper">
 
-        <p>
-          ini bagian yang nanti kita tulis
-          paling terakhir.
-        </p>
+          <p>
+            surat aslinya nanti kita taro di sini.
+          </p>
+
+          <p>
+            ini bagian yang nanti kita tulis
+            paling terakhir.
+          </p>
+
+        </div>
 
         <button
           type="button"
-          class="pixel-button"
+          class="cute-button"
           id="finishGameButton"
         >
-          CONTINUE
+          continue
         </button>
 
       </div>
-
 
     </article>
 
   </div>
 
 
-
-  <!-- ========================================
-       TOAST / ANNOUNCEMENT
-  ========================================= -->
-
+  <!-- =========================
+       TOAST
+  ========================== -->
   <div
     class="game-toast"
     id="gameToast"
@@ -1155,18 +865,20 @@
   </div>
 
 
-
-  <!-- ========================================
-       MISSION COMPLETE OVERLAY
-  ========================================= -->
-
+  <!-- =========================
+       MISSION COMPLETE
+  ========================== -->
   <div
     class="mission-complete"
     id="missionComplete"
     aria-hidden="true"
   >
 
-    <div class="mission-complete-box">
+    <div class="mission-complete-card">
+
+      <div class="mission-complete-icon">
+        ♡
+      </div>
 
       <span>
         MISSION COMPLETE
@@ -1183,10 +895,10 @@
 
       <button
         type="button"
-        class="pixel-button"
+        class="cute-button"
         id="missionCompleteButton"
       >
-        CONTINUE
+        continue
       </button>
 
     </div>
@@ -1194,28 +906,24 @@
   </div>
 
 
-
-  <!-- ========================================
+  <!-- =========================
        AUDIO
-  ========================================= -->
-
+  ========================== -->
   <audio
     id="backgroundMusic"
     loop
     preload="metadata"
   >
-    <!--
+    <!-- nanti tinggal isi:
     <source
-      src="assets/audio/background.mp3"
+      src="assets/audio/main-theme.mp3"
       type="audio/mpeg"
     />
     -->
   </audio>
 
 
-
   <script src="script.js"></script>
 
 </body>
-
 </html>
