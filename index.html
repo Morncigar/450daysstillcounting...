@@ -1,926 +1,2120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
-  <meta name="theme-color" content="#f0d7df" />
+  >
+
+  <meta name="theme-color" content="#f2dce3">
 
   <title>for you.</title>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
-  <!-- =========================
-       OPENING
-  ========================== -->
-  <section class="opening-screen" id="openingScreen">
-    <div class="opening-card">
 
-      <div class="opening-sticker">♡</div>
+  <!-- =========================================================
+       APP ROOT
+  ========================================================== -->
 
-      <p class="opening-kicker">hey, kamu.</p>
+  <div class="app" id="app">
 
-      <h1>
-        ini bukan game,<br />
-        tapi coba mainin aja.
-      </h1>
 
-      <p class="opening-hint">
-        ada beberapa hal kecil yang aku simpen di sini.
-      </p>
+    <!-- =========================================================
+         PROLOGUE
+    ========================================================== -->
+
+    <section
+      class="prologue"
+      id="prologue"
+      aria-label="Opening"
+    >
+
+      <div class="prologue-background">
+
+        <span class="floating-shape shape-one"></span>
+        <span class="floating-shape shape-two"></span>
+        <span class="floating-shape shape-three"></span>
+        <span class="floating-shape shape-four"></span>
+
+      </div>
+
+
+      <div class="prologue-content">
+
+
+        <!-- BEAT 1 -->
+
+        <div
+          class="prologue-beat prologue-beat-1 is-active"
+          data-prologue-beat="1"
+        >
+
+          <span class="tiny-heart">
+            ♡
+          </span>
+
+          <p>
+            hey, you.
+          </p>
+
+        </div>
+
+
+        <!-- BEAT 2 -->
+
+        <div
+          class="prologue-beat prologue-beat-2"
+          data-prologue-beat="2"
+        >
+
+          <p>
+            i made something.
+          </p>
+
+        </div>
+
+
+        <!-- BEAT 3 -->
+
+        <div
+          class="prologue-beat prologue-beat-3"
+          data-prologue-beat="3"
+        >
+
+          <h1>
+            just play around<br>
+            with it.
+          </h1>
+
+        </div>
+
+
+        <!-- START -->
+
+        <div
+          class="prologue-start"
+          id="prologueStart"
+        >
+
+          <button
+            type="button"
+            class="soft-button"
+            id="enterButton"
+          >
+            okay??
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         MAIN GAME
+    ========================================================== -->
+
+    <main
+      class="game"
+      id="game"
+      aria-hidden="true"
+    >
+
+
+      <!-- =========================================================
+           WORLD
+      ========================================================== -->
+
+      <section
+        class="world-section"
+        id="worldSection"
+      >
+
+        <div
+          class="world"
+          id="world"
+        >
+
+
+          <!-- BACKGROUND -->
+
+          <img
+            src="assets/backgrounds/mainworld-mobile.webp"
+            class="world-background"
+            alt=""
+            draggable="false"
+          >
+
+
+
+          <!-- =====================================================
+               WORLD DECORATION LAYER
+          ====================================================== -->
+
+          <div
+            class="world-decoration-layer"
+            aria-hidden="true"
+          >
+
+            <span class="world-sparkle world-sparkle-1">
+              ✦
+            </span>
+
+            <span class="world-sparkle world-sparkle-2">
+              ✧
+            </span>
+
+            <span class="world-sparkle world-sparkle-3">
+              ♡
+            </span>
+
+            <span class="world-sparkle world-sparkle-4">
+              ✦
+            </span>
+
+          </div>
+
+
+
+          <!-- =====================================================
+               MAIN QUEST HUD
+          ====================================================== -->
+
+          <header
+            class="quest-hud"
+            id="questHud"
+          >
+
+            <div class="quest-info">
+
+              <span class="pixel-label">
+                MAIN MISSION
+              </span>
+
+              <p
+                class="quest-title"
+                id="questTitle"
+              >
+                find all the little things.
+              </p>
+
+
+              <div
+                class="quest-dots"
+                id="questDots"
+                aria-label="Mission progress"
+              >
+
+                <span data-dot="0"></span>
+                <span data-dot="1"></span>
+                <span data-dot="2"></span>
+                <span data-dot="3"></span>
+                <span data-dot="4"></span>
+                <span data-dot="5"></span>
+                <span data-dot="6"></span>
+                <span data-dot="7"></span>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="quest-number"
+              aria-live="polite"
+            >
+
+              <strong id="mainProgress">
+                0
+              </strong>
+
+              <span>
+                /
+              </span>
+
+              <span id="mainTotal">
+                8
+              </span>
+
+            </div>
+
+          </header>
+
+
+
+          <!-- =====================================================
+               WORLD INTRO TIP
+          ====================================================== -->
+
+          <div
+            class="world-tip"
+            id="worldTip"
+          >
+
+            <p>
+              tap anything.<br>
+              most of them have a story.
+            </p>
+
+          </div>
+
+
+
+          <!-- =====================================================
+               OBJECT — WINDOW / OUTDOOR
+               assets/objects/11.png
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-window"
+            data-item="window"
+            aria-label="Window"
+          >
+
+            <img
+              src="assets/objects/11.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               OBJECT — PHOTOBOX
+               assets/objects/7.png
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-photobox"
+            data-item="photobox"
+            aria-label="Photobox"
+          >
+
+            <img
+              src="assets/objects/7.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+            <span
+              class="object-sparkle"
+              id="photoboxSparkle"
+              aria-hidden="true"
+            >
+              ✦
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               OBJECT — SNACK SHELF
+               assets/objects/10.png
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-snacks"
+            data-item="snacks"
+            aria-label="Snack shelf"
+          >
+
+            <img
+              src="assets/objects/10.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               OBJECT — TUMBLER
+               assets/objects/3.png
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-tumbler"
+            data-item="tumbler"
+            aria-label="Tumbler"
+          >
+
+            <img
+              src="assets/objects/3.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               OBJECT — KEYCHAIN
+               assets/objects/4.png
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-keychain"
+            data-item="keychain"
+            aria-label="Couple keychain"
+          >
+
+            <img
+              src="assets/objects/4.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               OBJECT — CAT
+               assets/objects/8.png
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-cat"
+            data-item="cat"
+            aria-label="Cat"
+          >
+
+            <img
+              src="assets/objects/8.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               OBJECT — GACOAN
+               assets/objects/5.png
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-gacoan"
+            data-item="gacoan"
+            aria-label="Mie Gacoan"
+          >
+
+            <img
+              src="assets/objects/5.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               OBJECT — VINO
+               assets/objects/2.png
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-vino"
+            data-item="vino"
+            aria-label="Si Meru"
+          >
+
+            <img
+              src="assets/objects/2.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="found-check"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               OBJECT — GACHA
+               assets/objects/6.png
+               SIDE QUEST
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-gacha is-dormant"
+            id="gachaObject"
+            data-item="gacha"
+            aria-label="Memory gacha"
+          >
+
+            <img
+              src="assets/objects/6.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="bonus-marker"
+              id="gachaMarker"
+              aria-hidden="true"
+            >
+              !
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               OBJECT — MAILBOX
+               assets/objects/9.png
+               FINAL OBJECT
+          ====================================================== -->
+
+          <button
+            type="button"
+            class="world-object object-mailbox is-locked"
+            id="mailboxObject"
+            data-item="mailbox"
+            aria-label="Mailbox"
+          >
+
+            <img
+              src="assets/objects/9.png"
+              alt=""
+              draggable="false"
+            >
+
+            <span
+              class="mailbox-lock"
+              id="mailboxLock"
+              aria-hidden="true"
+            >
+              ♡
+            </span>
+
+          </button>
+
+
+
+          <!-- =====================================================
+               BOTTOM HUD
+          ====================================================== -->
+
+          <div
+            class="bottom-hud"
+            id="bottomHud"
+          >
+
+
+            <div class="hud-chip">
+
+              <span>
+                MAIN
+              </span>
+
+              <strong id="hudMainProgress">
+                0 / 8
+              </strong>
+
+            </div>
+
+
+            <div
+              class="hud-chip hud-chip-bonus"
+              id="bonusHud"
+            >
+
+              <span>
+                BONUS
+              </span>
+
+              <strong id="bonusProgress">
+                0 / 1
+              </strong>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="music-toggle"
+              id="musicButton"
+              aria-label="Toggle music"
+            >
+              ♪
+            </button>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================================================
+           POST-GAME CHAPTER
+           hidden until letter is finished
+      ========================================================== -->
+
+      <section
+        class="post-game"
+        id="postGame"
+        aria-hidden="true"
+      >
+
+
+        <!-- =====================================================
+             LIVE COUNTER
+        ====================================================== -->
+
+        <section
+          class="counter-section"
+          id="counterSection"
+        >
+
+          <div class="counter-content">
+
+            <p class="counter-since">
+              since
+            </p>
+
+            <p class="counter-date">
+              08.06.2025
+            </p>
+
+
+            <div class="counter-main">
+
+              <strong
+                id="days"
+                class="counter-days"
+              >
+                0
+              </strong>
+
+              <span>
+                days with you
+              </span>
+
+            </div>
+
+
+            <div class="counter-live">
+
+              <div class="counter-unit">
+
+                <strong id="hours">
+                  00
+                </strong>
+
+                <small>
+                  hours
+                </small>
+
+              </div>
+
+
+              <span class="counter-divider">
+                :
+              </span>
+
+
+              <div class="counter-unit">
+
+                <strong id="minutes">
+                  00
+                </strong>
+
+                <small>
+                  min
+                </small>
+
+              </div>
+
+
+              <span class="counter-divider">
+                :
+              </span>
+
+
+              <div class="counter-unit">
+
+                <strong id="seconds">
+                  00
+                </strong>
+
+                <small>
+                  sec
+                </small>
+
+              </div>
+
+            </div>
+
+
+            <p class="counter-footer">
+              still counting.
+            </p>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FINAL
+        ====================================================== -->
+
+        <section
+          class="ending-section"
+          id="endingSection"
+        >
+
+          <div class="ending-content">
+
+            <p class="ending-date">
+              08.06.2025 — now
+            </p>
+
+
+            <h2>
+              still you.<br>
+              still me.
+            </h2>
+
+
+            <div class="ending-space"></div>
+
+
+            <p class="ending-copy">
+              that's all.<br>
+              for now.
+            </p>
+
+
+            <span class="ending-last">
+              still counting.
+            </span>
+
+          </div>
+
+        </section>
+
+
+      </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         GENERIC ITEM DISCOVERY
+    ========================================================== -->
+
+    <section
+      class="overlay item-overlay"
+      id="itemOverlay"
+      aria-hidden="true"
+    >
 
       <button
         type="button"
-        class="cute-button"
-        id="enterButton"
-      >
-        okay??
-      </button>
-
-    </div>
-  </section>
+        class="overlay-backdrop"
+        id="itemBackdrop"
+        aria-label="Close"
+      ></button>
 
 
-  <!-- =========================
-       GAME APP
-  ========================== -->
-  <main class="game-app" id="gameApp">
+      <article class="item-card">
 
-    <section class="world-section">
+        <header class="item-card-header">
 
-      <div class="world" id="world">
-
-        <!-- background -->
-        <img
-          src="assets/backgrounds/mainworld-mobile.webp"
-          class="world-background"
-          alt=""
-          draggable="false"
-        />
+          <span
+            class="pixel-label"
+            id="itemStatus"
+          >
+            ITEM FOUND
+          </span>
 
 
-        <!-- =========================
-             QUEST HUD
-        ========================== -->
-        <header class="quest-hud">
-
-          <div class="quest-card">
-
-            <span class="quest-eyebrow">
-              main mission
-            </span>
-
-            <p class="quest-title">
-              find all the little things.
-            </p>
-
-            <div class="quest-dots" id="questDots">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-
-          </div>
-
-          <div class="quest-counter">
-            <strong id="mainProgress">0</strong>
-            <span>/</span>
-            <span id="mainTotal">8</span>
-          </div>
+          <button
+            type="button"
+            class="tiny-close"
+            id="itemClose"
+            aria-label="Close"
+          >
+            ×
+          </button>
 
         </header>
 
 
-        <!-- =========================
-             INTRO TIP
-        ========================== -->
         <div
-          class="world-tip"
-          id="worldTip"
+          class="item-visual"
+          id="itemVisual"
+        ></div>
+
+
+        <h2
+          id="itemTitle"
+          class="item-title"
         >
-          tap anything.<br />
-          most of them have a story.
-        </div>
+        </h2>
 
 
-        <!-- =========================
-             OBJECTS
-        ========================== -->
+        <p
+          id="itemSubtitle"
+          class="item-subtitle"
+        >
+        </p>
 
-        <!-- WINDOW -->
+
+        <p
+          id="itemText"
+          class="item-text"
+        >
+        </p>
+
+
+        <div
+          class="item-extra"
+          id="itemExtra"
+        ></div>
+
+
         <button
           type="button"
-          class="world-object object-window"
-          data-item="window"
-          aria-label="Open outdoor memories"
+          class="soft-button item-confirm"
+          id="itemConfirm"
         >
-          <img
-            src="assets/objects/11.png"
-            alt="Window"
-            draggable="false"
-          />
-          <span class="found-badge">✓</span>
+          keep
         </button>
 
-
-        <!-- PHOTOBOX -->
-        <button
-          type="button"
-          class="world-object object-photobox"
-          data-item="photobox"
-          aria-label="Open photobox memory"
-        >
-          <img
-            src="assets/objects/7.png"
-            alt="Photobox booth"
-            draggable="false"
-          />
-          <span class="found-badge">✓</span>
-        </button>
-
-
-        <!-- SNACK SHELF -->
-        <button
-          type="button"
-          class="world-object object-snacks"
-          data-item="snacks"
-          aria-label="Open snack memory"
-        >
-          <img
-            src="assets/objects/10.png"
-            alt="Snack shelf"
-            draggable="false"
-          />
-          <span class="found-badge">✓</span>
-        </button>
-
-
-        <!-- TUMBLER -->
-        <button
-          type="button"
-          class="world-object object-tumbler"
-          data-item="tumbler"
-          aria-label="Open tumbler memory"
-        >
-          <img
-            src="assets/objects/3.png"
-            alt="Pastel tumbler"
-            draggable="false"
-          />
-          <span class="found-badge">✓</span>
-        </button>
-
-
-        <!-- KEYCHAIN -->
-        <button
-          type="button"
-          class="world-object object-keychain"
-          data-item="keychain"
-          aria-label="Open keychain memory"
-        >
-          <img
-            src="assets/objects/4.png"
-            alt="Couple keychain"
-            draggable="false"
-          />
-          <span class="found-badge">✓</span>
-        </button>
-
-
-        <!-- CAT -->
-        <button
-          type="button"
-          class="world-object object-cat"
-          data-item="cat"
-          aria-label="Open cat interaction"
-        >
-          <img
-            src="assets/objects/8.png"
-            alt="Cat"
-            draggable="false"
-          />
-          <span class="found-badge">✓</span>
-        </button>
-
-
-        <!-- GACOAN -->
-        <button
-          type="button"
-          class="world-object object-gacoan"
-          data-item="gacoan"
-          aria-label="Open Gacoan memory"
-        >
-          <img
-            src="assets/objects/5.png"
-            alt="Mie Gacoan"
-            draggable="false"
-          />
-          <span class="found-badge">✓</span>
-        </button>
-
-
-        <!-- VINO -->
-        <button
-          type="button"
-          class="world-object object-vino"
-          data-item="vino"
-          aria-label="Open Vino memory"
-        >
-          <img
-            src="assets/objects/2.png"
-            alt="Si Meru"
-            draggable="false"
-          />
-          <span class="found-badge">✓</span>
-        </button>
-
-
-        <!-- GACHA BONUS -->
-        <button
-          type="button"
-          class="world-object object-gacha"
-          data-item="gacha"
-          aria-label="Open memory gacha"
-        >
-          <img
-            src="assets/objects/6.png"
-            alt="Gacha machine"
-            draggable="false"
-          />
-
-          <span
-            class="bonus-bubble"
-            id="gachaBonusBubble"
-          >
-            !
-          </span>
-        </button>
-
-
-        <!-- MAILBOX -->
-        <button
-          type="button"
-          class="world-object object-mailbox is-locked"
-          id="mailboxObject"
-          data-item="mailbox"
-          aria-label="Open mailbox"
-        >
-          <img
-            src="assets/objects/9.png"
-            alt="Mailbox"
-            draggable="false"
-          />
-
-          <span
-            class="mailbox-lock"
-            id="mailboxLock"
-          >
-            🔒
-          </span>
-        </button>
-
-
-        <!-- =========================
-             BOTTOM HUD
-        ========================== -->
-        <div class="bottom-hud">
-
-          <div class="hud-chip">
-            <span>main</span>
-            <strong id="hudMainProgress">
-              0 / 8
-            </strong>
-          </div>
-
-          <div class="hud-chip bonus-chip">
-            <span>bonus</span>
-            <strong id="bonusProgress">
-              0 / 1
-            </strong>
-          </div>
-
-          <button
-            type="button"
-            class="music-button"
-            id="musicButton"
-            aria-label="Toggle music"
-          >
-            ♪
-          </button>
-
-        </div>
-
-      </div>
+      </article>
 
     </section>
 
 
-    <!-- =========================
-         POST GAME LOCKED AREA
-    ========================== -->
+
+    <!-- =========================================================
+         KEYCHAIN PAIR EXPERIENCE
+    ========================================================== -->
+
     <section
-      class="post-game locked-content"
-      id="postGame"
+      class="overlay keychain-overlay"
+      id="keychainOverlay"
       aria-hidden="true"
     >
 
-      <!-- counter -->
-      <section class="counter-section">
-
-        <div class="counter-inner">
-
-          <p class="counter-date">
-            since 08.06.2025
-          </p>
-
-          <div class="counter-days-wrap">
-
-            <span
-              class="counter-days"
-              id="days"
-            >
-              0
-            </span>
-
-            <span class="counter-caption">
-              days with you
-            </span>
-
-          </div>
-
-          <div class="counter-clock">
-
-            <div>
-              <span id="hours">00</span>
-              <small>hours</small>
-            </div>
-
-            <span>:</span>
-
-            <div>
-              <span id="minutes">00</span>
-              <small>min</small>
-            </div>
-
-            <span>:</span>
-
-            <div>
-              <span id="seconds">00</span>
-              <small>sec</small>
-            </div>
-
-          </div>
-
-          <p class="still-counting">
-            still counting.
-          </p>
-
-        </div>
-
-      </section>
+      <button
+        type="button"
+        class="overlay-backdrop"
+        id="keychainBackdrop"
+        aria-label="Close"
+      ></button>
 
 
-      <!-- ending -->
-      <section class="final-section">
+      <article class="keychain-card">
 
-        <div class="final-inner">
+        <header>
 
-          <p class="final-date">
-            08.06.2025 — now
-          </p>
-
-          <h2>
-            still you.<br />
-            still me.
-          </h2>
-
-          <p class="final-copy">
-            that's all.<br />
-            for now.
-          </p>
-
-          <span class="final-small">
-            still counting.
+          <span class="pixel-label">
+            PAIR FOUND
           </span>
 
+          <button
+            type="button"
+            class="tiny-close"
+            id="keychainClose"
+          >
+            ×
+          </button>
+
+        </header>
+
+
+        <div class="keychain-stage">
+
+          <div
+            class="keychain-half keychain-half-left"
+            id="keychainLeft"
+          >
+
+            <img
+              src="assets/objects/4.png"
+              alt=""
+            >
+
+          </div>
+
+
+          <div
+            class="keychain-half keychain-half-right"
+            id="keychainRight"
+          >
+
+            <img
+              src="assets/objects/4.png"
+              alt=""
+            >
+
+          </div>
+
         </div>
 
-      </section>
+
+        <div
+          class="keychain-copy"
+          id="keychainCopy"
+        >
+
+          <p>
+            you got the white one.
+          </p>
+
+          <p>
+            i got the brown one.
+          </p>
+
+          <p class="keychain-final-line">
+            yeah.<br>
+            they belong together.
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="soft-button"
+          id="keychainKeep"
+        >
+          keep
+        </button>
+
+      </article>
 
     </section>
 
-  </main>
 
 
-  <!-- =========================
-       ITEM POPUP
-  ========================== -->
-  <div
-    class="item-popup"
-    id="itemPopup"
-    aria-hidden="true"
-  >
+    <!-- =========================================================
+         GACOAN TWO-BEAT
+    ========================================================== -->
 
-    <div
-      class="popup-backdrop"
-      id="itemBackdrop"
-    ></div>
+    <section
+      class="overlay gacoan-overlay"
+      id="gacoanOverlay"
+      aria-hidden="true"
+    >
 
-    <article class="item-card">
+      <button
+        type="button"
+        class="overlay-backdrop"
+        id="gacoanBackdrop"
+        aria-label="Close"
+      ></button>
 
-      <div class="item-card-top">
 
-        <span
-          class="item-status"
-          id="itemStatus"
-        >
+      <article class="gacoan-card">
+
+        <span class="pixel-label">
           ITEM FOUND
         </span>
 
+
+        <img
+          src="assets/objects/5.png"
+          alt=""
+          class="gacoan-image"
+        >
+
+
+        <h2>
+          of course this is here.
+        </h2>
+
+
+        <div
+          class="gacoan-answer"
+          id="gacoanAnswer"
+        >
+
+          <p>
+            mie gacoan.
+          </p>
+
+          <p>
+            no explanation needed.
+          </p>
+
+        </div>
+
+
         <button
           type="button"
-          class="popup-close"
-          id="itemClose"
-          aria-label="Close"
+          class="soft-button"
+          id="gacoanWhy"
         >
-          ×
+          why?
         </button>
 
-      </div>
 
-      <div
-        class="item-icon-stage"
-        id="itemIconStage"
-      ></div>
+        <button
+          type="button"
+          class="soft-button secondary-action"
+          id="gacoanDone"
+        >
+          fair enough
+        </button>
 
-      <h2
-        class="item-title"
-        id="itemTitle"
-      ></h2>
+      </article>
 
-      <p
-        class="item-copy"
-        id="itemCopy"
-      ></p>
+    </section>
+
+
+
+    <!-- =========================================================
+         SNACK PICKER
+    ========================================================== -->
+
+    <section
+      class="overlay snack-overlay"
+      id="snackOverlay"
+      aria-hidden="true"
+    >
 
       <button
         type="button"
-        class="cute-button small-button"
-        id="itemOkay"
-      >
-        got it
-      </button>
-
-    </article>
-
-  </div>
+        class="overlay-backdrop"
+        id="snackBackdrop"
+        aria-label="Close"
+      ></button>
 
 
-  <!-- =========================
-       GACHA EXPERIENCE
-  ========================== -->
-  <div
-    class="gacha-screen"
-    id="gachaScreen"
-    aria-hidden="true"
-  >
+      <article class="snack-card">
 
-    <div
-      class="popup-backdrop"
-      id="gachaBackdrop"
-    ></div>
 
-    <article class="gacha-card">
+        <header class="snack-header">
 
-      <div class="gacha-topbar">
+          <div>
 
-        <div>
-          <span class="gacha-label">
-            bonus mission
+            <span class="pixel-label">
+              SNACK SHELF
+            </span>
+
+            <h2>
+              pick one.
+            </h2>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="tiny-close"
+            id="snackClose"
+          >
+            ×
+          </button>
+
+        </header>
+
+
+
+        <div
+          class="snack-options"
+          id="snackOptions"
+        >
+
+
+          <button
+            type="button"
+            class="snack-option"
+            data-snack="chiki"
+          >
+
+            <span class="snack-emoji">
+              🟠
+            </span>
+
+            <strong>
+              Chiki Balls
+            </strong>
+
+          </button>
+
+
+
+          <button
+            type="button"
+            class="snack-option"
+            data-snack="jetz"
+          >
+
+            <span class="snack-emoji">
+              🟡
+            </span>
+
+            <strong>
+              JetZ
+            </strong>
+
+          </button>
+
+
+
+          <button
+            type="button"
+            class="snack-option"
+            data-snack="taro"
+          >
+
+            <span class="snack-emoji">
+              🟢
+            </span>
+
+            <strong>
+              Taro
+            </strong>
+
+          </button>
+
+
+
+          <button
+            type="button"
+            class="snack-option"
+            data-snack="momogi"
+          >
+
+            <span class="snack-emoji">
+              🟣
+            </span>
+
+            <strong>
+              Momogi
+            </strong>
+
+          </button>
+
+
+        </div>
+
+
+
+        <div
+          class="snack-result"
+          id="snackResult"
+        >
+
+          <span class="pixel-label">
+            PICKED
           </span>
 
-          <h2>
-            memory gacha
-          </h2>
-        </div>
+          <h3 id="snackResultName">
+          </h3>
 
-        <button
-          type="button"
-          class="popup-close"
-          id="gachaClose"
-          aria-label="Close gacha"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <!-- machine state -->
-      <div
-        class="gacha-machine-state"
-        id="gachaMachineState"
-      >
-
-        <div class="gacha-machine-stage">
-
-          <span class="gacha-sparkle sparkle-1">✦</span>
-          <span class="gacha-sparkle sparkle-2">♡</span>
-          <span class="gacha-sparkle sparkle-3">✧</span>
-
-          <img
-            src="assets/objects/6.png"
-            alt="Gacha machine"
-            class="gacha-machine"
-            id="gachaMachineImage"
-            draggable="false"
-          />
-
-        </div>
-
-        <p
-          class="gacha-status"
-          id="gachaStatus"
-        >
-          pull one.
-        </p>
-
-        <button
-          type="button"
-          class="cute-button"
-          id="gachaPullButton"
-        >
-          pull
-        </button>
-
-      </div>
-
-
-      <!-- capsule/result state -->
-      <div
-        class="gacha-result-state"
-        id="gachaResultState"
-      >
-
-        <div
-          class="gacha-rarity"
-          id="gachaRarity"
-        ></div>
-
-        <div
-          class="gacha-memory-frame"
-          id="gachaResultMedia"
-        ></div>
-
-        <p
-          class="gacha-caption"
-          id="gachaResultCaption"
-        ></p>
-
-        <div class="gacha-result-buttons">
+          <p id="snackResultText">
+          </p>
 
           <button
             type="button"
-            class="cute-button"
-            id="gachaPullAgain"
+            class="soft-button"
+            id="snackTake"
           >
-            again
-          </button>
-
-          <button
-            type="button"
-            class="cute-button secondary-button"
-            id="gachaDone"
-          >
-            keep it
+            take it
           </button>
 
         </div>
 
-      </div>
+      </article>
 
-    </article>
-
-  </div>
+    </section>
 
 
-  <!-- =========================
-       PHOTOBOX
-  ========================== -->
-  <div
-    class="photobox-screen"
-    id="photoboxScreen"
-    aria-hidden="true"
-  >
 
-    <div
-      class="popup-backdrop"
-      id="photoboxBackdrop"
-    ></div>
+    <!-- =========================================================
+         CAT EXPERIENCE
+    ========================================================== -->
 
-    <article class="photobox-card">
+    <section
+      class="overlay cat-overlay"
+      id="catOverlay"
+      aria-hidden="true"
+    >
 
-      <div class="photobox-topbar">
+      <button
+        type="button"
+        class="overlay-backdrop"
+        id="catBackdrop"
+        aria-label="Close"
+      ></button>
 
-        <span class="item-status">
-          MEMORY FOUND
+
+      <article class="cat-card">
+
+        <span class="pixel-label">
+          ITEM FOUND
         </span>
 
+
         <button
           type="button"
-          class="popup-close"
-          id="photoboxClose"
+          class="cat-stage"
+          id="catTap"
+          aria-label="Pet the cat"
         >
-          ×
+
+          <img
+            src="assets/objects/8.png"
+            alt="Cat"
+          >
+
         </button>
 
-      </div>
 
-      <h2>
-        proof that we were here.
-      </h2>
+        <h2>
+          a cat.
+        </h2>
 
-      <div class="photobox-frame">
 
-        <img
-          src="assets/gifs/photobox/us-photobox-01.gif"
-          alt="Photobox memory"
-          class="photobox-gif"
-        />
+        <p
+          class="cat-dialogue"
+          id="catDialogue"
+        >
+          you would've stopped anyway.
+        </p>
 
-      </div>
 
-      <p>
-        one more?
-      </p>
+        <p class="cat-hint">
+          tap the cat.
+        </p>
+
+
+        <button
+          type="button"
+          class="soft-button"
+          id="catDone"
+        >
+          okay
+        </button>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         PHOTOBOX ARCHIVE
+    ========================================================== -->
+
+    <section
+      class="overlay photobox-overlay"
+      id="photoboxOverlay"
+      aria-hidden="true"
+    >
 
       <button
         type="button"
-        class="cute-button"
-        id="photoboxDone"
-      >
-        keep it
-      </button>
-
-    </article>
-
-  </div>
+        class="overlay-backdrop"
+        id="photoboxBackdrop"
+        aria-label="Close"
+      ></button>
 
 
-  <!-- =========================
-       OUTDOOR MEMORY
-  ========================== -->
-  <div
-    class="outdoor-screen"
-    id="outdoorScreen"
-    aria-hidden="true"
-  >
+      <article class="photobox-card">
 
-    <div
-      class="popup-backdrop"
-      id="outdoorBackdrop"
-    ></div>
+        <header>
 
-    <article class="outdoor-card">
+          <div>
 
-      <div class="outdoor-topbar">
+            <span class="pixel-label">
+              PHOTOBOX ARCHIVE
+            </span>
 
-        <div>
-          <span class="item-status">
-            MEMORY FOUND
+            <h2>
+              this had to be here.
+            </h2>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="tiny-close"
+            id="photoboxClose"
+          >
+            ×
+          </button>
+
+        </header>
+
+
+
+        <div
+          class="photobox-slider"
+          id="photoboxSlider"
+        >
+
+
+          <!-- SLIDE 1 -->
+
+          <figure
+            class="photobox-slide is-active"
+            data-photobox-slide="0"
+          >
+
+            <div class="photobox-media-frame">
+
+              <img
+                src="assets/gifs/photobox/us-photobox-01.gif"
+                alt=""
+              >
+
+            </div>
+
+            <figcaption>
+              one more?
+            </figcaption>
+
+          </figure>
+
+
+
+          <!-- SLIDE 2 -->
+
+          <figure
+            class="photobox-slide"
+            data-photobox-slide="1"
+          >
+
+            <div class="photobox-media-frame">
+
+              <img
+                src="assets/photos/photobox/us-photobox-bw-01.webp"
+                alt=""
+              >
+
+            </div>
+
+            <figcaption>
+              this one's staying.
+            </figcaption>
+
+          </figure>
+
+
+
+          <!-- SLIDE 3 -->
+
+          <figure
+            class="photobox-slide"
+            data-photobox-slide="2"
+          >
+
+            <div class="photobox-media-frame">
+
+              <img
+                src="assets/photos/memories/us-printed-photobox-01.webp"
+                alt=""
+              >
+
+            </div>
+
+            <figcaption>
+              somehow this survived too.
+            </figcaption>
+
+          </figure>
+
+
+
+          <!-- SLIDE 4 -->
+
+          <figure
+            class="photobox-slide"
+            data-photobox-slide="3"
+          >
+
+            <div class="photobox-media-frame">
+
+              <img
+                src="assets/photos/photobox/us-photobooth-grid-01.webp"
+                alt=""
+              >
+
+            </div>
+
+            <figcaption>
+              yeah, we do this a lot.
+            </figcaption>
+
+          </figure>
+
+
+        </div>
+
+
+
+        <div class="archive-controls">
+
+          <button
+            type="button"
+            class="archive-arrow"
+            id="photoboxPrev"
+            aria-label="Previous"
+          >
+            ←
+          </button>
+
+
+          <div
+            class="archive-pagination"
+            id="photoboxPagination"
+          >
+            1 / 4
+          </div>
+
+
+          <button
+            type="button"
+            class="archive-arrow"
+            id="photoboxNext"
+            aria-label="Next"
+          >
+            →
+          </button>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="soft-button archive-finish"
+          id="photoboxKeep"
+        >
+          keep it
+        </button>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         OUTDOOR ARCHIVE
+    ========================================================== -->
+
+    <section
+      class="overlay outdoor-overlay"
+      id="outdoorOverlay"
+      aria-hidden="true"
+    >
+
+      <button
+        type="button"
+        class="overlay-backdrop"
+        id="outdoorBackdrop"
+        aria-label="Close"
+      ></button>
+
+
+      <article class="outdoor-card">
+
+
+        <header>
+
+          <div>
+
+            <span class="pixel-label">
+              OUTSIDE
+            </span>
+
+            <h2>
+              memories outside.
+            </h2>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="tiny-close"
+            id="outdoorClose"
+          >
+            ×
+          </button>
+
+        </header>
+
+
+
+        <div
+          class="outdoor-slider"
+          id="outdoorSlider"
+        >
+
+
+          <figure
+            class="outdoor-slide is-active"
+            data-outdoor-slide="0"
+          >
+
+            <img
+              src="assets/photos/her/her-beach-01.webp"
+              alt=""
+            >
+
+          </figure>
+
+
+          <figure
+            class="outdoor-slide"
+            data-outdoor-slide="1"
+          >
+
+            <img
+              src="assets/photos/her/her-rooftop-01.webp"
+              alt=""
+            >
+
+          </figure>
+
+
+          <figure
+            class="outdoor-slide"
+            data-outdoor-slide="2"
+          >
+
+            <img
+              src="assets/photos/her/her-silhouette-window-01.webp"
+              alt=""
+            >
+
+          </figure>
+
+
+          <figure
+            class="outdoor-slide"
+            data-outdoor-slide="3"
+          >
+
+            <img
+              src="assets/photos/us/us-jeep-trip-01.webp"
+              alt=""
+            >
+
+          </figure>
+
+
+          <figure
+            class="outdoor-slide"
+            data-outdoor-slide="4"
+          >
+
+            <img
+              src="assets/photos/us/us-outdoor-selfie-01.webp"
+              alt=""
+            >
+
+          </figure>
+
+
+        </div>
+
+
+
+        <div class="archive-controls">
+
+          <button
+            type="button"
+            class="archive-arrow"
+            id="outdoorPrev"
+          >
+            ←
+          </button>
+
+
+          <div
+            class="archive-pagination"
+            id="outdoorPagination"
+          >
+            1 / 5
+          </div>
+
+
+          <button
+            type="button"
+            class="archive-arrow"
+            id="outdoorNext"
+          >
+            →
+          </button>
+
+        </div>
+
+
+
+        <p class="outdoor-final-copy">
+          we should go somewhere again.
+        </p>
+
+
+        <button
+          type="button"
+          class="soft-button"
+          id="outdoorDone"
+        >
+          go back
+        </button>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         GACHA SIDE QUEST
+    ========================================================== -->
+
+    <section
+      class="overlay gacha-overlay"
+      id="gachaOverlay"
+      aria-hidden="true"
+    >
+
+      <button
+        type="button"
+        class="overlay-backdrop"
+        id="gachaBackdrop"
+        aria-label="Close"
+      ></button>
+
+
+      <article class="gacha-card">
+
+
+        <header>
+
+          <div>
+
+            <span class="pixel-label">
+              BONUS MISSION
+            </span>
+
+            <h2>
+              memory gacha
+            </h2>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="tiny-close"
+            id="gachaClose"
+          >
+            ×
+          </button>
+
+        </header>
+
+
+
+        <!-- MACHINE -->
+
+        <div
+          class="gacha-machine-state"
+          id="gachaMachineState"
+        >
+
+          <div class="gacha-machine-stage">
+
+            <span class="gacha-decoration decoration-a">
+              ✦
+            </span>
+
+            <span class="gacha-decoration decoration-b">
+              ♡
+            </span>
+
+            <span class="gacha-decoration decoration-c">
+              ✧
+            </span>
+
+
+            <img
+              src="assets/objects/6.png"
+              alt=""
+              id="gachaMachine"
+              class="gacha-machine"
+            >
+
+          </div>
+
+
+          <p
+            id="gachaStatus"
+            class="gacha-status"
+          >
+            pull one.
+          </p>
+
+
+          <div class="gacha-token">
+
+            <span>
+              pulls
+            </span>
+
+            <strong id="gachaPullCount">
+              0
+            </strong>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="soft-button"
+            id="gachaPull"
+          >
+            pull
+          </button>
+
+        </div>
+
+
+
+        <!-- RESULT -->
+
+        <div
+          class="gacha-result-state"
+          id="gachaResultState"
+          aria-live="polite"
+        >
+
+          <span
+            class="gacha-rarity"
+            id="gachaRarity"
+          >
           </span>
 
-          <h2>
-            outside?
-          </h2>
+
+          <div
+            class="gacha-memory"
+            id="gachaMemory"
+          >
+          </div>
+
+
+          <p
+            class="gacha-caption"
+            id="gachaCaption"
+          >
+          </p>
+
+
+          <div class="gacha-result-actions">
+
+            <button
+              type="button"
+              class="soft-button"
+              id="gachaAgain"
+            >
+              again
+            </button>
+
+
+            <button
+              type="button"
+              class="soft-button secondary-action"
+              id="gachaKeep"
+            >
+              keep it
+            </button>
+
+          </div>
+
         </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         MAILBOX LOCK DIALOG
+    ========================================================== -->
+
+    <section
+      class="overlay mailbox-lock-overlay"
+      id="mailboxLockOverlay"
+      aria-hidden="true"
+    >
+
+      <button
+        type="button"
+        class="overlay-backdrop"
+        id="mailboxLockBackdrop"
+        aria-label="Close"
+      ></button>
+
+
+      <article class="mailbox-lock-card">
+
+        <img
+          src="assets/objects/9.png"
+          alt=""
+        >
+
+
+        <p
+          id="mailboxLockedText"
+        >
+          not yet.
+        </p>
+
 
         <button
           type="button"
-          class="popup-close"
-          id="outdoorClose"
+          class="soft-button"
+          id="mailboxLockOkay"
         >
-          ×
+          okay
         </button>
 
-      </div>
+      </article>
 
-      <div class="outdoor-polaroids">
-
-        <img
-          src="assets/photos/her/her-beach-01.webp"
-          alt=""
-        />
-
-        <img
-          src="assets/photos/her/her-rooftop-01.webp"
-          alt=""
-        />
-
-        <img
-          src="assets/photos/her/her-silhouette-window-01.webp"
-          alt=""
-        />
-
-        <img
-          src="assets/photos/us/us-jeep-trip-01.webp"
-          alt=""
-        />
-
-        <img
-          src="assets/photos/us/us-outdoor-selfie-01.webp"
-          alt=""
-        />
-
-      </div>
-
-      <p class="outdoor-copy">
-        we should go somewhere again.
-      </p>
-
-      <button
-        type="button"
-        class="cute-button"
-        id="outdoorDone"
-      >
-        okay
-      </button>
-
-    </article>
-
-  </div>
+    </section>
 
 
-  <!-- =========================
-       MAILBOX
-  ========================== -->
-  <div
-    class="mailbox-screen"
-    id="mailboxScreen"
-    aria-hidden="true"
-  >
 
-    <div
-      class="popup-backdrop"
-      id="mailboxBackdrop"
-    ></div>
+    <!-- =========================================================
+         MISSION COMPLETE
+    ========================================================== -->
 
-    <article class="mailbox-card">
+    <section
+      class="overlay complete-overlay"
+      id="missionCompleteOverlay"
+      aria-hidden="true"
+    >
 
-      <span class="mailbox-final-label">
-        FINAL ITEM
-      </span>
+      <div class="complete-card">
 
-      <img
-        src="assets/objects/9.png"
-        alt="Mailbox"
-        class="mailbox-image"
-        draggable="false"
-      />
-
-      <h2>
-        for you.
-      </h2>
-
-      <p class="mailbox-intro">
-        okay.<br />
-        this one isn't a game.
-      </p>
-
-      <button
-        type="button"
-        class="cute-button"
-        id="openLetterButton"
-      >
-        open
-      </button>
+        <span class="complete-heart">
+          ♡
+        </span>
 
 
-      <div
-        class="letter-panel"
-        id="letterPanel"
-      >
+        <span class="pixel-label">
+          MISSION COMPLETE
+        </span>
 
-        <div class="letter-paper">
 
-          <p>
-            surat aslinya nanti kita taro di sini.
-          </p>
+        <h2>
+          okay.<br>
+          you found everything.
+        </h2>
 
-          <p>
-            ini bagian yang nanti kita tulis
-            paling terakhir.
-          </p>
 
-        </div>
+        <p>
+          one last thing.
+        </p>
+
 
         <button
           type="button"
-          class="cute-button"
-          id="finishGameButton"
+          class="soft-button"
+          id="missionCompleteContinue"
         >
           continue
         </button>
 
       </div>
 
-    </article>
-
-  </div>
+    </section>
 
 
-  <!-- =========================
-       TOAST
-  ========================== -->
-  <div
-    class="game-toast"
-    id="gameToast"
-    role="status"
-    aria-live="polite"
-  >
 
-    <span
-      class="toast-label"
-      id="toastLabel"
+    <!-- =========================================================
+         MAILBOX / LETTER
+    ========================================================== -->
+
+    <section
+      class="overlay letter-overlay"
+      id="letterOverlay"
+      aria-hidden="true"
     >
-      MEMORY FOUND
-    </span>
 
-    <strong
-      id="toastText"
+      <div class="letter-scene">
+
+
+        <!-- CLOSED -->
+
+        <div
+          class="letter-closed"
+          id="letterClosed"
+        >
+
+          <span class="pixel-label">
+            FINAL ITEM
+          </span>
+
+
+          <img
+            src="assets/objects/9.png"
+            alt=""
+            class="letter-mailbox"
+          >
+
+
+          <h2>
+            for you.
+          </h2>
+
+
+          <p>
+            okay.<br>
+            this one isn't a game anymore.
+          </p>
+
+
+          <button
+            type="button"
+            class="soft-button"
+            id="openLetter"
+          >
+            open
+          </button>
+
+        </div>
+
+
+
+        <!-- OPEN PAPER -->
+
+        <article
+          class="letter-paper"
+          id="letterPaper"
+        >
+
+          <div class="letter-paper-decoration">
+            ♡
+          </div>
+
+
+          <div class="letter-copy">
+
+            <p class="letter-paragraph">
+              [paragraph one goes here.]
+            </p>
+
+
+            <p class="letter-paragraph">
+              [paragraph two goes here.]
+            </p>
+
+
+            <p class="letter-paragraph">
+              [paragraph three goes here.]
+            </p>
+
+
+            <p class="letter-paragraph">
+              [paragraph four goes here.]
+            </p>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="soft-button letter-continue"
+            id="finishLetter"
+          >
+            continue
+          </button>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         ACHIEVEMENT
+    ========================================================== -->
+
+    <div
+      class="achievement"
+      id="achievement"
+      aria-live="polite"
     >
-      +1
-    </strong>
 
-  </div>
-
-
-  <!-- =========================
-       MISSION COMPLETE
-  ========================== -->
-  <div
-    class="mission-complete"
-    id="missionComplete"
-    aria-hidden="true"
-  >
-
-    <div class="mission-complete-card">
-
-      <div class="mission-complete-icon">
+      <div class="achievement-icon">
         ♡
       </div>
 
-      <span>
-        MISSION COMPLETE
-      </span>
 
-      <h2>
-        okay...<br />
-        you found everything.
-      </h2>
+      <div>
 
-      <p>
-        something just unlocked.
-      </p>
+        <span>
+          SECRET FOUND
+        </span>
 
-      <button
-        type="button"
-        class="cute-button"
-        id="missionCompleteButton"
-      >
-        continue
-      </button>
+        <strong id="achievementText">
+        </strong>
+
+      </div>
 
     </div>
 
+
+
+    <!-- =========================================================
+         TOAST
+    ========================================================== -->
+
+    <div
+      class="toast"
+      id="toast"
+      aria-live="polite"
+    >
+
+      <span
+        class="toast-label"
+        id="toastLabel"
+      >
+      </span>
+
+
+      <strong
+        id="toastText"
+      >
+      </strong>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         AUDIO
+    ========================================================== -->
+
+    <audio
+      id="backgroundMusic"
+      loop
+      preload="metadata"
+    >
+
+      <!--
+      <source
+        src="assets/audio/main-theme.mp3"
+        type="audio/mpeg"
+      >
+      -->
+
+    </audio>
+
+
   </div>
-
-
-  <!-- =========================
-       AUDIO
-  ========================== -->
-  <audio
-    id="backgroundMusic"
-    loop
-    preload="metadata"
-  >
-    <!-- nanti tinggal isi:
-    <source
-      src="assets/audio/main-theme.mp3"
-      type="audio/mpeg"
-    />
-    -->
-  </audio>
 
 
   <script src="script.js"></script>
