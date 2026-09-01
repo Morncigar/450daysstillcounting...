@@ -1,34 +1,43 @@
-// ========================================
-// BASIC DOM
-// ========================================
+// =========================================================
+// DOM REFERENCES
+// =========================================================
 
-const openingScreen = document.getElementById("openingScreen");
+const app = document.getElementById("app");
+
+const prologue = document.getElementById("prologue");
+const prologueBeats = [...document.querySelectorAll(".prologue-beat")];
+const prologueStart = document.getElementById("prologueStart");
 const enterButton = document.getElementById("enterButton");
 
+const game = document.getElementById("game");
+const world = document.getElementById("world");
+const worldTip = document.getElementById("worldTip");
+
+const questTitle = document.getElementById("questTitle");
+const questDots = [...document.querySelectorAll("#questDots span")];
 const mainProgress = document.getElementById("mainProgress");
 const mainTotal = document.getElementById("mainTotal");
 const hudMainProgress = document.getElementById("hudMainProgress");
+
+const bonusHud = document.getElementById("bonusHud");
 const bonusProgress = document.getElementById("bonusProgress");
+
+const gachaObject = document.getElementById("gachaObject");
+const photoboxSparkle = document.getElementById("photoboxSparkle");
 
 const mailboxObject = document.getElementById("mailboxObject");
 const mailboxLock = document.getElementById("mailboxLock");
 
 const postGame = document.getElementById("postGame");
-
-const gameToast = document.getElementById("gameToast");
-const toastLabel = document.getElementById("toastLabel");
-const toastText = document.getElementById("toastText");
-
-const missionComplete = document.getElementById("missionComplete");
-const missionCompleteButton = document.getElementById("missionCompleteButton");
+const counterSection = document.getElementById("counterSection");
 
 const musicButton = document.getElementById("musicButton");
 const backgroundMusic = document.getElementById("backgroundMusic");
 
 
-// ========================================
-// GAME CONFIG
-// ========================================
+// =========================================================
+// GAME STATE
+// =========================================================
 
 const requiredItems = [
   "vino",
@@ -43,211 +52,288 @@ const requiredItems = [
 
 mainTotal.textContent = requiredItems.length;
 
-let foundItems = new Set();
-let bonusGachaComplete = false;
-let missionCompleteShown = false;
-let mailboxUnlocked = false;
-let gameFinished = false;
+const state = {
+  found: new Set(),
 
+  bonusUnlocked: false,
+  bonusComplete: false,
 
-// ========================================
-// ITEM DATA
-// ========================================
+  catTapCount: 0,
+  catSecretUnlocked: false,
 
-const itemData = {
-  vino: {
-    type: "ITEM FOUND",
-    title: "si meru",
-    text:
-      "alias merah rudet wkwk\n\n" +
-      "somehow bahkan motor ini jadi salah satu hal " +
-      "yang langsung bikin aku keinget kamu.",
-    image: "assets/objects/2.png"
-  },
+  snackPicked: null,
 
-  tumbler: {
-    type: "ITEM FOUND",
-    title: "that tumbler.",
-    text:
-      "i don't know why,\n" +
-      "but this color combination is so you.",
-    image: "assets/objects/3.png"
-  },
+  photoboxIndex: 0,
+  outdoorIndex: 0,
 
-  keychain: {
-    type: "ITEM FOUND",
-    title: "the pair.",
-    text:
-      "you got the white one.\n" +
-      "i got the brown one.\n\n" +
-      "somehow it only makes sense together.",
-    image: "assets/objects/4.png"
-  },
+  gachaPulls: 0,
 
-  gacoan: {
-    type: "ITEM FOUND",
-    title: "of course this is here.",
-    text:
-      "mie gacoan.\n" +
-      "no further explanation needed.",
-    image: "assets/objects/5.png"
-  },
+  mailboxUnlocked: false,
+  missionCompleteShown: false,
 
-  snacks: {
-    type: "ITEM FOUND",
-    title: "emergency supplies",
-    text:
-      "ciki, pilus, keripik, taro,\n" +
-      "dan apapun yang keliatannya asin.",
-    image: "assets/objects/10.png"
-  },
+  letterOpened: false,
+  letterFinished: false,
 
-  cat: {
-    type: "ITEM FOUND",
-    title: "cat.",
-    text:
-      "you would've stopped walking anyway.",
-    image: "assets/objects/8.png"
+  musicOn: false,
+
+  revisitCount: {
+    vino: 0,
+    tumbler: 0,
+    keychain: 0,
+    gacoan: 0,
+    snacks: 0,
+    cat: 0,
+    photobox: 0,
+    window: 0
   }
 };
 
 
-// ========================================
-// OPENING
-// ========================================
+// =========================================================
+// ITEM DATA
+// =========================================================
 
-enterButton.addEventListener("click", () => {
-  openingScreen.classList.add("is-hidden");
+const itemData = {
+  vino: {
+    image: "assets/objects/2.png",
+    title: "si meru",
+    subtitle: "alias merah rudet wkwk",
+    first:
+      "this thing is basically part of you at this point.",
+    repeat: [
+      "still here.",
+      "yeah, still very you.",
+      "meru stays."
+    ]
+  },
 
-  showToast(
-    "MISSION START",
-    "find all the little things."
-  );
+  tumbler: {
+    image: "assets/objects/3.png",
+    title: "that tumbler.",
+    subtitle: "",
+    first:
+      "yeah.\nthis is very you.",
+    repeat: [
+      "still looks like something you'd pick.",
+      "yep. very you.",
+      "not changing my mind."
+    ]
+  }
+};
+
+
+// =========================================================
+// PROLOGUE PACING
+// =========================================================
+
+function showPrologueBeat(index) {
+  prologueBeats.forEach((beat, i) => {
+    beat.classList.toggle("is-active", i === index);
+  });
+}
+
+function runPrologue() {
+  showPrologueBeat(0);
+
+  setTimeout(() => {
+    showPrologueBeat(1);
+  }, 2200);
+
+  setTimeout(() => {
+    showPrologueBeat(2);
+  }, 4500);
+
+  setTimeout(() => {
+    prologueStart.classList.add("is-visible");
+  }, 6800);
+}
+
+runPrologue();
+
+
+// =========================================================
+// ENTER GAME
+// =========================================================
+
+enterButton.addEventListener("click", async () => {
+  prologue.classList.add("is-hidden");
+  game.setAttribute("aria-hidden", "false");
+
+  tryStartMusic();
 
   setTimeout(() => {
     showToast(
-      "BONUS QUEST",
-      "there's a gacha machine somewhere."
+      "MAIN MISSION",
+      "find all the little things.",
+      3600
     );
-  }, 1600);
+  }, 1000);
 
-  tryStartMusic();
+  setTimeout(() => {
+    worldTip.classList.add("is-visible");
+  }, 2800);
+
+  setTimeout(() => {
+    worldTip.classList.remove("is-visible");
+  }, 7600);
 });
 
 
-// ========================================
-// PROGRESS
-// ========================================
+// =========================================================
+// WORLD OBJECTS
+// =========================================================
 
-function updateProgress() {
-  const foundCount = foundItems.size;
+document.querySelectorAll(".world-object").forEach((object) => {
+  object.addEventListener("click", () => {
+    const item = object.dataset.item;
+    if (!item) return;
 
-  mainProgress.textContent = foundCount;
+    switch (item) {
+      case "vino":
+      case "tumbler":
+        handleGenericItem(item, object);
+        break;
+
+      case "keychain":
+        handleKeychain(object);
+        break;
+
+      case "gacoan":
+        handleGacoan(object);
+        break;
+
+      case "snacks":
+        handleSnacks(object);
+        break;
+
+      case "cat":
+        handleCat(object);
+        break;
+
+      case "photobox":
+        handlePhotobox(object);
+        break;
+
+      case "window":
+        handleOutdoor(object);
+        break;
+
+      case "gacha":
+        handleGacha();
+        break;
+
+      case "mailbox":
+        handleMailbox();
+        break;
+    }
+  });
+});
+
+
+// =========================================================
+// DISCOVERY / QUEST
+// =========================================================
+
+function discoverItem(item, objectElement) {
+  const isNew = !state.found.has(item);
+
+  if (!isNew) {
+    state.revisitCount[item]++;
+    return false;
+  }
+
+  state.found.add(item);
+
+  if (objectElement) {
+    objectElement.classList.add("is-found");
+  }
+
+  updateQuest();
+
+  showToast(
+    "MEMORY FOUND",
+    `${state.found.size} / ${requiredItems.length}`,
+    3000
+  );
+
+  return true;
+}
+
+function updateQuest() {
+  const count = state.found.size;
+
+  mainProgress.textContent = count;
   hudMainProgress.textContent =
-    `${foundCount} / ${requiredItems.length}`;
+    `${count} / ${requiredItems.length}`;
 
-  bonusProgress.textContent =
-    bonusGachaComplete ? "1 / 1" : "0 / 1";
+  questDots.forEach((dot, index) => {
+    dot.classList.toggle("is-found", index < count);
+  });
 
+  // 2 / 8
+  if (count >= 2 && !state.bonusUnlocked) {
+    unlockGacha();
+  }
+
+  // 4 / 8
+  if (count >= 4) {
+    world.classList.add("world-stage-two");
+
+    document
+      .querySelector(".object-photobox")
+      ?.classList.add("is-highlighted");
+  }
+
+  // 6 / 8
+  if (count >= 6 && count < 8) {
+    mailboxObject.classList.add("is-reacting");
+  }
+
+  // 7 / 8
+  if (count === 7) {
+    questTitle.textContent = "one more.";
+  }
+
+  // 8 / 8
   if (
-    foundCount >= requiredItems.length &&
-    !mailboxUnlocked
+    count === requiredItems.length &&
+    !state.mailboxUnlocked
   ) {
     unlockMailbox();
   }
 }
 
 
-// ========================================
-// WORLD OBJECTS
-// ========================================
+// =========================================================
+// GENERIC ITEM OVERLAY
+// =========================================================
 
-document
-  .querySelectorAll(".world-object")
-  .forEach((object) => {
-    object.addEventListener("click", () => {
-      const item = object.dataset.item;
+const itemOverlay = document.getElementById("itemOverlay");
+const itemBackdrop = document.getElementById("itemBackdrop");
+const itemClose = document.getElementById("itemClose");
 
-      if (!item) return;
+const itemStatus = document.getElementById("itemStatus");
+const itemVisual = document.getElementById("itemVisual");
+const itemTitle = document.getElementById("itemTitle");
+const itemSubtitle = document.getElementById("itemSubtitle");
+const itemText = document.getElementById("itemText");
+const itemExtra = document.getElementById("itemExtra");
+const itemConfirm = document.getElementById("itemConfirm");
 
-      if (item === "gacha") {
-        openGacha();
-        return;
-      }
+let currentGenericItem = null;
 
-      if (item === "photobox") {
-        discoverItem("photobox", object);
-        openPhotobox();
-        return;
-      }
-
-      if (item === "window") {
-        discoverItem("window", object);
-        openOutdoor();
-        return;
-      }
-
-      if (item === "mailbox") {
-        handleMailboxClick();
-        return;
-      }
-
-      discoverItem(item, object);
-      openItemDialog(item);
-    });
-  });
-
-
-// ========================================
-// DISCOVER ITEM
-// ========================================
-
-function discoverItem(item, objectElement) {
-  if (!requiredItems.includes(item)) return;
-
-  const isNew = !foundItems.has(item);
-
-  if (isNew) {
-    foundItems.add(item);
-
-    if (objectElement) {
-      objectElement.classList.add("is-found");
-    }
-
-    updateProgress();
-
-    showToast(
-      "MEMORY FOUND",
-      `${foundItems.size} / ${requiredItems.length}`
-    );
-  }
-}
-
-
-// ========================================
-// GENERIC ITEM DIALOG
-// ========================================
-
-const gameDialog = document.getElementById("gameDialog");
-const dialogBackdrop = document.getElementById("dialogBackdrop");
-const dialogClose = document.getElementById("dialogClose");
-const dialogOkay = document.getElementById("dialogOkay");
-
-const dialogType = document.getElementById("dialogType");
-const dialogTitle = document.getElementById("dialogTitle");
-const dialogMedia = document.getElementById("dialogMedia");
-const dialogText = document.getElementById("dialogText");
-
-
-function openItemDialog(item) {
+function handleGenericItem(item, objectElement) {
   const data = itemData[item];
-
   if (!data) return;
 
-  dialogType.textContent = data.type;
-  dialogTitle.textContent = data.title;
+  const isNew = discoverItem(item, objectElement);
 
-  dialogMedia.innerHTML = `
+  currentGenericItem = item;
+
+  itemStatus.textContent =
+    isNew ? "ITEM FOUND" : "STILL HERE";
+
+  itemVisual.innerHTML = `
     <img
       src="${data.image}"
       alt=""
@@ -255,260 +341,723 @@ function openItemDialog(item) {
     >
   `;
 
-  dialogText.textContent = data.text;
+  itemTitle.textContent = data.title;
+  itemSubtitle.textContent = data.subtitle || "";
 
-  openOverlay(gameDialog);
+  if (isNew) {
+    itemText.textContent = data.first;
+  } else {
+    const revisit =
+      Math.max(0, state.revisitCount[item] - 1);
 
-  if (item === "cat") {
-    enableCatInteraction();
+    const repeat =
+      data.repeat[
+        revisit % data.repeat.length
+      ];
+
+    itemText.textContent = repeat;
   }
+
+  itemExtra.innerHTML = "";
+
+  openOverlay(itemOverlay);
 }
 
-
-function closeItemDialog() {
-  closeOverlay(gameDialog);
+function closeGenericItem() {
+  closeOverlay(itemOverlay);
+  currentGenericItem = null;
 }
 
+itemConfirm.addEventListener("click", closeGenericItem);
+itemClose.addEventListener("click", closeGenericItem);
+itemBackdrop.addEventListener("click", closeGenericItem);
 
-dialogClose.addEventListener("click", closeItemDialog);
-dialogOkay.addEventListener("click", closeItemDialog);
-dialogBackdrop.addEventListener("click", closeItemDialog);
+
+// =========================================================
+// KEYCHAIN
+// =========================================================
+
+const keychainOverlay =
+  document.getElementById("keychainOverlay");
+
+const keychainBackdrop =
+  document.getElementById("keychainBackdrop");
+
+const keychainClose =
+  document.getElementById("keychainClose");
+
+const keychainKeep =
+  document.getElementById("keychainKeep");
+
+const keychainCard =
+  document.querySelector(".keychain-card");
+
+function handleKeychain(objectElement) {
+  const isNew =
+    discoverItem("keychain", objectElement);
+
+  openOverlay(keychainOverlay);
+
+  keychainCard.classList.remove("is-paired");
+
+  setTimeout(() => {
+    keychainCard.classList.add("is-paired");
+  }, isNew ? 900 : 250);
+}
+
+function closeKeychain() {
+  closeOverlay(keychainOverlay);
+}
+
+keychainKeep.addEventListener("click", closeKeychain);
+keychainClose.addEventListener("click", closeKeychain);
+keychainBackdrop.addEventListener("click", closeKeychain);
 
 
-// ========================================
-// CAT INTERACTION
-// ========================================
+// =========================================================
+// GACOAN
+// =========================================================
 
-function enableCatInteraction() {
-  const catLines = [
-    "you would've stopped walking anyway.",
-    "pspspspsps.",
-    "okay dia udah liat kamu.",
-    "dia mulai curiga.",
-    "stop bothering the cat.",
-    "serius masih dipencet?",
-    "yaudah sekarang dia punya kamu."
-  ];
+const gacoanOverlay =
+  document.getElementById("gacoanOverlay");
 
-  let clickCount = 0;
+const gacoanBackdrop =
+  document.getElementById("gacoanBackdrop");
 
-  dialogMedia.style.cursor = "pointer";
+const gacoanWhy =
+  document.getElementById("gacoanWhy");
 
-  const catImage = dialogMedia.querySelector("img");
+const gacoanDone =
+  document.getElementById("gacoanDone");
 
-  if (!catImage) return;
+const gacoanCard =
+  document.querySelector(".gacoan-card");
 
-  catImage.addEventListener("click", () => {
-    clickCount++;
+function handleGacoan(objectElement) {
+  discoverItem("gacoan", objectElement);
 
-    const lineIndex = Math.min(
-      clickCount,
-      catLines.length - 1
+  gacoanCard.classList.remove("is-revealed");
+
+  openOverlay(gacoanOverlay);
+}
+
+gacoanWhy.addEventListener("click", () => {
+  gacoanCard.classList.add("is-revealed");
+});
+
+function closeGacoan() {
+  closeOverlay(gacoanOverlay);
+}
+
+gacoanDone.addEventListener("click", closeGacoan);
+gacoanBackdrop.addEventListener("click", closeGacoan);
+
+
+// =========================================================
+// SNACK PICKER
+// =========================================================
+
+const snackOverlay =
+  document.getElementById("snackOverlay");
+
+const snackBackdrop =
+  document.getElementById("snackBackdrop");
+
+const snackClose =
+  document.getElementById("snackClose");
+
+const snackOptions =
+  [...document.querySelectorAll(".snack-option")];
+
+const snackResult =
+  document.getElementById("snackResult");
+
+const snackResultName =
+  document.getElementById("snackResultName");
+
+const snackResultText =
+  document.getElementById("snackResultText");
+
+const snackTake =
+  document.getElementById("snackTake");
+
+const snackReplies = {
+  chiki: {
+    name: "Chiki Balls",
+    text: "yeah, this one makes sense."
+  },
+
+  jetz: {
+    name: "JetZ",
+    text: "solid choice."
+  },
+
+  taro: {
+    name: "Taro",
+    text: "of course."
+  },
+
+  momogi: {
+    name: "Momogi",
+    text: "yeah. this checks out."
+  }
+};
+
+let currentSnackObject = null;
+
+function handleSnacks(objectElement) {
+  currentSnackObject = objectElement;
+
+  snackOptions.forEach((option) => {
+    option.classList.remove("is-selected");
+  });
+
+  snackResult.classList.remove("is-visible");
+
+  openOverlay(snackOverlay);
+}
+
+snackOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    const snack = option.dataset.snack;
+    const data = snackReplies[snack];
+
+    if (!data) return;
+
+    snackOptions.forEach((item) => {
+      item.classList.remove("is-selected");
+    });
+
+    option.classList.add("is-selected");
+
+    state.snackPicked = snack;
+
+    snackResultName.textContent = data.name;
+    snackResultText.textContent = data.text;
+
+    snackResult.classList.add("is-visible");
+  });
+});
+
+snackTake.addEventListener("click", () => {
+  if (!state.snackPicked) return;
+
+  discoverItem("snacks", currentSnackObject);
+
+  closeOverlay(snackOverlay);
+});
+
+snackClose.addEventListener("click", () => {
+  closeOverlay(snackOverlay);
+});
+
+snackBackdrop.addEventListener("click", () => {
+  closeOverlay(snackOverlay);
+});
+
+
+// =========================================================
+// CAT
+// =========================================================
+
+const catOverlay =
+  document.getElementById("catOverlay");
+
+const catBackdrop =
+  document.getElementById("catBackdrop");
+
+const catTap =
+  document.getElementById("catTap");
+
+const catDialogue =
+  document.getElementById("catDialogue");
+
+const catDone =
+  document.getElementById("catDone");
+
+const catLines = [
+  "you would've stopped anyway.",
+  "pspspspsps.",
+  "okay, it saw you.",
+  "you're still doing this?",
+  "fine.",
+  "keep the cat."
+];
+
+let currentCatObject = null;
+
+function handleCat(objectElement) {
+  currentCatObject = objectElement;
+
+  discoverItem("cat", objectElement);
+
+  state.catTapCount = 0;
+
+  catDialogue.textContent = catLines[0];
+
+  openOverlay(catOverlay);
+}
+
+catTap.addEventListener("click", () => {
+  state.catTapCount++;
+
+  const index = Math.min(
+    state.catTapCount,
+    catLines.length - 1
+  );
+
+  catDialogue.style.opacity = "0";
+
+  setTimeout(() => {
+    catDialogue.textContent = catLines[index];
+    catDialogue.style.opacity = "1";
+  }, 240);
+
+  const catImg = catTap.querySelector("img");
+
+  catImg?.animate(
+    [
+      { transform: "scale(1)" },
+      { transform: "scale(.92) rotate(-2deg)" },
+      { transform: "scale(1.04) rotate(2deg)" },
+      { transform: "scale(1)" }
+    ],
+    {
+      duration: 380,
+      easing: "ease-out"
+    }
+  );
+
+  if (
+    state.catTapCount >= 5 &&
+    !state.catSecretUnlocked
+  ) {
+    state.catSecretUnlocked = true;
+
+    showAchievement(
+      "you kept tapping the cat."
     );
+  }
+});
 
-    dialogText.textContent = catLines[lineIndex];
+catDone.addEventListener("click", () => {
+  closeOverlay(catOverlay);
+});
 
-    catImage.animate(
-      [
-        { transform: "scale(1)" },
-        { transform: "scale(.9) rotate(-3deg)" },
-        { transform: "scale(1.05) rotate(2deg)" },
-        { transform: "scale(1)" }
-      ],
-      {
-        duration: 260,
-        easing: "ease-out"
-      }
+catBackdrop.addEventListener("click", () => {
+  closeOverlay(catOverlay);
+});
+
+
+// =========================================================
+// PHOTOBOX ARCHIVE
+// =========================================================
+
+const photoboxOverlay =
+  document.getElementById("photoboxOverlay");
+
+const photoboxBackdrop =
+  document.getElementById("photoboxBackdrop");
+
+const photoboxClose =
+  document.getElementById("photoboxClose");
+
+const photoboxPrev =
+  document.getElementById("photoboxPrev");
+
+const photoboxNext =
+  document.getElementById("photoboxNext");
+
+const photoboxPagination =
+  document.getElementById("photoboxPagination");
+
+const photoboxKeep =
+  document.getElementById("photoboxKeep");
+
+const photoboxSlides =
+  [...document.querySelectorAll(".photobox-slide")];
+
+let currentPhotoboxObject = null;
+
+function handlePhotobox(objectElement) {
+  currentPhotoboxObject = objectElement;
+
+  state.photoboxIndex = 0;
+
+  renderPhotoboxSlide();
+
+  openOverlay(photoboxOverlay);
+}
+
+function renderPhotoboxSlide() {
+  photoboxSlides.forEach((slide, index) => {
+    slide.classList.toggle(
+      "is-active",
+      index === state.photoboxIndex
     );
   });
+
+  photoboxPagination.textContent =
+    `${state.photoboxIndex + 1} / ${photoboxSlides.length}`;
+}
+
+photoboxPrev.addEventListener("click", () => {
+  state.photoboxIndex =
+    (
+      state.photoboxIndex -
+      1 +
+      photoboxSlides.length
+    ) % photoboxSlides.length;
+
+  renderPhotoboxSlide();
+});
+
+photoboxNext.addEventListener("click", () => {
+  state.photoboxIndex =
+    (state.photoboxIndex + 1) %
+    photoboxSlides.length;
+
+  renderPhotoboxSlide();
+});
+
+photoboxKeep.addEventListener("click", () => {
+  discoverItem(
+    "photobox",
+    currentPhotoboxObject
+  );
+
+  closeOverlay(photoboxOverlay);
+});
+
+photoboxClose.addEventListener("click", () => {
+  closeOverlay(photoboxOverlay);
+});
+
+photoboxBackdrop.addEventListener("click", () => {
+  closeOverlay(photoboxOverlay);
+});
+
+
+// =========================================================
+// OUTDOOR ARCHIVE
+// =========================================================
+
+const outdoorOverlay =
+  document.getElementById("outdoorOverlay");
+
+const outdoorBackdrop =
+  document.getElementById("outdoorBackdrop");
+
+const outdoorClose =
+  document.getElementById("outdoorClose");
+
+const outdoorPrev =
+  document.getElementById("outdoorPrev");
+
+const outdoorNext =
+  document.getElementById("outdoorNext");
+
+const outdoorPagination =
+  document.getElementById("outdoorPagination");
+
+const outdoorDone =
+  document.getElementById("outdoorDone");
+
+const outdoorSlides =
+  [...document.querySelectorAll(".outdoor-slide")];
+
+let currentOutdoorObject = null;
+
+function handleOutdoor(objectElement) {
+  currentOutdoorObject = objectElement;
+
+  state.outdoorIndex = 0;
+
+  renderOutdoorSlide();
+
+  openOverlay(outdoorOverlay);
+}
+
+function renderOutdoorSlide() {
+  outdoorSlides.forEach((slide, index) => {
+    slide.classList.toggle(
+      "is-active",
+      index === state.outdoorIndex
+    );
+  });
+
+  outdoorPagination.textContent =
+    `${state.outdoorIndex + 1} / ${outdoorSlides.length}`;
+}
+
+outdoorPrev.addEventListener("click", () => {
+  state.outdoorIndex =
+    (
+      state.outdoorIndex -
+      1 +
+      outdoorSlides.length
+    ) % outdoorSlides.length;
+
+  renderOutdoorSlide();
+});
+
+outdoorNext.addEventListener("click", () => {
+  state.outdoorIndex =
+    (state.outdoorIndex + 1) %
+    outdoorSlides.length;
+
+  renderOutdoorSlide();
+});
+
+outdoorDone.addEventListener("click", () => {
+  discoverItem(
+    "window",
+    currentOutdoorObject
+  );
+
+  closeOverlay(outdoorOverlay);
+});
+
+outdoorClose.addEventListener("click", () => {
+  closeOverlay(outdoorOverlay);
+});
+
+outdoorBackdrop.addEventListener("click", () => {
+  closeOverlay(outdoorOverlay);
+});
+
+
+// =========================================================
+// GACHA UNLOCK
+// =========================================================
+
+function unlockGacha() {
+  state.bonusUnlocked = true;
+
+  gachaObject.classList.remove("is-dormant");
+  gachaObject.classList.add("is-unlocked");
+
+  bonusHud.classList.add("is-active");
+
+  showToast(
+    "SIDE QUEST UNLOCKED",
+    "memory gacha available.",
+    4200
+  );
 }
 
 
-// ========================================
+// =========================================================
 // GACHA
-// ========================================
+// =========================================================
 
-const gachaScreen = document.getElementById("gachaScreen");
-const gachaBackdrop = document.getElementById("gachaBackdrop");
-const gachaClose = document.getElementById("gachaClose");
+const gachaOverlay =
+  document.getElementById("gachaOverlay");
 
-const gachaMachineImage = document.getElementById("gachaMachineImage");
-const gachaStatus = document.getElementById("gachaStatus");
-const gachaPullButton = document.getElementById("gachaPullButton");
+const gachaBackdrop =
+  document.getElementById("gachaBackdrop");
 
-const gachaResult = document.getElementById("gachaResult");
-const gachaRarity = document.getElementById("gachaRarity");
-const gachaResultMedia = document.getElementById("gachaResultMedia");
-const gachaResultCaption = document.getElementById("gachaResultCaption");
-const gachaPullAgain = document.getElementById("gachaPullAgain");
-const gachaDone = document.getElementById("gachaDone");
+const gachaClose =
+  document.getElementById("gachaClose");
+
+const gachaMachineState =
+  document.getElementById("gachaMachineState");
+
+const gachaResultState =
+  document.getElementById("gachaResultState");
+
+const gachaMachine =
+  document.getElementById("gachaMachine");
+
+const gachaStatus =
+  document.getElementById("gachaStatus");
+
+const gachaPull =
+  document.getElementById("gachaPull");
+
+const gachaPullCount =
+  document.getElementById("gachaPullCount");
+
+const gachaRarity =
+  document.getElementById("gachaRarity");
+
+const gachaMemory =
+  document.getElementById("gachaMemory");
+
+const gachaCaption =
+  document.getElementById("gachaCaption");
+
+const gachaAgain =
+  document.getElementById("gachaAgain");
+
+const gachaKeep =
+  document.getElementById("gachaKeep");
 
 
-const gachaPool = [
+const randomGachaPool = [
   {
     type: "photo",
     src: "assets/photos/us/us-heart-filter-01.webp",
-    rarity: "COMMON MEMORY",
-    caption: "this one survived somehow."
-  },
-
-  {
-    type: "photo",
-    src: "assets/photos/us/us-jeep-trip-01.webp",
-    rarity: "★ RARE MEMORY ★",
-    caption: "okay this one is actually cute."
-  },
-
-  {
-    type: "photo",
-    src: "assets/photos/us/us-outdoor-selfie-01.webp",
     rarity: "COMMON MEMORY",
     caption: "random, but kept."
   },
 
   {
     type: "photo",
+    src: "assets/photos/us/us-jeep-trip-01.webp",
+    rarity: "★ RARE MEMORY ★",
+    caption: "okay, this one's good."
+  },
+
+  {
+    type: "photo",
+    src: "assets/photos/us/us-outdoor-selfie-01.webp",
+    rarity: "COMMON MEMORY",
+    caption: "this one stayed."
+  },
+
+  {
+    type: "photo",
     src: "assets/photos/random/us-closeup-random-01.webp",
-    rarity: "QUESTIONABLE PULL",
-    caption: "unfortunately, this one survived."
+    rarity: "CHAOTIC PULL",
+    caption: "unfortunately, this survived."
   },
 
   {
     type: "photo",
     src: "assets/photos/random/her-random-closeup-01.webp",
-    rarity: "★ CHAOTIC RARE ★",
-    caption: "i'm keeping this here."
-  },
-
-  {
-    type: "photo",
-    src: "assets/photos/memories/us-printed-photobox-01.webp",
-    rarity: "ARCHIVE MEMORY",
-    caption: "some things deserve to stay."
-  },
-
-  {
-    type: "photo",
-    src: "assets/photos/photobox/us-photobooth-grid-01.webp",
-    rarity: "★ PHOTOBOX PULL ★",
-    caption: "we really paid money to look like this."
+    rarity: "CHAOTIC PULL",
+    caption: "keeping this here."
   },
 
   {
     type: "photo",
     src: "assets/photos/photobox/us-photobox-bw-01.webp",
-    rarity: "★ RARE PHOTOBOX ★",
-    caption: "keeping this one."
+    rarity: "★ PHOTOBOX MEMORY ★",
+    caption: "this one's staying."
+  },
+
+  {
+    type: "photo",
+    src: "assets/photos/photobox/us-photobooth-grid-01.webp",
+    rarity: "PHOTOBOX MEMORY",
+    caption: "yeah, we do this a lot."
   },
 
   {
     type: "video",
     src: "assets/videos/us/us-video-01.mp4",
     rarity: "MOTION MEMORY",
-    caption: "this happened btw."
+    caption: "this happened."
   },
 
   {
     type: "video",
     src: "assets/videos/us/us-video-02.mp4",
     rarity: "★ RARE VIDEO ★",
-    caption: "found this in the archive."
-  },
-
-  {
-    type: "video",
-    src: "assets/videos/us/us-video-03.mp4",
-    rarity: "MOTION MEMORY",
-    caption: "don't ask why i kept this."
+    caption: "found this one."
   }
 ];
 
+const guaranteedFourthPull = {
+  type: "video",
+  src: "assets/videos/us/us-video-03.mp4",
+  rarity: "???",
+  caption: "okay. this one's special."
+};
 
 let gachaBusy = false;
 
+function handleGacha() {
+  if (!state.bonusUnlocked) {
+    showToast(
+      "NOT YET",
+      "keep looking around first.",
+      3400
+    );
 
-function openGacha() {
-  gachaResult.classList.remove("is-visible");
+    return;
+  }
+
+  gachaResultState.classList.remove("is-visible");
 
   gachaStatus.textContent =
-    bonusGachaComplete
-      ? "pull another?"
-      : "pull one.";
+    state.gachaPulls === 0
+      ? "pull one."
+      : "another one?";
 
-  gachaPullButton.style.display = "inline-block";
+  gachaPullCount.textContent =
+    state.gachaPulls;
 
-  openOverlay(gachaScreen);
+  openOverlay(gachaOverlay);
 }
 
-
-function closeGacha() {
-  stopVideosInside(gachaScreen);
-  closeOverlay(gachaScreen);
-}
-
-
-function pullGacha() {
+function performGachaPull() {
   if (gachaBusy) return;
 
   gachaBusy = true;
 
-  gachaPullButton.disabled = true;
-  gachaPullAgain.disabled = true;
+  gachaPull.disabled = true;
+  gachaAgain.disabled = true;
+
+  stopVideosInside(gachaOverlay);
+
+  gachaResultState.classList.remove("is-visible");
 
   gachaStatus.textContent = "pulling...";
 
-  gachaResult.classList.remove("is-visible");
+  gachaMachine.classList.remove("is-pulling");
 
-  gachaMachineImage.animate(
-    [
-      { transform: "translateX(0) rotate(0)" },
-      { transform: "translateX(-7px) rotate(-3deg)" },
-      { transform: "translateX(7px) rotate(3deg)" },
-      { transform: "translateX(-5px) rotate(-2deg)" },
-      { transform: "translateX(5px) rotate(2deg)" },
-      { transform: "translateX(0) rotate(0)" }
-    ],
-    {
-      duration: 700,
-      easing: "ease-in-out"
-    }
-  );
+  void gachaMachine.offsetWidth;
+
+  gachaMachine.classList.add("is-pulling");
 
   setTimeout(() => {
+    state.gachaPulls++;
+
+    gachaPullCount.textContent =
+      state.gachaPulls;
+
     const result =
-      gachaPool[
-        Math.floor(Math.random() * gachaPool.length)
-      ];
+      state.gachaPulls === 4
+        ? guaranteedFourthPull
+        : randomGachaPool[
+            Math.floor(
+              Math.random() *
+              randomGachaPool.length
+            )
+          ];
 
     renderGachaResult(result);
 
-    if (!bonusGachaComplete) {
-      bonusGachaComplete = true;
+    if (!state.bonusComplete) {
+      state.bonusComplete = true;
 
       bonusProgress.textContent = "1 / 1";
 
       showToast(
         "BONUS COMPLETE",
-        "memory gacha discovered."
+        "memory gacha found.",
+        3400
       );
     }
 
+    gachaStatus.textContent =
+      "you got something.";
+
     gachaBusy = false;
 
-    gachaPullButton.disabled = false;
-    gachaPullAgain.disabled = false;
-
-    gachaStatus.textContent = "you got something.";
-  }, 850);
+    gachaPull.disabled = false;
+    gachaAgain.disabled = false;
+  }, 1500);
 }
-
 
 function renderGachaResult(result) {
   gachaRarity.textContent = result.rarity;
-  gachaResultCaption.textContent = result.caption;
+  gachaCaption.textContent = result.caption;
 
   if (result.type === "photo") {
-    gachaResultMedia.innerHTML = `
+    gachaMemory.innerHTML = `
       <img
         src="${result.src}"
         alt=""
@@ -517,7 +1066,7 @@ function renderGachaResult(result) {
   }
 
   if (result.type === "video") {
-    gachaResultMedia.innerHTML = `
+    gachaMemory.innerHTML = `
       <video
         src="${result.src}"
         autoplay
@@ -529,223 +1078,262 @@ function renderGachaResult(result) {
     `;
   }
 
-  gachaResult.classList.add("is-visible");
+  gachaResultState.classList.add("is-visible");
 }
 
+gachaPull.addEventListener("click", performGachaPull);
+gachaAgain.addEventListener("click", performGachaPull);
 
-gachaPullButton.addEventListener("click", pullGacha);
-gachaPullAgain.addEventListener("click", pullGacha);
+gachaKeep.addEventListener("click", () => {
+  stopVideosInside(gachaOverlay);
+  closeOverlay(gachaOverlay);
+});
 
-gachaDone.addEventListener("click", closeGacha);
-gachaClose.addEventListener("click", closeGacha);
-gachaBackdrop.addEventListener("click", closeGacha);
+gachaClose.addEventListener("click", () => {
+  stopVideosInside(gachaOverlay);
+  closeOverlay(gachaOverlay);
+});
 
-
-// ========================================
-// PHOTOBOX
-// ========================================
-
-const photoboxScreen = document.getElementById("photoboxScreen");
-const photoboxBackdrop = document.getElementById("photoboxBackdrop");
-const photoboxClose = document.getElementById("photoboxClose");
-const photoboxDone = document.getElementById("photoboxDone");
-const photoboxVideo = document.getElementById("photoboxVideo");
-
-
-function openPhotobox() {
-  openOverlay(photoboxScreen);
-
-  photoboxVideo
-    ?.play()
-    .catch(() => {});
-}
+gachaBackdrop.addEventListener("click", () => {
+  stopVideosInside(gachaOverlay);
+  closeOverlay(gachaOverlay);
+});
 
 
-function closePhotobox() {
-  photoboxVideo?.pause();
-  closeOverlay(photoboxScreen);
-}
+// =========================================================
+// MAILBOX LOCK
+// =========================================================
 
+const mailboxLockOverlay =
+  document.getElementById("mailboxLockOverlay");
 
-photoboxClose.addEventListener("click", closePhotobox);
-photoboxDone.addEventListener("click", closePhotobox);
-photoboxBackdrop.addEventListener("click", closePhotobox);
+const mailboxLockBackdrop =
+  document.getElementById("mailboxLockBackdrop");
 
+const mailboxLockedText =
+  document.getElementById("mailboxLockedText");
 
-// ========================================
-// OUTDOOR
-// ========================================
+const mailboxLockOkay =
+  document.getElementById("mailboxLockOkay");
 
-const outdoorScreen = document.getElementById("outdoorScreen");
-const outdoorBackdrop = document.getElementById("outdoorBackdrop");
-const outdoorClose = document.getElementById("outdoorClose");
-const outdoorDone = document.getElementById("outdoorDone");
-
-
-function openOutdoor() {
-  openOverlay(outdoorScreen);
-}
-
-
-function closeOutdoor() {
-  closeOverlay(outdoorScreen);
-}
-
-
-outdoorClose.addEventListener("click", closeOutdoor);
-outdoorDone.addEventListener("click", closeOutdoor);
-outdoorBackdrop.addEventListener("click", closeOutdoor);
-
-
-// ========================================
-// MAILBOX
-// ========================================
-
-const mailboxScreen = document.getElementById("mailboxScreen");
-const mailboxBackdrop = document.getElementById("mailboxBackdrop");
-const openLetterButton = document.getElementById("openLetterButton");
-const letterPanel = document.getElementById("letterPanel");
-const finishGameButton = document.getElementById("finishGameButton");
-
-
-function handleMailboxClick() {
-  if (!mailboxUnlocked) {
-    showToast(
-      "LOCKED",
-      "masih ada yang belum kamu temuin."
-    );
-
-    mailboxObject.animate(
-      [
-        { transform: "translateX(0)" },
-        { transform: "translateX(-4px)" },
-        { transform: "translateX(4px)" },
-        { transform: "translateX(0)" }
-      ],
-      {
-        duration: 280
-      }
-    );
-
+function handleMailbox() {
+  if (state.mailboxUnlocked) {
+    openLetterScene();
     return;
   }
 
-  openMailbox();
+  const count = state.found.size;
+
+  let text = "not yet.";
+
+  if (count >= 4 && count <= 5) {
+    text = "still locked.";
+  }
+
+  if (count === 6) {
+    text = "almost.";
+  }
+
+  if (count === 7) {
+    text = "one more.";
+  }
+
+  mailboxLockedText.textContent = text;
+
+  openOverlay(mailboxLockOverlay);
 }
 
+mailboxLockOkay.addEventListener("click", () => {
+  closeOverlay(mailboxLockOverlay);
+});
 
-function openMailbox() {
-  letterPanel.classList.remove("is-visible");
-  openLetterButton.style.display = "inline-block";
-
-  openOverlay(mailboxScreen);
-}
-
-
-openLetterButton.addEventListener("click", () => {
-  openLetterButton.style.display = "none";
-  letterPanel.classList.add("is-visible");
+mailboxLockBackdrop.addEventListener("click", () => {
+  closeOverlay(mailboxLockOverlay);
 });
 
 
-finishGameButton.addEventListener("click", () => {
-  gameFinished = true;
+// =========================================================
+// MAILBOX UNLOCK / MISSION COMPLETE
+// =========================================================
 
-  closeOverlay(mailboxScreen);
+const missionCompleteOverlay =
+  document.getElementById("missionCompleteOverlay");
 
-  postGame.classList.add("is-unlocked");
+const missionCompleteContinue =
+  document.getElementById("missionCompleteContinue");
+
+function unlockMailbox() {
+  state.mailboxUnlocked = true;
+
+  questTitle.textContent = "done.";
+
+  mailboxObject.classList.remove(
+    "is-locked",
+    "is-reacting"
+  );
+
+  mailboxObject.classList.add("is-unlocked");
+
+  setTimeout(() => {
+    if (!state.missionCompleteShown) {
+      state.missionCompleteShown = true;
+
+      openOverlay(missionCompleteOverlay);
+    }
+  }, 900);
+}
+
+missionCompleteContinue.addEventListener("click", () => {
+  closeOverlay(missionCompleteOverlay);
+
+  showToast(
+    "ONE LAST THING",
+    "check the mailbox.",
+    4300
+  );
+});
+
+
+// =========================================================
+// LETTER
+// =========================================================
+
+const letterOverlay =
+  document.getElementById("letterOverlay");
+
+const letterClosed =
+  document.getElementById("letterClosed");
+
+const letterPaper =
+  document.getElementById("letterPaper");
+
+const openLetter =
+  document.getElementById("openLetter");
+
+const finishLetter =
+  document.getElementById("finishLetter");
+
+const letterParagraphs =
+  [...document.querySelectorAll(".letter-paragraph")];
+
+function openLetterScene() {
+  letterClosed.classList.remove("is-hidden");
+  letterPaper.classList.remove("is-visible");
+
+  letterParagraphs.forEach((p) => {
+    p.classList.remove("is-visible");
+  });
+
+  openOverlay(letterOverlay);
+}
+
+openLetter.addEventListener("click", () => {
+  if (state.letterOpened) return;
+
+  state.letterOpened = true;
+
+  letterClosed.classList.add("is-hidden");
+
+  setTimeout(() => {
+    letterPaper.classList.add("is-visible");
+  }, 700);
+
+  // slow stagger: readable, not rushed
+  letterParagraphs.forEach((paragraph, index) => {
+    setTimeout(() => {
+      paragraph.classList.add("is-visible");
+    }, 1500 + index * 1200);
+  });
+});
+
+finishLetter.addEventListener("click", () => {
+  state.letterFinished = true;
+
+  closeOverlay(letterOverlay);
+
+  postGame.classList.add("is-visible");
   postGame.setAttribute("aria-hidden", "false");
 
   showToast(
-    "CHAPTER UNLOCKED",
-    "still counting."
+    "STILL COUNTING",
+    "08.06.2025 — now",
+    4200
   );
 
   setTimeout(() => {
-    postGame.scrollIntoView({
-      behavior: "smooth"
+    counterSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
-  }, 500);
+  }, 1300);
 });
 
 
-mailboxBackdrop.addEventListener("click", () => {
-  closeOverlay(mailboxScreen);
-});
+// =========================================================
+// ACHIEVEMENT
+// =========================================================
 
+const achievement =
+  document.getElementById("achievement");
 
-// ========================================
-// UNLOCK MAILBOX
-// ========================================
+const achievementText =
+  document.getElementById("achievementText");
 
-function unlockMailbox() {
-  mailboxUnlocked = true;
+let achievementTimer;
 
-  mailboxObject.classList.remove("is-locked");
-  mailboxObject.classList.add("is-unlocked");
+function showAchievement(text) {
+  clearTimeout(achievementTimer);
 
-  mailboxLock.textContent = "";
+  achievementText.textContent = text;
 
-  showMissionComplete();
+  achievement.classList.add("is-visible");
+
+  achievementTimer = setTimeout(() => {
+    achievement.classList.remove("is-visible");
+  }, 4400);
 }
 
 
-// ========================================
-// MISSION COMPLETE
-// ========================================
-
-function showMissionComplete() {
-  if (missionCompleteShown) return;
-
-  missionCompleteShown = true;
-
-  setTimeout(() => {
-    openOverlay(missionComplete);
-  }, 500);
-}
-
-
-missionCompleteButton.addEventListener("click", () => {
-  closeOverlay(missionComplete);
-
-  showToast(
-    "NEW OBJECTIVE",
-    "one last thing."
-  );
-
-  setTimeout(() => {
-    showToast(
-      "MAILBOX UNLOCKED",
-      "something just unlocked."
-    );
-  }, 1100);
-});
-
-
-// ========================================
+// =========================================================
 // TOAST
-// ========================================
+// =========================================================
 
-let toastTimeout;
+const toast =
+  document.getElementById("toast");
 
+const toastLabel =
+  document.getElementById("toastLabel");
 
-function showToast(label, text) {
-  clearTimeout(toastTimeout);
+const toastText =
+  document.getElementById("toastText");
 
-  toastLabel.textContent = label;
-  toastText.textContent = text;
+let toastTimer;
 
-  gameToast.classList.add("is-visible");
+function showToast(
+  label,
+  text,
+  duration = 3400
+) {
+  clearTimeout(toastTimer);
 
-  toastTimeout = setTimeout(() => {
-    gameToast.classList.remove("is-visible");
-  }, 1400);
+  toast.classList.remove("is-visible");
+
+  setTimeout(() => {
+    toastLabel.textContent = label;
+    toastText.textContent = text;
+
+    toast.classList.add("is-visible");
+  }, 120);
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("is-visible");
+  }, duration);
 }
 
 
-// ========================================
+// =========================================================
 // OVERLAY HELPERS
-// ========================================
+// =========================================================
 
 function openOverlay(element) {
   element.classList.add("is-open");
@@ -754,25 +1342,20 @@ function openOverlay(element) {
   document.body.classList.add("overlay-open");
 }
 
-
 function closeOverlay(element) {
   element.classList.remove("is-open");
   element.setAttribute("aria-hidden", "true");
 
-  const anyOpen = document.querySelector(
-    ".game-dialog.is-open, " +
-    ".gacha-screen.is-open, " +
-    ".photobox-screen.is-open, " +
-    ".outdoor-screen.is-open, " +
-    ".mailbox-screen.is-open, " +
-    ".mission-complete.is-open"
-  );
+  requestAnimationFrame(() => {
+    const anyOpen = document.querySelector(
+      ".overlay.is-open"
+    );
 
-  if (!anyOpen) {
-    document.body.classList.remove("overlay-open");
-  }
+    if (!anyOpen) {
+      document.body.classList.remove("overlay-open");
+    }
+  });
 }
-
 
 function stopVideosInside(element) {
   element
@@ -783,47 +1366,24 @@ function stopVideosInside(element) {
 }
 
 
-// ========================================
-// ESCAPE KEY
-// ========================================
-
-document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape") return;
-
-  [
-    gameDialog,
-    gachaScreen,
-    photoboxScreen,
-    outdoorScreen,
-    mailboxScreen
-  ].forEach((overlay) => {
-    if (overlay.classList.contains("is-open")) {
-      stopVideosInside(overlay);
-      closeOverlay(overlay);
-    }
-  });
-});
-
-
-// ========================================
-// RELATIONSHIP LIVE TIMER
-// ========================================
+// =========================================================
+// LIVE RELATIONSHIP TIMER
+// =========================================================
 
 const relationshipStart =
   new Date("2025-06-08T00:00:00+07:00");
 
-
 function updateRelationshipTimer() {
   const now = new Date();
 
-  const difference =
+  const diff =
     now.getTime() -
     relationshipStart.getTime();
 
-  if (difference < 0) return;
+  if (diff < 0) return;
 
   const totalSeconds =
-    Math.floor(difference / 1000);
+    Math.floor(diff / 1000);
 
   const days =
     Math.floor(totalSeconds / 86400);
@@ -854,18 +1414,14 @@ function updateRelationshipTimer() {
     String(seconds).padStart(2, "0");
 }
 
-
 updateRelationshipTimer();
 
-setInterval(
-  updateRelationshipTimer,
-  1000
-);
+setInterval(updateRelationshipTimer, 1000);
 
 
-// ========================================
+// =========================================================
 // MUSIC
-// ========================================
+// =========================================================
 
 async function tryStartMusic() {
   const source =
@@ -873,15 +1429,18 @@ async function tryStartMusic() {
 
   if (!source) return;
 
+  backgroundMusic.volume = 0.3;
+
   try {
     await backgroundMusic.play();
+
+    state.musicOn = true;
     musicButton.textContent = "♫";
-    musicButton.classList.add("is-playing");
   } catch {
+    state.musicOn = false;
     musicButton.textContent = "♪";
   }
 }
-
 
 musicButton.addEventListener("click", async () => {
   const source =
@@ -890,7 +1449,8 @@ musicButton.addEventListener("click", async () => {
   if (!source) {
     showToast(
       "AUDIO",
-      "belum ada lagunya."
+      "no song yet.",
+      2800
     );
 
     return;
@@ -898,27 +1458,58 @@ musicButton.addEventListener("click", async () => {
 
   if (backgroundMusic.paused) {
     try {
+      backgroundMusic.volume = 0.3;
+
       await backgroundMusic.play();
 
+      state.musicOn = true;
       musicButton.textContent = "♫";
-      musicButton.classList.add("is-playing");
     } catch {
       showToast(
         "AUDIO",
-        "tap sekali lagi."
+        "try again.",
+        2600
       );
     }
   } else {
     backgroundMusic.pause();
 
+    state.musicOn = false;
     musicButton.textContent = "♪";
-    musicButton.classList.remove("is-playing");
   }
 });
 
 
-// ========================================
-// INITIAL
-// ========================================
+// =========================================================
+// ESCAPE KEY
+// =========================================================
 
-updateProgress();
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+
+  const openOverlays = [
+    itemOverlay,
+    keychainOverlay,
+    gacoanOverlay,
+    snackOverlay,
+    catOverlay,
+    photoboxOverlay,
+    outdoorOverlay,
+    gachaOverlay,
+    mailboxLockOverlay
+  ];
+
+  openOverlays.forEach((overlay) => {
+    if (overlay?.classList.contains("is-open")) {
+      stopVideosInside(overlay);
+      closeOverlay(overlay);
+    }
+  });
+});
+
+
+// =========================================================
+// INITIAL STATE
+// =========================================================
+
+updateQuest();
