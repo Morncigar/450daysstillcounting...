@@ -14,23 +14,21 @@ html {
 
 body {
   min-height: 100%;
+  background: #ead8d3;
+  color: #2c2527;
   font-family: Arial, Helvetica, sans-serif;
-  background: #f7efe9;
-  color: #2b2525;
   overflow-x: hidden;
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
+body.overlay-open {
+  overflow: hidden;
 }
 
 button {
   border: 0;
   background: none;
   color: inherit;
+  font: inherit;
   cursor: pointer;
 }
 
@@ -40,13 +38,9 @@ video {
   max-width: 100%;
 }
 
-body.modal-open {
-  overflow: hidden;
-}
-
 
 /* =========================
-   OPENING SCREEN
+   OPENING
 ========================= */
 
 .opening-screen {
@@ -57,20 +51,19 @@ body.modal-open {
   display: grid;
   place-items: center;
 
-  min-height: 100svh;
   padding: 24px;
 
   background:
     radial-gradient(
-      circle at 50% 25%,
-      rgba(255, 255, 255, 0.9),
-      transparent 42%
+      circle at 50% 28%,
+      rgba(255,255,255,.75),
+      transparent 38%
     ),
-    #f3dfe4;
+    #ead4db;
 
   transition:
-    opacity 0.6s ease,
-    visibility 0.6s ease;
+    opacity .5s ease,
+    visibility .5s ease;
 }
 
 .opening-screen.is-hidden {
@@ -79,79 +72,79 @@ body.modal-open {
   pointer-events: none;
 }
 
-.opening-content {
+.opening-panel {
   width: min(100%, 420px);
   text-align: center;
 }
 
-.opening-kicker {
-  margin-bottom: 14px;
-
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
-
-  opacity: 0.6;
+.opening-small {
+  margin-bottom: 12px;
+  font-size: .78rem;
+  opacity: .55;
 }
 
-.opening-content h1 {
-  font-size: clamp(2rem, 9vw, 3.3rem);
-  line-height: 0.98;
-  font-weight: 700;
-  letter-spacing: -0.05em;
-}
-
-.enter-button {
-  margin-top: 30px;
-  padding: 13px 22px;
-
-  border: 1px solid rgba(43, 37, 37, 0.2);
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(8px);
-
-  font-size: 0.9rem;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-}
-
-.enter-button:active {
-  transform: scale(0.96);
-}
-
-.enter-button:hover {
-  background: rgba(255, 255, 255, 0.8);
+.opening-title {
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  line-height: .98;
+  letter-spacing: -.05em;
 }
 
 
 /* =========================
-   APP
+   BUTTONS
 ========================= */
 
-.app {
-  width: 100%;
+.game-button,
+.pixel-button {
+  min-height: 44px;
+  padding: 11px 18px;
+
+  border: 2px solid #2c2527;
+  border-radius: 8px;
+
+  background: #fff6f1;
+
+  font-family: "Courier New", monospace;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+
+  box-shadow:
+    3px 3px 0 #2c2527;
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease;
+}
+
+.game-button:active,
+.pixel-button:active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    1px 1px 0 #2c2527;
+}
+
+.pixel-button-secondary {
+  background: #eee4df;
+}
+
+.opening-button {
+  margin-top: 30px;
 }
 
 
 /* =========================
-   MAIN WORLD
+   WORLD
 ========================= */
 
 .world-section {
   width: 100%;
-  min-height: 100svh;
-
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-
-  background: #ead8d3;
 }
 
-.world-shell {
+.world {
   position: relative;
 
   width: min(100vw, 480px);
@@ -170,18 +163,89 @@ body.modal-open {
   height: 100%;
 
   object-fit: cover;
-  user-select: none;
+
   pointer-events: none;
+  user-select: none;
 }
 
 
 /* =========================
-   WORLD COPY
+   QUEST HUD
 ========================= */
 
-.world-copy {
+.quest-hud {
   position: absolute;
-  top: 3.5%;
+  top: 2.3%;
+  left: 50%;
+  z-index: 50;
+
+  width: 92%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+}
+
+.quest-copy,
+.quest-progress {
+  border: 1px solid rgba(44,37,39,.15);
+  border-radius: 10px;
+
+  background: rgba(255,249,245,.82);
+  backdrop-filter: blur(8px);
+}
+
+.quest-copy {
+  max-width: 68%;
+  padding: 9px 11px;
+}
+
+.quest-label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  font-family: "Courier New", monospace;
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+
+  opacity: .55;
+}
+
+.quest-title {
+  font-size: .72rem;
+  line-height: 1.25;
+}
+
+.quest-progress {
+  padding: 8px 11px;
+  text-align: right;
+}
+
+.quest-progress-main {
+  font-family: "Courier New", monospace;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.quest-progress-caption {
+  font-size: .55rem;
+  opacity: .48;
+}
+
+
+/* =========================
+   WORLD MESSAGE
+========================= */
+
+.world-message {
+  position: absolute;
+  top: 11%;
   left: 50%;
   z-index: 30;
 
@@ -193,235 +257,851 @@ body.modal-open {
   pointer-events: none;
 }
 
-.world-caption {
-  font-size: clamp(0.72rem, 3.1vw, 0.92rem);
+.world-message p {
+  font-size: .67rem;
   line-height: 1.35;
-  letter-spacing: 0.01em;
-
-  color: rgba(48, 41, 41, 0.72);
+  color: rgba(44,37,39,.64);
 }
 
 
 /* =========================
-   WORLD OBJECTS
+   OBJECTS
 ========================= */
 
 .world-object {
   position: absolute;
-  z-index: 15;
+  z-index: 20;
 
   padding: 0;
 
   -webkit-tap-highlight-color: transparent;
 
   transition:
-    transform 0.18s ease,
-    filter 0.18s ease;
+    transform .18s ease,
+    filter .18s ease,
+    opacity .18s ease;
 }
 
 .world-object img {
   width: 100%;
-  height: auto;
-
-  object-fit: contain;
-
   pointer-events: none;
   user-select: none;
 }
 
 .world-object:active {
-  transform: scale(0.94);
+  transform: scale(.93);
 }
 
-.world-object:hover {
-  filter: brightness(1.03);
+.world-object.is-found {
+  filter: saturate(.75);
+}
+
+.object-complete {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+
+  display: none;
+  place-items: center;
+
+  width: 22px;
+  height: 22px;
+
+  border: 2px solid #2c2527;
+  border-radius: 50%;
+
+  background: #fff9f5;
+
+  font-family: "Courier New", monospace;
+  font-size: .7rem;
+  font-weight: 700;
+
+  box-shadow:
+    2px 2px 0 #2c2527;
+}
+
+.world-object.is-found .object-complete {
+  display: grid;
 }
 
 
 /* =========================
    OBJECT POSITIONS
-
-   Ini masih baseline.
-   Nanti setelah lo lihat di HP,
-   kita tinggal geser persentasenya.
 ========================= */
 
 /* window */
 .object-window {
-  width: 29%;
-  left: 6%;
-  top: 11%;
-  z-index: 8;
+  width: 27%;
+  left: 7%;
+  top: 14%;
+  z-index: 12;
 }
 
 /* photobox */
 .object-photobox {
-  width: 25%;
+  width: 24%;
   right: 6%;
   top: 18%;
-}
-
-/* gacha */
-.object-gacha {
-  width: 18%;
-  left: 41%;
-  top: 25%;
-}
-
-/* tumbler */
-.object-tumbler {
-  width: 13%;
-  left: 9%;
-  top: 36%;
 }
 
 /* snack shelf */
 .object-snacks {
   width: 25%;
-  right: 4%;
-  top: 38%;
+  left: 4%;
+  top: 33%;
+}
+
+/* tumbler */
+.object-tumbler {
+  width: 12%;
+  left: 6%;
+  top: 47%;
+}
+
+/* gacha */
+.object-gacha {
+  width: 18%;
+  right: 7%;
+  top: 41%;
 }
 
 /* cat */
 .object-cat {
   width: 15%;
-  left: 31%;
-  top: 47%;
-}
-
-/* gacoan */
-.object-gacoan {
-  width: 20%;
-  right: 11%;
-  top: 54%;
+  right: 15%;
+  top: 31%;
 }
 
 /* keychain */
 .object-keychain {
-  width: 16%;
-  left: 8%;
-  top: 57%;
+  width: 15%;
+  left: 25%;
+  top: 49%;
+}
+
+/* gacoan */
+.object-gacoan {
+  width: 19%;
+  right: 12%;
+  top: 61%;
 }
 
 /* mailbox */
 .object-mailbox {
-  width: 14%;
-  right: 7%;
-  top: 68%;
+  width: 13%;
+  right: 5%;
+  bottom: 14%;
 }
 
 /* vino */
 .object-vino {
-  width: 36%;
-  left: 7%;
-  bottom: 5%;
+  width: 37%;
+  left: 8%;
+  bottom: 11%;
 }
 
 
 /* =========================
-   SUBTLE IDLE MOTION
+   BONUS MARKER
 ========================= */
 
-.object-cat {
-  animation: catIdle 3.8s ease-in-out infinite;
+.bonus-marker {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+
+  display: grid;
+  place-items: center;
+
+  width: 24px;
+  height: 24px;
+
+  border: 2px solid #2c2527;
+  border-radius: 50%;
+
+  background: #ffe98e;
+
+  font-family: "Courier New", monospace;
+  font-weight: 900;
+
+  box-shadow:
+    2px 2px 0 #2c2527;
+
+  animation: bonusPulse 1.5s ease-in-out infinite;
 }
 
-.object-gacha {
-  animation: tinyFloat 4.8s ease-in-out infinite;
+@keyframes bonusPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
 }
 
-.object-mailbox {
-  animation: tinyFloat 5.5s ease-in-out infinite;
+
+/* =========================
+   MAILBOX LOCK
+========================= */
+
+.mailbox-lock {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+
+  display: grid;
+  place-items: center;
+
+  width: 26px;
+  height: 26px;
+
+  border-radius: 50%;
+
+  background: #fff7f3;
+  box-shadow:
+    0 3px 10px rgba(44,37,39,.18);
+
+  font-size: .8rem;
 }
 
-@keyframes catIdle {
+.object-mailbox.is-unlocked {
+  animation: unlockedPulse 1.4s ease-in-out infinite;
+}
+
+.object-mailbox.is-unlocked .mailbox-lock {
+  display: none;
+}
+
+@keyframes unlockedPulse {
   0%,
   100% {
     transform: translateY(0);
   }
 
   50% {
-    transform: translateY(-3px);
-  }
-}
-
-@keyframes tinyFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
   }
 }
 
 
 /* =========================
-   HUD
+   BOTTOM HUD
 ========================= */
 
-.world-hud {
+.bottom-hud {
   position: absolute;
   left: 50%;
-  bottom: 2.2%;
-  z-index: 40;
+  bottom: 2%;
+  z-index: 60;
 
   width: 92%;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 7px;
 
   transform: translateX(-50%);
-
-  pointer-events: none;
 }
 
-.memory-progress,
-.hud-button {
-  pointer-events: auto;
+.hud-pill,
+.hud-circle {
+  border: 1px solid rgba(44,37,39,.14);
+  background: rgba(255,249,245,.84);
+  backdrop-filter: blur(8px);
 }
 
-.memory-progress {
+.hud-pill {
   display: flex;
-  align-items: baseline;
-  gap: 3px;
+  align-items: center;
+  gap: 6px;
 
-  padding: 8px 12px;
+  min-height: 36px;
+  padding: 7px 10px;
 
-  border: 1px solid rgba(43, 37, 37, 0.1);
   border-radius: 999px;
 
-  background: rgba(255, 247, 244, 0.72);
-  backdrop-filter: blur(8px);
-
-  font-size: 0.78rem;
+  font-family: "Courier New", monospace;
+  font-size: .58rem;
+  letter-spacing: .06em;
 }
 
-.memory-progress small {
-  margin-left: 4px;
-  opacity: 0.55;
+.hud-pill strong {
+  font-size: .68rem;
 }
 
-.hud-button {
+.bonus-pill {
+  margin-right: auto;
+}
+
+.hud-circle {
   display: grid;
   place-items: center;
 
   width: 38px;
   height: 38px;
 
-  border: 1px solid rgba(43, 37, 37, 0.1);
   border-radius: 50%;
 
-  background: rgba(255, 247, 244, 0.72);
-  backdrop-filter: blur(8px);
+  font-size: .9rem;
+}
 
+
+/* =========================
+   LOCKED CONTENT
+========================= */
+
+.locked-content {
+  display: none;
+}
+
+.locked-content.is-unlocked {
+  display: block;
+}
+
+
+/* =========================
+   COMMON OVERLAYS
+========================= */
+
+.game-dialog,
+.gacha-screen,
+.photobox-screen,
+.outdoor-screen,
+.mailbox-screen,
+.mission-complete {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+
+  display: grid;
+  place-items: center;
+
+  padding: 18px;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .2s ease,
+    visibility .2s ease;
+}
+
+.game-dialog.is-open,
+.gacha-screen.is-open,
+.photobox-screen.is-open,
+.outdoor-screen.is-open,
+.mailbox-screen.is-open,
+.mission-complete.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.dialog-backdrop {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(39,30,31,.55);
+  backdrop-filter: blur(6px);
+}
+
+
+/* =========================
+   ITEM DIALOG
+========================= */
+
+.dialog-box {
+  position: relative;
+  z-index: 2;
+
+  width: min(92vw, 360px);
+
+  padding: 18px;
+
+  border: 3px solid #2c2527;
+  border-radius: 10px;
+
+  background: #fff8f3;
+
+  box-shadow:
+    6px 6px 0 #2c2527;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-bottom: 12px;
+}
+
+.dialog-type {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-family: "Courier New", monospace;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+
+  opacity: .48;
+}
+
+.dialog-title {
+  font-family: "Courier New", monospace;
+  font-size: 1.1rem;
+  line-height: 1.05;
+}
+
+.dialog-close {
+  flex: 0 0 auto;
+
+  display: grid;
+  place-items: center;
+
+  width: 32px;
+  height: 32px;
+
+  border: 2px solid #2c2527;
+  border-radius: 6px;
+
+  background: #f0e5e0;
+
+  font-family: monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.dialog-body {
+  display: grid;
+  justify-items: center;
+}
+
+.dialog-media {
+  width: 100%;
+  min-height: 130px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 12px;
+}
+
+.dialog-media img {
+  max-width: 150px;
+  max-height: 155px;
+  object-fit: contain;
+}
+
+.dialog-text {
+  width: 100%;
+
+  font-family: "Courier New", monospace;
+  font-size: .8rem;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.dialog-actions {
+  width: 100%;
+  margin-top: 16px;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+/* =========================
+   GACHA
+========================= */
+
+.gacha-box {
+  position: relative;
+  z-index: 2;
+
+  width: min(94vw, 390px);
+
+  padding: 18px;
+
+  border: 3px solid #2c2527;
+  border-radius: 12px;
+
+  background: #fff6f0;
+
+  box-shadow:
+    7px 7px 0 #2c2527;
+}
+
+.gacha-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 12px;
+}
+
+.gacha-header h2 {
+  font-family: "Courier New", monospace;
+  font-size: 1.3rem;
+}
+
+.gacha-machine-area {
+  display: grid;
+  justify-items: center;
+}
+
+.gacha-machine-image {
+  width: 120px;
+  margin-block: 6px 12px;
+}
+
+.gacha-status {
+  margin-bottom: 12px;
+
+  font-family: "Courier New", monospace;
+  font-size: .78rem;
+}
+
+.gacha-result {
+  display: none;
+
+  margin-top: 14px;
+
+  text-align: center;
+}
+
+.gacha-result.is-visible {
+  display: block;
+}
+
+.gacha-rarity {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-family: "Courier New", monospace;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.gacha-result-media {
+  width: 100%;
+
+  display: grid;
+  place-items: center;
+}
+
+.gacha-result-media img,
+.gacha-result-media video {
+  width: min(100%, 260px);
+  max-height: 260px;
+
+  border: 2px solid #2c2527;
+  border-radius: 8px;
+
+  object-fit: cover;
+}
+
+.gacha-result-caption {
+  margin-top: 10px;
+
+  font-family: "Courier New", monospace;
+  font-size: .74rem;
+  line-height: 1.4;
+}
+
+.gacha-result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 14px;
+}
+
+
+/* =========================
+   PHOTOBOX
+========================= */
+
+.photobox-box {
+  position: relative;
+  z-index: 2;
+
+  width: min(92vw, 360px);
+
+  padding: 17px;
+
+  border: 3px solid #2c2527;
+  border-radius: 10px;
+
+  background: #fff8f3;
+
+  box-shadow:
+    6px 6px 0 #2c2527;
+
+  text-align: center;
+}
+
+.photobox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.photobox-box h2 {
+  margin-bottom: 12px;
+
+  font-family: "Courier New", monospace;
   font-size: 1rem;
 }
 
-.hud-button:active {
-  transform: scale(0.93);
+.photobox-video {
+  width: min(100%, 240px);
+
+  margin-inline: auto;
+  margin-bottom: 10px;
+
+  border: 2px solid #2c2527;
+  border-radius: 6px;
+}
+
+.photobox-box > p {
+  margin-bottom: 14px;
+
+  font-family: "Courier New", monospace;
+  font-size: .76rem;
+}
+
+
+/* =========================
+   OUTDOOR
+========================= */
+
+.outdoor-box {
+  position: relative;
+  z-index: 2;
+
+  width: min(94vw, 390px);
+
+  padding: 17px;
+
+  border: 3px solid #2c2527;
+  border-radius: 10px;
+
+  background: #fff8f3;
+
+  box-shadow:
+    6px 6px 0 #2c2527;
+}
+
+.outdoor-header {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.outdoor-header h2 {
+  font-family: "Courier New", monospace;
+  font-size: 1.1rem;
+}
+
+.outdoor-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.outdoor-gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  border: 2px solid #2c2527;
+  border-radius: 5px;
+
+  object-fit: cover;
+}
+
+.outdoor-copy {
+  margin-block: 12px;
+
+  font-family: "Courier New", monospace;
+  font-size: .74rem;
+}
+
+
+/* =========================
+   MAILBOX
+========================= */
+
+.mailbox-box {
+  position: relative;
+  z-index: 2;
+
+  width: min(92vw, 360px);
+
+  padding: 20px;
+
+  border: 3px solid #2c2527;
+  border-radius: 10px;
+
+  background: #fff8f3;
+
+  box-shadow:
+    6px 6px 0 #2c2527;
+
+  text-align: center;
+}
+
+.mailbox-box h2 {
+  font-family: "Courier New", monospace;
+  font-size: 1.35rem;
+}
+
+.mailbox-image {
+  width: 110px;
+  margin: 16px auto;
+}
+
+.mailbox-intro {
+  margin-bottom: 16px;
+
+  font-family: "Courier New", monospace;
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+.letter-panel {
+  display: none;
+
+  margin-top: 16px;
+
+  padding-top: 16px;
+
+  border-top: 2px dashed rgba(44,37,39,.35);
+
+  text-align: left;
+}
+
+.letter-panel.is-visible {
+  display: grid;
+  gap: 12px;
+}
+
+.letter-panel p {
+  font-family: "Courier New", monospace;
+  font-size: .77rem;
+  line-height: 1.5;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.game-toast {
+  position: fixed;
+  left: 50%;
+  top: 18px;
+  z-index: 9500;
+
+  min-width: 190px;
+  max-width: calc(100vw - 30px);
+
+  padding: 10px 14px;
+
+  border: 2px solid #2c2527;
+  border-radius: 8px;
+
+  background: #fff8f3;
+
+  box-shadow:
+    4px 4px 0 #2c2527;
+
+  transform:
+    translate(-50%, -150%);
+
+  transition:
+    transform .25s ease;
+}
+
+.game-toast.is-visible {
+  transform:
+    translate(-50%, 0);
+}
+
+.toast-label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  font-family: "Courier New", monospace;
+  font-size: .57rem;
+  letter-spacing: .1em;
+
+  opacity: .5;
+}
+
+.game-toast strong {
+  font-family: "Courier New", monospace;
+  font-size: .8rem;
+}
+
+
+/* =========================
+   MISSION COMPLETE
+========================= */
+
+.mission-complete {
+  background: rgba(35,29,30,.73);
+}
+
+.mission-complete-box {
+  position: relative;
+  z-index: 2;
+
+  width: min(92vw, 360px);
+
+  padding: 24px;
+
+  border: 3px solid #2c2527;
+  border-radius: 10px;
+
+  background: #fff6f0;
+
+  box-shadow:
+    7px 7px 0 #2c2527;
+
+  text-align: center;
+}
+
+.mission-complete-box > span {
+  font-family: "Courier New", monospace;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.mission-complete-box h2 {
+  margin-block: 14px;
+
+  font-family: "Courier New", monospace;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.mission-complete-box p {
+  margin-bottom: 18px;
+
+  font-family: "Courier New", monospace;
+  font-size: .75rem;
 }
 
 
@@ -430,11 +1110,9 @@ body.modal-open {
 ========================= */
 
 .counter-section {
-  width: 100%;
-
   padding: 90px 24px;
 
-  background: #f8f2ed;
+  background: #faf2ec;
 }
 
 .counter-inner {
@@ -443,16 +1121,15 @@ body.modal-open {
 }
 
 .counter-date {
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
+  font-size: .72rem;
+  letter-spacing: .08em;
 
-  opacity: 0.5;
+  opacity: .5;
 }
 
-.counter-days-block {
+.counter-main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -460,75 +1137,66 @@ body.modal-open {
 
 .counter-days {
   font-size: clamp(5rem, 25vw, 8rem);
-  line-height: 0.82;
+  line-height: .8;
   font-weight: 700;
-  letter-spacing: -0.08em;
+  letter-spacing: -.08em;
 }
 
-.counter-days-label {
+.counter-days-text {
   margin-top: 12px;
 
-  font-size: 1rem;
-  opacity: 0.6;
+  font-size: .95rem;
+  opacity: .55;
 }
 
-.counter-time {
-  margin-top: 42px;
-
+.counter-clock {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
+
+  margin-top: 40px;
 }
 
-.counter-time-unit {
+.counter-unit {
   display: flex;
   flex-direction: column;
 }
 
-.counter-time-unit span {
-  font-size: clamp(1.7rem, 8vw, 2.4rem);
-  line-height: 1;
+.counter-unit span,
+.counter-colon {
+  font-size: clamp(1.7rem, 8vw, 2.3rem);
   font-variant-numeric: tabular-nums;
 }
 
-.counter-time-unit small {
-  margin-top: 6px;
+.counter-unit small {
+  margin-top: 5px;
 
-  font-size: 0.65rem;
-  opacity: 0.45;
+  font-size: .6rem;
+  opacity: .4;
 }
 
-.counter-divider {
-  margin-top: -2px;
+.counter-ending {
+  margin-top: 34px;
 
-  font-size: clamp(1.7rem, 8vw, 2.4rem);
-  opacity: 0.3;
-}
-
-.still-counting {
-  margin-top: 38px;
-
-  font-size: 0.9rem;
+  font-size: .85rem;
   font-style: italic;
-
-  opacity: 0.7;
+  opacity: .65;
 }
 
 
 /* =========================
-   FINAL SECTION
+   FINAL
 ========================= */
 
 .final-section {
-  width: 100%;
-  min-height: 80svh;
+  min-height: 80vh;
 
   display: flex;
   align-items: center;
 
   padding: 90px 24px;
 
-  background: #e8d2d8;
+  background: #eacbd4;
 }
 
 .final-inner {
@@ -536,282 +1204,34 @@ body.modal-open {
   margin-inline: auto;
 }
 
-.final-small {
-  margin-bottom: 24px;
+.final-date {
+  margin-bottom: 22px;
 
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-
-  opacity: 0.5;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  opacity: .5;
 }
 
 .final-inner h2 {
-  font-size: clamp(3rem, 15vw, 5.6rem);
-  line-height: 0.92;
-  letter-spacing: -0.07em;
+  font-size: clamp(3rem, 15vw, 5.5rem);
+  line-height: .9;
+  letter-spacing: -.07em;
 }
 
-.final-ending {
-  margin-top: 70px;
+.final-copy {
+  margin-top: 65px;
 
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.35;
 }
 
-.final-counting {
+.final-small {
   display: inline-block;
 
-  margin-top: 24px;
+  margin-top: 22px;
 
-  font-size: 0.78rem;
-  opacity: 0.5;
-}
-
-
-/* =========================
-   MEMORY MODAL
-========================= */
-
-.memory-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  transition:
-    opacity 0.28s ease,
-    visibility 0.28s ease;
-}
-
-.memory-modal.is-open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.memory-backdrop {
-  position: absolute;
-  inset: 0;
-
-  background: rgba(30, 24, 24, 0.42);
-  backdrop-filter: blur(5px);
-}
-
-.memory-card {
-  position: relative;
-  z-index: 2;
-
-  width: min(100%, 520px);
-  max-height: 90svh;
-
-  overflow-y: auto;
-
-  padding:
-    52px
-    24px
-    calc(34px + env(safe-area-inset-bottom));
-
-  border-radius: 28px 28px 0 0;
-
-  background: #fffaf6;
-
-  transform: translateY(100%);
-
-  transition: transform 0.35s cubic-bezier(0.22, 0.75, 0.18, 1);
-}
-
-.memory-modal.is-open .memory-card {
-  transform: translateY(0);
-}
-
-.memory-close {
-  position: absolute;
-  top: 16px;
-  right: 18px;
-
-  display: grid;
-  place-items: center;
-
-  width: 34px;
-  height: 34px;
-
-  border-radius: 50%;
-
-  background: rgba(43, 37, 37, 0.06);
-
-  font-size: 1.4rem;
-  line-height: 1;
-}
-
-
-/* =========================
-   MEMORY CONTENT
-========================= */
-
-.memory-content {
-  width: 100%;
-}
-
-.memory-template {
-  width: 100%;
-}
-
-.memory-label {
-  margin-bottom: 12px;
-
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-
-  opacity: 0.4;
-}
-
-.memory-template h2 {
-  font-size: clamp(2.1rem, 10vw, 3.5rem);
-  line-height: 0.95;
-  letter-spacing: -0.055em;
-}
-
-.memory-template h2 span {
-  display: inline-block;
-
-  margin-top: 4px;
-
-  font-size: 0.55em;
-  line-height: 1.1;
-
-  opacity: 0.68;
-}
-
-.memory-object-image {
-  width: min(76%, 330px);
-
-  margin: 34px auto 28px;
-
-  object-fit: contain;
-}
-
-.memory-text {
-  max-width: 30rem;
-
-  font-size: 1rem;
-  line-height: 1.6;
-
-  color: rgba(43, 37, 37, 0.75);
-}
-
-
-/* =========================
-   MEMORY ACTION BUTTON
-========================= */
-
-.memory-action {
-  margin-top: 24px;
-  padding: 11px 18px;
-
-  border: 1px solid rgba(43, 37, 37, 0.14);
-  border-radius: 999px;
-
-  background: #f3e8e3;
-
-  font-size: 0.82rem;
-}
-
-.memory-action:active {
-  transform: scale(0.96);
-}
-
-
-/* =========================
-   PHOTOBOX / VIDEO
-========================= */
-
-.memory-video {
-  width: min(100%, 360px);
-
-  margin: 30px auto;
-
-  border-radius: 16px;
-
-  background: #eadfda;
-}
-
-
-/* =========================
-   GALLERY
-========================= */
-
-.memory-gallery {
-  margin-top: 28px;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.memory-gallery img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-
-  object-fit: cover;
-
-  border-radius: 12px;
-}
-
-
-/* =========================
-   LETTER
-========================= */
-
-.memory-letter-intro {
-  margin-top: 30px;
-
-  font-size: 1.2rem;
-  line-height: 1.4;
-}
-
-.letter-body {
-  margin-top: 40px;
-
-  display: grid;
-  gap: 20px;
-
-  font-size: 1rem;
-  line-height: 1.7;
-
-  color: rgba(43, 37, 37, 0.75);
-}
-
-
-/* =========================
-   GACHA RESULT
-========================= */
-
-.gacha-result {
-  margin-top: 28px;
-}
-
-.gacha-result img,
-.gacha-result video {
-  width: 100%;
-
-  margin-top: 16px;
-
-  border-radius: 16px;
-}
-
-.gacha-result p {
-  margin-top: 14px;
-
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: .72rem;
+  opacity: .48;
 }
 
 
@@ -821,36 +1241,16 @@ body.modal-open {
 
 @media (min-width: 700px) {
   body {
-    background: #d9cac6;
+    background: #cdbeba;
   }
 
-  .world-section {
-    padding-block: 28px;
-  }
+  .world {
+    margin-block: 24px;
 
-  .world-shell {
     border-radius: 24px;
+
     box-shadow:
-      0 25px 70px rgba(60, 42, 42, 0.16);
-  }
-
-  .memory-modal {
-    align-items: center;
-    padding: 24px;
-  }
-
-  .memory-card {
-    border-radius: 28px;
-
-    transform:
-      translateY(20px)
-      scale(0.97);
-  }
-
-  .memory-modal.is-open .memory-card {
-    transform:
-      translateY(0)
-      scale(1);
+      0 24px 60px rgba(40,30,31,.16);
   }
 }
 
@@ -863,11 +1263,8 @@ body.modal-open {
   *,
   *::before,
   *::after {
+    animation: none !important;
+    transition: none !important;
     scroll-behavior: auto !important;
-
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-
-    transition-duration: 0.01ms !important;
   }
 }
