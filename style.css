@@ -2984,3 +2984,162 @@ button:focus-visible {
     transition-duration: 0.001ms !important;
   }
 }
+
+
+/* =========================================================
+   FINAL WORLD TUNING
+   current render -> reference target
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   SNACK SHELF
+   Current masih terlalu mini.
+--------------------------------------------------------- */
+
+.object-snacks {
+  width: 48%;
+  left: -4%;
+  top: 16%;
+}
+
+
+/* ---------------------------------------------------------
+   PHOTOBOX
+   Besarin supaya berasa booth beneran.
+--------------------------------------------------------- */
+
+.object-photobox {
+  width: 39%;
+  left: 29%;
+  top: 12.5%;
+}
+
+
+/* ---------------------------------------------------------
+   WINDOW
+   Background ASLINYA sudah punya window.
+
+   Jadi PNG 11.png nggak usah dirender lagi karena itu
+   yang bikin double-layer.
+
+   Button-nya tetap ada sebagai invisible clickable area.
+--------------------------------------------------------- */
+
+.object-window {
+  width: 38%;
+  right: -1%;
+  top: 13%;
+  z-index: 20;
+}
+
+.object-window > img {
+  opacity: 0;
+}
+
+.object-window .object-hitbox {
+  inset: -8px;
+}
+
+
+/* ---------------------------------------------------------
+   CAT
+   Sedikit terlalu besar sekarang.
+--------------------------------------------------------- */
+
+.object-cat {
+  width: 21.5%;
+  right: 7%;
+  top: 29.5%;
+}
+
+
+/* ---------------------------------------------------------
+   TUMBLER
+   Naikin sedikit supaya bottom-nya benar-benar duduk
+   di furniture kiri.
+--------------------------------------------------------- */
+
+.object-tumbler {
+  width: 18%;
+  left: 3.5%;
+  top: 32.8%;
+  z-index: 30;
+}
+
+.object-tumbler .object-hitbox {
+  inset: -18px;
+}
+
+
+/* ---------------------------------------------------------
+   KEYCHAIN
+
+   - visual lebih kecil seperti reference
+   - pindah sedikit ke atas supaya tidak ketutup motor
+   - Z-INDEX > MOTOR
+   - invisible tap area jauh lebih besar
+--------------------------------------------------------- */
+
+.object-keychain {
+  width: 15%;
+  left: 8%;
+  top: 40.5%;
+  z-index: 42;
+}
+
+.object-keychain .object-hitbox {
+  inset: -26px;
+}
+
+
+/* ---------------------------------------------------------
+   MOTOR / VINO
+
+   Scale keep dulu.
+   Geser sedikit ke kanan seperti reference.
+--------------------------------------------------------- */
+
+.object-vino {
+  width: 54%;
+  left: 12%;
+  top: 45%;
+  z-index: 31;
+}
+
+
+/* ---------------------------------------------------------
+   GACHA
+   Lo bilang sudah oke -> DON'T TOUCH.
+--------------------------------------------------------- */
+
+.object-gacha {
+  width: 27%;
+  right: 6%;
+  top: 37%;
+}
+
+
+/* ---------------------------------------------------------
+   MAILBOX
+   Lo bilang sudah oke -> DON'T TOUCH.
+--------------------------------------------------------- */
+
+.object-mailbox {
+  width: 22%;
+  right: 2%;
+  top: 53%;
+}
+
+
+/* ---------------------------------------------------------
+   MIE GACOAN
+   Current terlalu dominan.
+   Cukup dikecilin, bukan dipindah ngawur.
+--------------------------------------------------------- */
+
+.object-gacoan {
+  width: 30%;
+  right: 5%;
+  top: 66%;
+}
