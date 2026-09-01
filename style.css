@@ -1,0 +1,873 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7efe9;
+  color: #2b2525;
+  overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+
+/* =========================
+   OPENING SCREEN
+========================= */
+
+.opening-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: grid;
+  place-items: center;
+
+  min-height: 100svh;
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(255, 255, 255, 0.9),
+      transparent 42%
+    ),
+    #f3dfe4;
+
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s ease;
+}
+
+.opening-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.opening-content {
+  width: min(100%, 420px);
+  text-align: center;
+}
+
+.opening-kicker {
+  margin-bottom: 14px;
+
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+
+  opacity: 0.6;
+}
+
+.opening-content h1 {
+  font-size: clamp(2rem, 9vw, 3.3rem);
+  line-height: 0.98;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.enter-button {
+  margin-top: 30px;
+  padding: 13px 22px;
+
+  border: 1px solid rgba(43, 37, 37, 0.2);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+
+  font-size: 0.9rem;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.enter-button:active {
+  transform: scale(0.96);
+}
+
+.enter-button:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+
+/* =========================
+   APP
+========================= */
+
+.app {
+  width: 100%;
+}
+
+
+/* =========================
+   MAIN WORLD
+========================= */
+
+.world-section {
+  width: 100%;
+  min-height: 100svh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  background: #ead8d3;
+}
+
+.world-shell {
+  position: relative;
+
+  width: min(100vw, 480px);
+  aspect-ratio: 9 / 16;
+
+  overflow: hidden;
+
+  background: #ead8d3;
+}
+
+.world-background {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+
+/* =========================
+   WORLD COPY
+========================= */
+
+.world-copy {
+  position: absolute;
+  top: 3.5%;
+  left: 50%;
+  z-index: 30;
+
+  width: 80%;
+
+  transform: translateX(-50%);
+
+  text-align: center;
+  pointer-events: none;
+}
+
+.world-caption {
+  font-size: clamp(0.72rem, 3.1vw, 0.92rem);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+
+  color: rgba(48, 41, 41, 0.72);
+}
+
+
+/* =========================
+   WORLD OBJECTS
+========================= */
+
+.world-object {
+  position: absolute;
+  z-index: 15;
+
+  padding: 0;
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease;
+}
+
+.world-object img {
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+.world-object:active {
+  transform: scale(0.94);
+}
+
+.world-object:hover {
+  filter: brightness(1.03);
+}
+
+
+/* =========================
+   OBJECT POSITIONS
+
+   Ini masih baseline.
+   Nanti setelah lo lihat di HP,
+   kita tinggal geser persentasenya.
+========================= */
+
+/* window */
+.object-window {
+  width: 29%;
+  left: 6%;
+  top: 11%;
+  z-index: 8;
+}
+
+/* photobox */
+.object-photobox {
+  width: 25%;
+  right: 6%;
+  top: 18%;
+}
+
+/* gacha */
+.object-gacha {
+  width: 18%;
+  left: 41%;
+  top: 25%;
+}
+
+/* tumbler */
+.object-tumbler {
+  width: 13%;
+  left: 9%;
+  top: 36%;
+}
+
+/* snack shelf */
+.object-snacks {
+  width: 25%;
+  right: 4%;
+  top: 38%;
+}
+
+/* cat */
+.object-cat {
+  width: 15%;
+  left: 31%;
+  top: 47%;
+}
+
+/* gacoan */
+.object-gacoan {
+  width: 20%;
+  right: 11%;
+  top: 54%;
+}
+
+/* keychain */
+.object-keychain {
+  width: 16%;
+  left: 8%;
+  top: 57%;
+}
+
+/* mailbox */
+.object-mailbox {
+  width: 14%;
+  right: 7%;
+  top: 68%;
+}
+
+/* vino */
+.object-vino {
+  width: 36%;
+  left: 7%;
+  bottom: 5%;
+}
+
+
+/* =========================
+   SUBTLE IDLE MOTION
+========================= */
+
+.object-cat {
+  animation: catIdle 3.8s ease-in-out infinite;
+}
+
+.object-gacha {
+  animation: tinyFloat 4.8s ease-in-out infinite;
+}
+
+.object-mailbox {
+  animation: tinyFloat 5.5s ease-in-out infinite;
+}
+
+@keyframes catIdle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes tinyFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+.world-hud {
+  position: absolute;
+  left: 50%;
+  bottom: 2.2%;
+  z-index: 40;
+
+  width: 92%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+}
+
+.memory-progress,
+.hud-button {
+  pointer-events: auto;
+}
+
+.memory-progress {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+
+  padding: 8px 12px;
+
+  border: 1px solid rgba(43, 37, 37, 0.1);
+  border-radius: 999px;
+
+  background: rgba(255, 247, 244, 0.72);
+  backdrop-filter: blur(8px);
+
+  font-size: 0.78rem;
+}
+
+.memory-progress small {
+  margin-left: 4px;
+  opacity: 0.55;
+}
+
+.hud-button {
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid rgba(43, 37, 37, 0.1);
+  border-radius: 50%;
+
+  background: rgba(255, 247, 244, 0.72);
+  backdrop-filter: blur(8px);
+
+  font-size: 1rem;
+}
+
+.hud-button:active {
+  transform: scale(0.93);
+}
+
+
+/* =========================
+   COUNTER
+========================= */
+
+.counter-section {
+  width: 100%;
+
+  padding: 90px 24px;
+
+  background: #f8f2ed;
+}
+
+.counter-inner {
+  width: min(100%, 480px);
+  margin-inline: auto;
+}
+
+.counter-date {
+  margin-bottom: 24px;
+
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+
+  opacity: 0.5;
+}
+
+.counter-days-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.counter-days {
+  font-size: clamp(5rem, 25vw, 8rem);
+  line-height: 0.82;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+}
+
+.counter-days-label {
+  margin-top: 12px;
+
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+.counter-time {
+  margin-top: 42px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.counter-time-unit {
+  display: flex;
+  flex-direction: column;
+}
+
+.counter-time-unit span {
+  font-size: clamp(1.7rem, 8vw, 2.4rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.counter-time-unit small {
+  margin-top: 6px;
+
+  font-size: 0.65rem;
+  opacity: 0.45;
+}
+
+.counter-divider {
+  margin-top: -2px;
+
+  font-size: clamp(1.7rem, 8vw, 2.4rem);
+  opacity: 0.3;
+}
+
+.still-counting {
+  margin-top: 38px;
+
+  font-size: 0.9rem;
+  font-style: italic;
+
+  opacity: 0.7;
+}
+
+
+/* =========================
+   FINAL SECTION
+========================= */
+
+.final-section {
+  width: 100%;
+  min-height: 80svh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 90px 24px;
+
+  background: #e8d2d8;
+}
+
+.final-inner {
+  width: min(100%, 480px);
+  margin-inline: auto;
+}
+
+.final-small {
+  margin-bottom: 24px;
+
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+
+  opacity: 0.5;
+}
+
+.final-inner h2 {
+  font-size: clamp(3rem, 15vw, 5.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+}
+
+.final-ending {
+  margin-top: 70px;
+
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.final-counting {
+  display: inline-block;
+
+  margin-top: 24px;
+
+  font-size: 0.78rem;
+  opacity: 0.5;
+}
+
+
+/* =========================
+   MEMORY MODAL
+========================= */
+
+.memory-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease;
+}
+
+.memory-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.memory-backdrop {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(30, 24, 24, 0.42);
+  backdrop-filter: blur(5px);
+}
+
+.memory-card {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 520px);
+  max-height: 90svh;
+
+  overflow-y: auto;
+
+  padding:
+    52px
+    24px
+    calc(34px + env(safe-area-inset-bottom));
+
+  border-radius: 28px 28px 0 0;
+
+  background: #fffaf6;
+
+  transform: translateY(100%);
+
+  transition: transform 0.35s cubic-bezier(0.22, 0.75, 0.18, 1);
+}
+
+.memory-modal.is-open .memory-card {
+  transform: translateY(0);
+}
+
+.memory-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: rgba(43, 37, 37, 0.06);
+
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+
+/* =========================
+   MEMORY CONTENT
+========================= */
+
+.memory-content {
+  width: 100%;
+}
+
+.memory-template {
+  width: 100%;
+}
+
+.memory-label {
+  margin-bottom: 12px;
+
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  opacity: 0.4;
+}
+
+.memory-template h2 {
+  font-size: clamp(2.1rem, 10vw, 3.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.memory-template h2 span {
+  display: inline-block;
+
+  margin-top: 4px;
+
+  font-size: 0.55em;
+  line-height: 1.1;
+
+  opacity: 0.68;
+}
+
+.memory-object-image {
+  width: min(76%, 330px);
+
+  margin: 34px auto 28px;
+
+  object-fit: contain;
+}
+
+.memory-text {
+  max-width: 30rem;
+
+  font-size: 1rem;
+  line-height: 1.6;
+
+  color: rgba(43, 37, 37, 0.75);
+}
+
+
+/* =========================
+   MEMORY ACTION BUTTON
+========================= */
+
+.memory-action {
+  margin-top: 24px;
+  padding: 11px 18px;
+
+  border: 1px solid rgba(43, 37, 37, 0.14);
+  border-radius: 999px;
+
+  background: #f3e8e3;
+
+  font-size: 0.82rem;
+}
+
+.memory-action:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================
+   PHOTOBOX / VIDEO
+========================= */
+
+.memory-video {
+  width: min(100%, 360px);
+
+  margin: 30px auto;
+
+  border-radius: 16px;
+
+  background: #eadfda;
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+.memory-gallery {
+  margin-top: 28px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.memory-gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+}
+
+
+/* =========================
+   LETTER
+========================= */
+
+.memory-letter-intro {
+  margin-top: 30px;
+
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.letter-body {
+  margin-top: 40px;
+
+  display: grid;
+  gap: 20px;
+
+  font-size: 1rem;
+  line-height: 1.7;
+
+  color: rgba(43, 37, 37, 0.75);
+}
+
+
+/* =========================
+   GACHA RESULT
+========================= */
+
+.gacha-result {
+  margin-top: 28px;
+}
+
+.gacha-result img,
+.gacha-result video {
+  width: 100%;
+
+  margin-top: 16px;
+
+  border-radius: 16px;
+}
+
+.gacha-result p {
+  margin-top: 14px;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 700px) {
+  body {
+    background: #d9cac6;
+  }
+
+  .world-section {
+    padding-block: 28px;
+  }
+
+  .world-shell {
+    border-radius: 24px;
+    box-shadow:
+      0 25px 70px rgba(60, 42, 42, 0.16);
+  }
+
+  .memory-modal {
+    align-items: center;
+    padding: 24px;
+  }
+
+  .memory-card {
+    border-radius: 28px;
+
+    transform:
+      translateY(20px)
+      scale(0.97);
+  }
+
+  .memory-modal.is-open .memory-card {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}
